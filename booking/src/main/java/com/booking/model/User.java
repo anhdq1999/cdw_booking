@@ -3,7 +3,9 @@ package com.booking.model;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collection;
 
 @Getter
 @Setter
@@ -34,6 +36,7 @@ public class User {
     @OneToOne(mappedBy = "address")
     private Address address;
 
-    private String roles;
+    @ManyToMany
+    private Collection<Role> roles = new ArrayList<>();
 
 }
