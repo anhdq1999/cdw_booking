@@ -1,23 +1,5 @@
 package com.booking.service.impl;
 
-<<<<<<< HEAD
-import com.booking.model.dto.UserDTO;
-import com.booking.repositories.UserRepository;
-import com.booking.service.IUserService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
-
-import java.util.List;
-
-@Component
-public class UserServiceImpl implements IUserService {
-    @Autowired
-    private UserRepository userRepository;
-    @Override
-    public List<UserDTO> findAll() {
-        return null;
-    }
-=======
 import com.booking.converter.UserConverter;
 import com.booking.entity.User;
 import com.booking.payload.request.UserRequest;
@@ -38,7 +20,7 @@ public class UserServiceImpl implements IUserService {
     private final UserConverter userConverter;
 
     @Override
-    public List<UserResponse> findAll() {
+    public List<UserResponse> getAll() {
         List<UserResponse> listUserResponse = new ArrayList<>();
         List<User> listUser = userRepository.findAll();
         for (User user : listUser) {
@@ -113,5 +95,4 @@ public class UserServiceImpl implements IUserService {
 //        return user;
 //    }
 
->>>>>>> anhdq1
 }

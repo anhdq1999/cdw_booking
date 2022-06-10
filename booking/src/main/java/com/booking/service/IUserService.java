@@ -6,7 +6,7 @@ import com.booking.payload.response.UserResponse;
 import java.util.List;
 
 public interface IUserService {
-    List<UserResponse> findAll();
+    List<UserResponse> getAll();
 
     UserResponse findById(Long id);
 
