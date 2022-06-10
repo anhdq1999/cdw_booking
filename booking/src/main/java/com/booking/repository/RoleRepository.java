@@ -1,6 +1,6 @@
-package com.example.cdweb.HotelBookingAPI.repository;
+package com.booking.repository;
 
-import com.example.cdweb.HotelBookingAPI.entity.Role;
+import com.booking.entity.Role;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

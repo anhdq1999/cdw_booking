@@ -1,6 +1,6 @@
-package com.example.cdweb.HotelBookingAPI.payload.response;
+package com.booking.payload.response;
 
-import com.example.cdweb.HotelBookingAPI.entity.Role;
+import com.booking.entity.Role;
 import lombok.Builder;
 import lombok.Data;
 import lombok.Getter;

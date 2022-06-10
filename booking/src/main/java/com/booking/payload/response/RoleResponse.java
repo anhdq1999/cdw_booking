@@ -1,4 +1,4 @@
-package com.example.cdweb.HotelBookingAPI.payload.response;
+package com.booking.payload.response;
 
 import lombok.Builder;
 import lombok.Getter;

@@ -1,8 +1,8 @@
-package com.example.cdweb.HotelBookingAPI.converter;
+package com.booking.converter;
 
-import com.example.cdweb.HotelBookingAPI.entity.Role;
-import com.example.cdweb.HotelBookingAPI.payload.request.RoleRequest;
-import com.example.cdweb.HotelBookingAPI.payload.response.RoleResponse;
+import com.booking.entity.Role;
+import com.booking.payload.request.RoleRequest;
+import com.booking.payload.response.RoleResponse;
 
 public class RoleConverter {
     private static RoleConverter INSTANCE;

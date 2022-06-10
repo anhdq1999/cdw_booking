@@ -1,6 +1,5 @@
-package com.example.cdweb.HotelBookingAPI.payload.request;
+package com.booking.payload.request;
 
-import com.example.cdweb.HotelBookingAPI.entity.Role;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
@@ -15,5 +14,5 @@ public class UserRequest {
     private String fullName;
     private String phoneNumber;
     private String address;
-    private Role Role;
+    private com.booking.entity.Role Role;
 }

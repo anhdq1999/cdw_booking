@@ -1,4 +1,4 @@
-package com.example.cdweb.HotelBookingAPI.entity;
+package com.booking.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
