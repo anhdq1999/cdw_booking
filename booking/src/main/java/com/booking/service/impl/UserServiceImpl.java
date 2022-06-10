@@ -2,6 +2,7 @@ package com.booking.service.impl;
 
 import com.booking.converter.UserConverter;
 import com.booking.entity.User;
+import com.booking.payload.request.UserRequest;
 import com.booking.payload.response.UserResponse;
 import com.booking.repository.UserRepository;
 import com.booking.service.IUserService;
@@ -10,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -30,8 +32,38 @@ public class UserServiceImpl implements IUserService {
     @Override
     public UserResponse findById(Long id) {
         User user = userRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Not found user by id: " + id));
-        UserResponse userResponse = userConverter.toResponse(user);
-        return userResponse;
+        return userConverter.toResponse(user);
+    }
+
+    @Override
+    public UserResponse save(UserRequest userRequest) {
+        User userEntity = userConverter.toEntity(userRequest);
+        userRepository.save(userEntity);
+        return userConverter.toResponse(userEntity);
+    }
+
+    @Override
+    public UserResponse edit(Long id, UserRequest userRequest) {
+//        User userEntity = userConverter.toEntity(userRequest);
+        Optional<User> user = userRepository.findById(id);
+        if (user.isPresent()) {
+            User _user = user.get();
+            _user.setAddress(userRequest.getAddress());
+            _user.setEmail(userRequest.getEmail());
+//            _user.setUsername(userRequest.getUsername()); Khum ai sửa username bao giờ cả
+            _user.setPassword(userRequest.getPassword());
+            _user.setFullName(userRequest.getFullName());
+            _user.setPhoneNumber(userRequest.getPhoneNumber());
+            _user.setRole(userRequest.getRole());
+            userRepository.save(_user);
+            return userConverter.toResponse(_user);
+        }
+        return null;
+    }
+
+    @Override
+    public void delete(Long id) {
+
     }
 
 //
