@@ -1,7 +1,7 @@
-package com.example.cdweb.HotelBookingAPI.entity;
+package com.booking.entity;
 
 import lombok.*;
-import java.util.List;
+
 import javax.persistence.*;
 
 @NoArgsConstructor

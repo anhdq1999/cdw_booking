@@ -1,11 +1,20 @@
 package com.booking.service;
 
-import com.booking.model.dto.UserDTO;
-import org.springframework.stereotype.Service;
+import com.booking.payload.request.UserRequest;
+import com.booking.payload.response.UserResponse;
 
 import java.util.List;
 
-@Service
 public interface IUserService {
-    List<UserDTO> findAll();
+    List<UserResponse> findAll();
+
+    UserResponse findById(Long id);
+
+    UserResponse save(UserRequest userRequest);
+
+    UserResponse edit(Long id, UserRequest userRequest);
+
+    void delete(Long id);
+
+
 }

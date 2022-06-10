@@ -1,4 +1,4 @@
-package com.example.cdweb.HotelBookingAPI.config;
+package com.booking.config;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

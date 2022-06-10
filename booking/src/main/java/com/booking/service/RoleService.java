@@ -1,15 +1,13 @@
-package com.example.cdweb.HotelBookingAPI.service;
+package com.booking.service;
 
-import com.example.cdweb.HotelBookingAPI.converter.RoleConverter;
-import com.example.cdweb.HotelBookingAPI.entity.Role;
-import com.example.cdweb.HotelBookingAPI.payload.request.RoleRequest;
-import com.example.cdweb.HotelBookingAPI.payload.response.RoleResponse;
-import com.example.cdweb.HotelBookingAPI.repository.RoleRepository;
+import com.booking.repository.RoleRepository;
+import com.booking.converter.RoleConverter;
+import com.booking.entity.Role;
+import com.booking.payload.request.RoleRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class RoleService {

@@ -1,8 +1,8 @@
-package com.example.cdweb.HotelBookingAPI.converter;
+package com.booking.converter;
 
-import com.example.cdweb.HotelBookingAPI.entity.User;
-import com.example.cdweb.HotelBookingAPI.payload.request.UserRequest;
-import com.example.cdweb.HotelBookingAPI.payload.response.UserResponse;
+import com.booking.entity.User;
+import com.booking.payload.request.UserRequest;
+import com.booking.payload.response.UserResponse;
 
 public class UserConverter {
     private static UserConverter instance;
