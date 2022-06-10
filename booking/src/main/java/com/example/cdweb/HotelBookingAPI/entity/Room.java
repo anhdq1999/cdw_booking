@@ -15,8 +15,7 @@ public class Room {
     @GeneratedValue(strategy=GenerationType.AUTO)
     private Long id;
     private String name;
-    @OneToOne
-    @JoinColumn(name = "user_id")
+    @ManyToOne
     private User user;
 
 }
