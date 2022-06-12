@@ -6,7 +6,7 @@ import com.booking.payload.request.UserRequest;
 import com.booking.payload.response.UserResponse;
 import com.booking.repository.UserRepository;
 import com.booking.service.IUserService;
-import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -14,10 +14,10 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-@RequiredArgsConstructor
 public class UserServiceImpl implements IUserService {
-    private final UserRepository userRepository;
-    private final UserConverter userConverter;
+    @Autowired
+    private UserRepository userRepository;
+    private UserConverter userConverter;
 
     @Override
     public List<UserResponse> getAll() {
