@@ -1,5 +1,7 @@
 package com.booking.payload.request;
 
+import com.booking.entity.Address;
+import com.booking.entity.Role;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
@@ -13,6 +15,6 @@ public class UserRequest {
     private String email;
     private String fullName;
     private String phoneNumber;
-    private String address;
-    private com.booking.entity.Role Role;
+    private Address address;
+    private Role role;
 }

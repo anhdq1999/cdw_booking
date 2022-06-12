@@ -1,10 +1,14 @@
 package com.booking.payload.response;
 
+import com.booking.entity.Address;
 import com.booking.entity.Role;
+import com.booking.entity.Room;
 import lombok.Builder;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
+
+import java.util.List;
 
 @Data
 @Getter
@@ -17,6 +21,7 @@ public class UserResponse {
     private String email;
     private String fullName;
     private String phoneNumber;
-    private String address;
+    private Address address;
     private Role role;
+    private List<Room> listRoom;
 }

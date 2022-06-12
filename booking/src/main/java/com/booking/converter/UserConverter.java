@@ -6,13 +6,15 @@ import com.booking.payload.response.UserResponse;
 
 public class UserConverter {
     private static UserConverter instance;
-    public static UserConverter getInstance(){
-        if(instance==null){
-            instance=new UserConverter();
+
+    public static UserConverter getInstance() {
+        if (instance == null) {
+            instance = new UserConverter();
         }
         return instance;
     }
-    public UserResponse toResponse(User entity){
+
+    public UserResponse toResponse(User entity) {
         return UserResponse.builder()
                 .id(entity.getId())
                 .fullName(entity.getFullName())
@@ -24,7 +26,8 @@ public class UserConverter {
                 .phoneNumber(entity.getPhoneNumber())
                 .build();
     }
-    public User toEntity(UserRequest entity){
+
+    public User toEntity(UserRequest entity) {
         return User.builder()
                 .fullName(entity.getFullName())
                 .password(entity.getPassword())
