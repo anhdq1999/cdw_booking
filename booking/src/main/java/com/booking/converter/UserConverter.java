@@ -1,39 +1,39 @@
 package com.booking.converter;
 
-import com.booking.entity.User;
-import com.booking.payload.request.UserRequest;
-import com.booking.payload.response.UserResponse;
+import com.booking.entity.UserApp;
+import com.booking.payload.request.UserAppRequest;
+import com.booking.payload.response.UserAppResponse;
 
 public class UserConverter {
     private static UserConverter instance;
-    public static UserConverter getInstance(){
-        if(instance==null){
-            instance=new UserConverter();
+
+    public static UserConverter getInstance() {
+        if (instance == null) {
+            instance = new UserConverter();
         }
         return instance;
     }
-    public UserResponse toResponse(User entity){
-        return UserResponse.builder()
-                .id(entity.getId())
-                .fullName(entity.getFullName())
-                .password(entity.getPassword())
+
+    public UserAppResponse toResponse(UserApp entity) {
+        return UserAppResponse.builder()
                 .username(entity.getUsername())
-                .address(entity.getAddress())
                 .email(entity.getEmail())
-                .role(entity.getRole())
-                .phoneNumber(entity.getPhoneNumber())
-                .build();
-    }
-    public User toEntity(UserRequest entity){
-        return User.builder()
                 .fullName(entity.getFullName())
-                .password(entity.getPassword())
-                .username(entity.getUsername())
-                .address(entity.getAddress())
-                .email(entity.getEmail())
                 .phoneNumber(entity.getPhoneNumber())
+                .address(entity.getAddress())
+                .roles(entity.getRoles())
                 .build();
     }
 
-
+    public UserApp toEntity(UserAppRequest userRequest) {
+        return UserApp.builder()
+                .username(userRequest.getUsername())
+                .email(userRequest.getEmail())
+                .password(userRequest.getPassword())
+                .fullName(userRequest.getFullName())
+                .phoneNumber(userRequest.getPhoneNumber())
+                .address(userRequest.getAddress())
+                .roles(userRequest.getRoles())
+                .build();
+    }
 }

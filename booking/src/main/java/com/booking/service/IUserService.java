@@ -1,18 +1,18 @@
 package com.booking.service;
 
-import com.booking.payload.request.UserRequest;
-import com.booking.payload.response.UserResponse;
+import com.booking.payload.request.UserAppRequest;
+import com.booking.payload.response.UserAppResponse;
 
 import java.util.List;
 
 public interface IUserService {
-    List<UserResponse> getAll();
+    List<UserAppResponse> getAll();
 
-    UserResponse findById(Long id);
+    UserAppResponse findById(Long id);
 
-    UserResponse save(UserRequest userRequest);
+    UserAppResponse save(UserAppRequest userAppRequest);
 
-    UserResponse edit(Long id, UserRequest userRequest);
+    UserAppResponse edit(Long id, UserAppRequest userAppRequest);
 
     void delete(Long id);
 

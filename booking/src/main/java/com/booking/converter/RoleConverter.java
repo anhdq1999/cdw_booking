@@ -14,17 +14,12 @@ public class RoleConverter {
     }
     public RoleResponse toResponse(Role entity){
         return RoleResponse.builder()
-                .id(entity.getId())
                 .name(entity.getName())
-                .code(entity.getCode())
-                .createdDate(entity.getCreatedDate())
-                .modifiedDate(entity.getModifiedDate())
                 .build();
     }
     public Role toEntity(RoleRequest entity){
         return Role.builder()
                 .name(entity.getName())
-                .code(entity.getCode())
                 .build();
     }
 }

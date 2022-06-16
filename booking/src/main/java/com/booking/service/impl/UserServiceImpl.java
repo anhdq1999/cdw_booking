@@ -1,9 +1,9 @@
 package com.booking.service.impl;
 
 import com.booking.converter.UserConverter;
-import com.booking.entity.User;
-import com.booking.payload.request.UserRequest;
-import com.booking.payload.response.UserResponse;
+import com.booking.entity.UserApp;
+import com.booking.payload.request.UserAppRequest;
+import com.booking.payload.response.UserAppResponse;
 import com.booking.repository.UserRepository;
 import com.booking.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +11,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class UserServiceImpl implements IUserService {
@@ -20,44 +19,44 @@ public class UserServiceImpl implements IUserService {
     private UserConverter userConverter;
 
     @Override
-    public List<UserResponse> getAll() {
-        List<UserResponse> listUserResponse = new ArrayList<>();
-        List<User> listUser = userRepository.findAll();
-        for (User user : listUser) {
-            listUserResponse.add(userConverter.toResponse(user));
+    public List<UserAppResponse> getAll() {
+        List<UserAppResponse> listUserAppResponse = new ArrayList<>();
+        List<UserApp> listUser = userRepository.findAll();
+        for (UserApp user : listUser) {
+            listUserAppResponse.add(userConverter.toResponse(user));
         }
-        return listUserResponse;
+        return listUserAppResponse;
     }
 
     @Override
-    public UserResponse findById(Long id) {
-        User user = userRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Not found user by id: " + id));
+    public UserAppResponse findById(Long id) {
+        UserApp user = userRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Not found user by id: " + id));
         return userConverter.toResponse(user);
     }
 
     @Override
-    public UserResponse save(UserRequest userRequest) {
-        User userEntity = userConverter.toEntity(userRequest);
+    public UserAppResponse save(UserAppRequest userAppRequest) {
+        UserApp userEntity = userConverter.toEntity(userAppRequest);
         userRepository.save(userEntity);
         return userConverter.toResponse(userEntity);
     }
 
     @Override
-    public UserResponse edit(Long id, UserRequest userRequest) {
-//        User userEntity = userConverter.toEntity(userRequest);
-        Optional<User> user = userRepository.findById(id);
-        if (user.isPresent()) {
-            User _user = user.get();
-            _user.setAddress(userRequest.getAddress());
-            _user.setEmail(userRequest.getEmail());
-//            _user.setUsername(userRequest.getUsername()); Khum ai sửa username bao giờ cả
-            _user.setPassword(userRequest.getPassword());
-            _user.setFullName(userRequest.getFullName());
-            _user.setPhoneNumber(userRequest.getPhoneNumber());
-            _user.setRole(userRequest.getRole());
-            userRepository.save(_user);
-            return userConverter.toResponse(_user);
-        }
+    public UserAppResponse edit(Long id, UserAppRequest userAppRequest) {
+////        User userEntity = userConverter.toEntity(userRequest);
+//        Optional<UserApp> user = userRepository.findById(id);
+//        if (user.isPresent()) {
+//            UserApp _user = user.get();
+//            _user.setAddress(userRequest.getAddress());
+//            _user.setEmail(userRequest.getEmail());
+////            _user.setUsername(userRequest.getUsername()); Khum ai sửa username bao giờ cả
+//            _user.setPassword(userRequest.getPassword());
+//            _user.setFullName(userRequest.getFullName());
+//            _user.setPhoneNumber(userRequest.getPhoneNumber());
+//            _user.setRole(userRequest.getRole());
+//            userRepository.save(_user);
+//            return userConverter.toResponse(_user);
+//        }
         return null;
     }
 

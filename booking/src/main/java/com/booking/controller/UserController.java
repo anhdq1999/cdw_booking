@@ -2,8 +2,8 @@ package com.booking.controller;
 
 
 import com.booking.common.Response;
-import com.booking.payload.request.UserRequest;
-import com.booking.payload.response.UserResponse;
+import com.booking.payload.request.UserAppRequest;
+import com.booking.payload.response.UserAppResponse;
 import com.booking.service.impl.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -19,7 +19,7 @@ public class UserController {
 
     @GetMapping()
     public ResponseEntity<?> getAll() {
-        List<UserResponse> users = userService.getAll();
+        List<UserAppResponse> users = userService.getAll();
         return ResponseEntity.ok(Response.success("Get all user successfully", users));
     }
 
@@ -29,7 +29,7 @@ public class UserController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<?> updateUser(@PathVariable Long id, UserRequest userRequest) {
+    public ResponseEntity<?> updateUser(@PathVariable Long id, UserAppRequest userAppRequest) {
         return null;
     }
 

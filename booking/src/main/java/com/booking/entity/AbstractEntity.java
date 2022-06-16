@@ -13,19 +13,21 @@ import java.util.Date;
 @EntityListeners({AuditingEntityListener.class})
 @MappedSuperclass
 @Data
-@Getter
-@Setter
 public abstract class AbstractEntity {
-    @Column(name = "createdBy")
+
+    @Column(name = "created_by")
     String createdBy;
-    @Column(name = "modifiedBy")
+
+    @Column(name = "modified_by")
     String modifiedBy;
+
     @CreatedDate
-    @Column(name = "createdDate",insertable = true, updatable = false)
+    @Column(name = "created_date",insertable = true, updatable = false)
     @Temporal(TemporalType.TIMESTAMP)
     Date createdDate;
+
     @LastModifiedDate
-    @Column(name = "modifiedDate",insertable = false, updatable = true)
+    @Column(name = "modified_date",insertable = false, updatable = true)
     @Temporal(TemporalType.TIMESTAMP)
     Date modifiedDate;
 }
