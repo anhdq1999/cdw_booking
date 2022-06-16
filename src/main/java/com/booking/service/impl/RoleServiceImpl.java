@@ -1,13 +1,12 @@
 package com.booking.service.impl;
 
-import com.booking.payload.response.RoleResponse;
-import com.booking.repository.RoleRepository;
 import com.booking.converter.RoleConverter;
 import com.booking.entity.Role;
 import com.booking.payload.request.RoleRequest;
+import com.booking.payload.response.RoleResponse;
+import com.booking.repository.RoleRepository;
 import com.booking.service.IRoleService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -54,7 +53,7 @@ public class RoleServiceImpl implements IRoleService {
     public List<RoleResponse> getAllRoles() {
         List<Role> listRoles = roleRepository.findAll();
 
-        return roleRepository.findAll();
+        return null;
     }
 
     @Override
