@@ -5,7 +5,7 @@ import com.booking.converter.RoleConverter;
 import com.booking.entity.Role;
 import com.booking.payload.request.RoleRequest;
 import com.booking.payload.response.RoleResponse;
-import com.booking.service.impl.RoleServiceImpl;
+import com.booking.services.impl.RoleServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

@@ -1,15 +1,17 @@
-package com.booking.service.impl;
+package com.booking.services.impl;
 
 import com.booking.converter.RoleConverter;
+import com.booking.entity.ERole;
 import com.booking.entity.Role;
 import com.booking.payload.request.RoleRequest;
 import com.booking.payload.response.RoleResponse;
 import com.booking.repository.RoleRepository;
-import com.booking.service.IRoleService;
+import com.booking.services.IRoleService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -74,5 +76,10 @@ public class RoleServiceImpl implements IRoleService {
     @Override
     public void delete(Long id) {
 
+    }
+
+    @Override
+    public Optional<Role> findByName(ERole name) {
+        return roleRepository.findByName(name);
     }
 }
