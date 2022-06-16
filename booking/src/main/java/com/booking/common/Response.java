@@ -1,4 +1,4 @@
-package com.booking.config;
+package com.booking.common;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

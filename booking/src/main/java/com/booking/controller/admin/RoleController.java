@@ -1,6 +1,6 @@
 package com.booking.controller.admin;
 
-import com.booking.config.Response;
+import com.booking.common.Response;
 import com.booking.converter.RoleConverter;
 import com.booking.entity.Role;
 import com.booking.payload.request.RoleRequest;

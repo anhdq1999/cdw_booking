@@ -1,7 +1,7 @@
 package com.booking.controller;
 
 
-import com.booking.config.Response;
+import com.booking.common.Response;
 import com.booking.payload.request.UserRequest;
 import com.booking.payload.response.UserResponse;
 import com.booking.service.impl.UserServiceImpl;
