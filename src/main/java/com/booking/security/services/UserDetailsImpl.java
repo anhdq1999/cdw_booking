@@ -2,7 +2,6 @@ package com.booking.security.services;
 
 import com.booking.entity.UserApp;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.Builder;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -12,10 +11,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
-@Builder
 public class UserDetailsImpl implements UserDetails {
-
-
     private static final long serialVersionUID = 1L;
 
     private Long id;
@@ -57,7 +53,7 @@ public class UserDetailsImpl implements UserDetails {
     }
 
     public Long getId() {
-        return this.id;
+        return id;
     }
 
     public String getEmail() {

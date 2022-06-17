@@ -69,6 +69,11 @@ public class RoleServiceImpl implements IRoleService {
     }
 
     @Override
+    public void save(Role roleRequest) {
+        roleRepository.save(roleRequest);
+    }
+
+    @Override
     public RoleResponse edit(Long id, RoleRequest roleRequest) {
         return null;
     }

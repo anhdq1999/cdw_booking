@@ -15,8 +15,11 @@ public interface IRoleService {
 
     RoleResponse save(RoleRequest roleRequest);
 
+    void save(Role roleRequest);
+
     RoleResponse edit(Long id, RoleRequest roleRequest);
 
     void delete(Long id);
+
     Optional<Role> findByName(ERole name);
 }

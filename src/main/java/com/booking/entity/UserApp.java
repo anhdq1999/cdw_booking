@@ -13,11 +13,11 @@ import java.util.HashSet;
 import java.util.Set;
 
 // đặt tên là UserApp vì trong String có nhiều class tên User
-@NoArgsConstructor
-@AllArgsConstructor
 @Data
-@Entity
 @Builder
+@Entity
+@AllArgsConstructor
+@NoArgsConstructor
 @Table(name = "users",
         uniqueConstraints = {
                 @UniqueConstraint(columnNames = "username"),
@@ -45,6 +45,7 @@ public class UserApp extends AbstractEntity {
     private String fullName;
 
     private String phoneNumber;
+
     @OneToOne
     @JoinColumn(name = "address_id")
     private Address address;
