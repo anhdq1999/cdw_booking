@@ -1,5 +1,6 @@
 package com.booking.payload.request;
 
+import com.booking.entity.Address;
 import lombok.Data;
 import lombok.ToString;
 
@@ -31,7 +32,7 @@ public class SignupRequest {
     private String phoneNumber;
 
     @NotBlank
-    private String address;
+    private Address address;
 
     private Set<String> role;
 }

@@ -71,7 +71,7 @@ public class AuthController {
     }
 
     @PostMapping("/signup")
-    public ResponseEntity<?> registerUser(@Valid @RequestBody SignupRequest signUpRequest) {
+    public ResponseEntity<?> registerUser(@RequestBody SignupRequest signUpRequest) {
         log.info("signUpRequest {}", signUpRequest.toString());
         if (userService.existsByUsername(signUpRequest.getUsername())) {
             return ResponseEntity
@@ -105,10 +105,10 @@ public class AuthController {
                         roles.add(adminRole);
 
                         break;
-                    case "mod":
-                        Role modRole = roleService.findByName(ERole.ROLE_HOST)
+                    case "host":
+                        Role hostRole = roleService.findByName(ERole.ROLE_HOST)
                                 .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
-                        roles.add(modRole);
+                        roles.add(hostRole);
 
                         break;
                     default:

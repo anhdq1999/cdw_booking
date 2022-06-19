@@ -46,8 +46,8 @@ public class UserApp extends AbstractEntity {
 
     private String phoneNumber;
 
-    @OneToOne
-    @JoinColumn(name = "address_id")
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "address_id", referencedColumnName = "id")
     private Address address;
 
     @ManyToMany(fetch = FetchType.LAZY)
