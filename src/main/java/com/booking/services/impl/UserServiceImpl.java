@@ -1,7 +1,10 @@
 package com.booking.services.impl;
 
 import com.booking.converter.UserConverter;
+import com.booking.entity.Address;
 import com.booking.entity.UserApp;
+import com.booking.payload.request.UserAppRequest;
+import com.booking.payload.response.UserAppResponse;
 import com.booking.repository.UserRepository;
 import com.booking.services.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -54,7 +57,14 @@ public class UserServiceImpl implements IUserService {
         return userRepository.save(userApp);
 
     }
-//
+
+    @Override
+    public UserAppResponse save(UserAppRequest userAppRequest) {
+        UserApp userApp = userConverter.toEntity(userAppRequest);
+        Address address = userApp.getAddress();
+        
+        return null;
+    }
 //    @Override
 //    public UserAppResponse edit(Long id, UserAppRequest userAppRequest) {
 //////        User userEntity = userConverter.toEntity(userRequest);

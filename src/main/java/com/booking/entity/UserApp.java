@@ -12,7 +12,7 @@ import javax.validation.constraints.Size;
 import java.util.HashSet;
 import java.util.Set;
 
-// đặt tên là UserApp vì trong String có nhiều class tên User
+// đặt tên là UserApp vì trong Spring có nhiều class tên User
 @Data
 @Builder
 @Entity

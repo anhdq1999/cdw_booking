@@ -19,6 +19,8 @@ public interface IUserService {
 //    UserAppResponse findById(Long id);
 //
     UserApp save(UserApp userApp);
+
+    UserAppResponse save(UserAppRequest userAppRequest);
 //
 //    UserApp edit(Long id, UserAppRequest userAppRequest);
 //

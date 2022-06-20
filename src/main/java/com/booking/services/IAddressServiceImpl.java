@@ -13,7 +13,7 @@ public interface IAddressServiceImpl {
 
     AddressResponse createAddress(AddressRequest addressRequest);
 
-    AddressResponse editAddress(AddressRequest addressRequest);
+    AddressResponse editAddress(Long id,AddressRequest addressRequest);
 
     AddressResponse deleteAddress(AddressRequest addressRequest);
 

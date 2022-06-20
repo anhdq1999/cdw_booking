@@ -1,6 +1,7 @@
 package com.booking.controller;
 
 import com.booking.converter.UserConverter;
+import com.booking.entity.Address;
 import com.booking.entity.ERole;
 import com.booking.entity.Role;
 import com.booking.entity.UserApp;
@@ -72,7 +73,7 @@ public class AuthController {
 
     @PostMapping("/signup")
     public ResponseEntity<?> registerUser(@RequestBody SignupRequest signUpRequest) {
-        log.info("signUpRequest {}", signUpRequest.toString());
+
         if (userService.existsByUsername(signUpRequest.getUsername())) {
             return ResponseEntity
                     .badRequest()
@@ -91,6 +92,9 @@ public class AuthController {
 
         Set<String> strRoles = signUpRequest.getRole();
         Set<Role> roles = new HashSet<>();
+        Address addressRequest = signUpRequest.getAddress();
+
+
 
         if (strRoles == null) {
             Role userRole = roleService.findByName(ERole.ROLE_USER)
