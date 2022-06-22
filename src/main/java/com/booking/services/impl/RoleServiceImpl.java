@@ -2,7 +2,7 @@ package com.booking.services.impl;
 
 import com.booking.converter.RoleConverter;
 import com.booking.entity.ERole;
-import com.booking.entity.Role;
+import com.booking.entity.RoleEntity;
 import com.booking.payload.request.RoleRequest;
 import com.booking.payload.response.RoleResponse;
 import com.booking.repository.RoleRepository;
@@ -20,24 +20,24 @@ public class RoleServiceImpl implements IRoleService {
     private final RoleRepository roleRepository;
     private RoleConverter roleConverter;
 
-    public List<Role> getAll() {
+    public List<RoleEntity> getAll() {
         return roleRepository.findAll();
     }
 
-    public boolean addRole(Role role) {
+    public boolean addRole(RoleEntity roleEntity) {
         try {
-            roleRepository.save(role);
+            roleRepository.save(roleEntity);
             return true;
         } catch (Exception e) {
             return false;
         }
     }
 
-    public Role updateRole(Long id, RoleRequest roleRequest) {
-        Role role = roleRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Role with " + id + " not found"));
-        Role roleUpdate = RoleConverter.getInstance().toEntity(roleRequest);
-        roleUpdate.setId(role.getId());
-        return roleRepository.save(roleUpdate);
+    public RoleEntity updateRole(Long id, RoleRequest roleRequest) {
+        RoleEntity roleEntity = roleRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Role with " + id + " not found"));
+        RoleEntity roleEntityUpdate = RoleConverter.getInstance().toEntity(roleRequest);
+        roleEntityUpdate.setId(roleEntity.getId());
+        return roleRepository.save(roleEntityUpdate);
 
     }
 
@@ -53,7 +53,7 @@ public class RoleServiceImpl implements IRoleService {
 
     @Override
     public List<RoleResponse> getAllRoles() {
-        List<Role> listRoles = roleRepository.findAll();
+        List<RoleEntity> listRoleEntities = roleRepository.findAll();
 
         return null;
     }
@@ -69,8 +69,8 @@ public class RoleServiceImpl implements IRoleService {
     }
 
     @Override
-    public void save(Role roleRequest) {
-        roleRepository.save(roleRequest);
+    public void save(RoleEntity roleEntityRequest) {
+        roleRepository.save(roleEntityRequest);
     }
 
     @Override
@@ -84,7 +84,7 @@ public class RoleServiceImpl implements IRoleService {
     }
 
     @Override
-    public Optional<Role> findByName(ERole name) {
+    public Optional<RoleEntity> findByName(ERole name) {
         return roleRepository.findByName(name);
     }
 }

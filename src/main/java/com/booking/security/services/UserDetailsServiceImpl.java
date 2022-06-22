@@ -1,6 +1,6 @@
 package com.booking.security.services;
 
-import com.booking.entity.UserApp;
+import com.booking.entity.UserEntity;
 import com.booking.services.impl.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -17,7 +17,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     @Override
     @Transactional
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        UserApp user = userService.findByUsername(username)
+        UserEntity user = userService.findByUsername(username)
                 .orElseThrow(() -> new UsernameNotFoundException("User Not Found with username: " + username));
         return UserDetailsImpl.build(user);
     }

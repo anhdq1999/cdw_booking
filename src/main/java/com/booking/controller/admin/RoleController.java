@@ -2,7 +2,7 @@ package com.booking.controller.admin;
 
 import com.booking.common.Response;
 import com.booking.converter.RoleConverter;
-import com.booking.entity.Role;
+import com.booking.entity.RoleEntity;
 import com.booking.payload.request.RoleRequest;
 import com.booking.payload.response.RoleResponse;
 import com.booking.services.impl.RoleServiceImpl;
@@ -27,9 +27,9 @@ public class RoleController {
     }
 
     @PostMapping
-    public ResponseEntity<?> createRole(@RequestBody Role role) {
-        if (roleServiceImpl.addRole(role)) {
-            RoleResponse roleResponse = RoleConverter.getInstance().toResponse(role);
+    public ResponseEntity<?> createRole(@RequestBody RoleEntity roleEntity) {
+        if (roleServiceImpl.addRole(roleEntity)) {
+            RoleResponse roleResponse = RoleConverter.getInstance().toResponse(roleEntity);
             return ResponseEntity.ok(Response.success("Create role successfully", roleResponse));
         } else {
             return ResponseEntity.internalServerError().body(Response.fail("Fail"));
@@ -39,8 +39,8 @@ public class RoleController {
     @PutMapping("/{id}")
     public ResponseEntity<?> updateRole(@PathVariable Long id, @RequestBody RoleRequest roleRequest) {
         try {
-            Role role = roleServiceImpl.updateRole(id, roleRequest);
-            RoleResponse roleResponse = RoleConverter.getInstance().toResponse(role);
+            RoleEntity roleEntity = roleServiceImpl.updateRole(id, roleRequest);
+            RoleResponse roleResponse = RoleConverter.getInstance().toResponse(roleEntity);
             return ResponseEntity.ok(Response.success("Update role successfully", roleResponse));
         } catch (IllegalArgumentException e) {
             return ResponseEntity.ok(Response.fail(e.getMessage()));

@@ -16,13 +16,13 @@ import javax.persistence.*;
 @Builder
 public class Address {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;
 
     @OneToOne(mappedBy = "address")
     @JsonBackReference
-    private UserApp user;
+    private UserEntity user;
 
     private String country;
     private String province;
@@ -31,7 +31,7 @@ public class Address {
     private String street;
     private String googleAddress;
 
-    public Address(UserApp user, String country, String province, String district, String ward, String street, String googleAddress) {
+    public Address(UserEntity user, String country, String province, String district, String ward, String street, String googleAddress) {
         this.user = user;
         this.country = country;
         this.province = province;

@@ -1,10 +1,8 @@
 package com.booking.payload.response;
 
 import com.booking.entity.ERole;
-import lombok.*;
-
-import javax.persistence.Column;
-import java.util.Date;
+import lombok.Builder;
+import lombok.Data;
 
 @Builder
 @Data

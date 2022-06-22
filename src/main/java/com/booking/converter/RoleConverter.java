@@ -1,6 +1,6 @@
 package com.booking.converter;
 
-import com.booking.entity.Role;
+import com.booking.entity.RoleEntity;
 import com.booking.payload.request.RoleRequest;
 import com.booking.payload.response.RoleResponse;
 
@@ -12,13 +12,13 @@ public class RoleConverter {
         }
         return INSTANCE;
     }
-    public RoleResponse toResponse(Role entity){
+    public RoleResponse toResponse(RoleEntity entity){
         return RoleResponse.builder()
                 .name(entity.getName())
                 .build();
     }
-    public Role toEntity(RoleRequest entity){
-        return Role.builder()
+    public RoleEntity toEntity(RoleRequest entity){
+        return RoleEntity.builder()
                 .name(entity.getName())
                 .build();
     }
