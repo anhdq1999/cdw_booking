@@ -51,6 +51,12 @@ public class UserServiceImpl implements IUserService {
         return listUserAppResponse;
     }
 
+    @Override
+    public Optional<UserAppResponse> findById(Long id) {
+//        UserEntity user = userRepository.findById(id);
+        return null;
+    }
+
     //
 //    @Override
 //    public UserAppResponse findById(Long id) {
