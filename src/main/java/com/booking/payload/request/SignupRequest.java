@@ -1,12 +1,10 @@
 package com.booking.payload.request;
 
-import com.booking.entity.Address;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
-import javax.persistence.Column;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
@@ -37,7 +35,7 @@ public class SignupRequest {
     private String phoneNumber;
 
     @NotBlank
-    private Address address;
+    private String address;
 
     private Set<String> role;
 

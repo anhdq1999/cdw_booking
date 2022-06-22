@@ -15,9 +15,10 @@ public interface IUserService {
 
     List<UserAppResponse> getAll();
 
+
+    Optional<UserAppResponse> findById(Long id);
+
     //
-//    UserAppResponse findById(Long id);
-//
     UserEntity save(UserEntity userEntity);
 
 //    UserAppResponse save(UserAppRequest userAppRequest);

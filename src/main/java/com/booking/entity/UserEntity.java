@@ -41,22 +41,19 @@ public class UserEntity extends AbstractEntity {
     private String fullName;
     @Column(name = "phone_number")
     private String phoneNumber;
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "address_id", referencedColumnName = "id")
-    private Address address;
-
+    private String address;
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "user_roles",
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<RoleEntity> roleEntities = new HashSet<>();
 
-
-    public UserEntity(String username, String email, String password, String fullName, String phoneNumber) {
+    public UserEntity(String username, String email, String password, String fullName, String phoneNumber, String address) {
         this.username = username;
         this.email = email;
         this.password = password;
         this.fullName = fullName;
         this.phoneNumber = phoneNumber;
+        this.address = address;
     }
 }

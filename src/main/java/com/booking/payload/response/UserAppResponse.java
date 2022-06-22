@@ -15,6 +15,6 @@ public class UserAppResponse {
     private String password;
     private String fullName;
     private String phoneNumber;
-    private Address address;
+    private String address;
     private Set<RoleEntity> roleEntities;
 }

@@ -2,7 +2,6 @@ package com.booking.controller;
 
 import com.booking.converter.AddressConverter;
 import com.booking.converter.UserConverter;
-import com.booking.entity.Address;
 import com.booking.entity.ERole;
 import com.booking.entity.RoleEntity;
 import com.booking.entity.UserEntity;
@@ -84,18 +83,13 @@ public class AuthController {
 
         UserEntity user = new
                 UserEntity(signUpRequest.getUsername(), signUpRequest.getEmail(), encoder.encode(signUpRequest.getPassword())
-                , signUpRequest.getFullName(), signUpRequest.getPhoneNumber()
+                , signUpRequest.getFullName(), signUpRequest.getPhoneNumber(), signUpRequest.getAddress()
         );
 
         Set<String> strRoles = signUpRequest.getRole();
         Set<RoleEntity> roleEntities = new HashSet<>();
-        Address addressRequest = signUpRequest.getAddress();
-        Address saved = addressService.createAddress(addressRequest);
 
 
-        log.info("[AUTH]: AddressRequest: {} ", addressRequest);
-        log.info("[AUTH]: Add_Saved_ID: {} ", saved.getId());
-        user.setAddress(saved);
         if (strRoles == null) {
             RoleEntity userRoleEntity = roleService.findByName(ERole.ROLE_USER).orElseThrow(() -> new RuntimeException("Error: Role is not found."));
             roleEntities.add(userRoleEntity);
