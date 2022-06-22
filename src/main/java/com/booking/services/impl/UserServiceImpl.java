@@ -1,7 +1,7 @@
 package com.booking.services.impl;
 
 import com.booking.converter.UserConverter;
-import com.booking.entity.UserApp;
+import com.booking.entity.UserEntity;
 import com.booking.payload.response.UserAppResponse;
 import com.booking.repository.AddressRepository;
 import com.booking.repository.UserRepository;
@@ -27,7 +27,7 @@ public class UserServiceImpl implements IUserService {
 
 
     @Override
-    public Optional<UserApp> findByUsername(String username) {
+    public Optional<UserEntity> findByUsername(String username) {
         return userRepository.findByUsername(username);
     }
 
@@ -44,8 +44,8 @@ public class UserServiceImpl implements IUserService {
     @Override
     public List<UserAppResponse> getAll() {
         List<UserAppResponse> listUserAppResponse = new ArrayList<>();
-        List<UserApp> listUser = userRepository.findAll();
-        for (UserApp user : listUser) {
+        List<UserEntity> listUser = userRepository.findAll();
+        for (UserEntity user : listUser) {
             listUserAppResponse.add(userConverter.toResponse(user));
         }
         return listUserAppResponse;
@@ -59,8 +59,8 @@ public class UserServiceImpl implements IUserService {
 //    }
 //
     @Override
-    public UserApp save(UserApp userApp) {
-        return userRepository.save(userApp);
+    public UserEntity save(UserEntity userEntity) {
+        return userRepository.save(userEntity);
 
     }
 

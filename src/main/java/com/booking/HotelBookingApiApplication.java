@@ -1,7 +1,7 @@
 package com.booking;
 
 import com.booking.entity.ERole;
-import com.booking.entity.Role;
+import com.booking.entity.RoleEntity;
 import com.booking.services.impl.RoleServiceImpl;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -20,12 +20,12 @@ public class HotelBookingApiApplication {
     @Bean
     CommandLineRunner commandLineRunner(RoleServiceImpl roleRepository) {
         return args -> {
-            Role roleUser = new Role(ERole.ROLE_USER);
-            Role roleAdmin = new Role(ERole.ROLE_ADMIN);
-            Role roleHost = new Role(ERole.ROLE_HOST);
-            roleRepository.save(roleUser);
-            roleRepository.save(roleAdmin);
-            roleRepository.save(roleHost);
+            RoleEntity roleEntityUser = new RoleEntity(ERole.ROLE_USER);
+            RoleEntity roleEntityAdmin = new RoleEntity(ERole.ROLE_ADMIN);
+            RoleEntity roleEntityHost = new RoleEntity(ERole.ROLE_HOST);
+            roleRepository.save(roleEntityUser);
+            roleRepository.save(roleEntityAdmin);
+            roleRepository.save(roleEntityHost);
 
         };
     }

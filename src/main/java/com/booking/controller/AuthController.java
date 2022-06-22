@@ -4,8 +4,8 @@ import com.booking.converter.AddressConverter;
 import com.booking.converter.UserConverter;
 import com.booking.entity.Address;
 import com.booking.entity.ERole;
-import com.booking.entity.Role;
-import com.booking.entity.UserApp;
+import com.booking.entity.RoleEntity;
+import com.booking.entity.UserEntity;
 import com.booking.payload.request.LoginRequest;
 import com.booking.payload.request.SignupRequest;
 import com.booking.payload.response.JwtResponse;
@@ -82,13 +82,13 @@ public class AuthController {
             return ResponseEntity.badRequest().body(new MessageResponse("Error: Email is already in use!"));
         }
 
-        UserApp user = new
-                UserApp(signUpRequest.getUsername(), signUpRequest.getEmail(), encoder.encode(signUpRequest.getPassword())
+        UserEntity user = new
+                UserEntity(signUpRequest.getUsername(), signUpRequest.getEmail(), encoder.encode(signUpRequest.getPassword())
                 , signUpRequest.getFullName(), signUpRequest.getPhoneNumber()
         );
 
         Set<String> strRoles = signUpRequest.getRole();
-        Set<Role> roles = new HashSet<>();
+        Set<RoleEntity> roleEntities = new HashSet<>();
         Address addressRequest = signUpRequest.getAddress();
         Address saved = addressService.createAddress(addressRequest);
 
@@ -97,26 +97,26 @@ public class AuthController {
         log.info("[AUTH]: Add_Saved_ID: {} ", saved.getId());
         user.setAddress(saved);
         if (strRoles == null) {
-            Role userRole = roleService.findByName(ERole.ROLE_USER).orElseThrow(() -> new RuntimeException("Error: Role is not found."));
-            roles.add(userRole);
+            RoleEntity userRoleEntity = roleService.findByName(ERole.ROLE_USER).orElseThrow(() -> new RuntimeException("Error: Role is not found."));
+            roleEntities.add(userRoleEntity);
         } else {
             strRoles.forEach(role -> {
                 switch (role) {
                     case "admin":
-                        Role adminRole = roleService.findByName(ERole.ROLE_ADMIN).orElseThrow(() -> new RuntimeException("Error: Role is not found."));
-                        roles.add(adminRole);
+                        RoleEntity adminRoleEntity = roleService.findByName(ERole.ROLE_ADMIN).orElseThrow(() -> new RuntimeException("Error: Role is not found."));
+                        roleEntities.add(adminRoleEntity);
                         break;
                     case "host":
-                        Role hostRole = roleService.findByName(ERole.ROLE_HOST).orElseThrow(() -> new RuntimeException("Error: Role is not found."));
-                        roles.add(hostRole);
+                        RoleEntity hostRoleEntity = roleService.findByName(ERole.ROLE_HOST).orElseThrow(() -> new RuntimeException("Error: Role is not found."));
+                        roleEntities.add(hostRoleEntity);
                         break;
                     default:
-                        Role userRole = roleService.findByName(ERole.ROLE_USER).orElseThrow(() -> new RuntimeException("Error: Role is not found."));
-                        roles.add(userRole);
+                        RoleEntity userRoleEntity = roleService.findByName(ERole.ROLE_USER).orElseThrow(() -> new RuntimeException("Error: Role is not found."));
+                        roleEntities.add(userRoleEntity);
                 }
             });
         }
-        user.setRoles(roles);
+        user.setRoleEntities(roleEntities);
         userService.save(user);
         return ResponseEntity.ok(new MessageResponse("User registered successfully!"));
     }

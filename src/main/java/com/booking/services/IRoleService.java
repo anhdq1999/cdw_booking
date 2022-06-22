@@ -1,7 +1,7 @@
 package com.booking.services;
 
 import com.booking.entity.ERole;
-import com.booking.entity.Role;
+import com.booking.entity.RoleEntity;
 import com.booking.payload.request.RoleRequest;
 import com.booking.payload.response.RoleResponse;
 
@@ -15,11 +15,11 @@ public interface IRoleService {
 
     RoleResponse save(RoleRequest roleRequest);
 
-    void save(Role roleRequest);
+    void save(RoleEntity roleEntityRequest);
 
     RoleResponse edit(Long id, RoleRequest roleRequest);
 
     void delete(Long id);
 
-    Optional<Role> findByName(ERole name);
+    Optional<RoleEntity> findByName(ERole name);
 }

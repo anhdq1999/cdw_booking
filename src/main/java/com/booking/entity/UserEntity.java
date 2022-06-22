@@ -23,7 +23,7 @@ import java.util.Set;
                 @UniqueConstraint(columnNames = "username"),
                 @UniqueConstraint(columnNames = "email")
         })
-public class UserApp extends AbstractEntity {
+public class UserEntity extends AbstractEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -54,10 +54,10 @@ public class UserApp extends AbstractEntity {
     @JoinTable(name = "user_roles",
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id"))
-    private Set<Role> roles = new HashSet<>();
+    private Set<RoleEntity> roleEntities = new HashSet<>();
 
 
-    public UserApp(String username, String email, String password, String fullName, String phoneNumber) {
+    public UserEntity(String username, String email, String password, String fullName, String phoneNumber) {
         this.username = username;
         this.email = email;
         this.password = password;

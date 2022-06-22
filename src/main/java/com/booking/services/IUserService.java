@@ -1,13 +1,13 @@
 package com.booking.services;
 
-import com.booking.entity.UserApp;
+import com.booking.entity.UserEntity;
 import com.booking.payload.response.UserAppResponse;
 
 import java.util.List;
 import java.util.Optional;
 
 public interface IUserService {
-    Optional<UserApp> findByUsername(String username);
+    Optional<UserEntity> findByUsername(String username);
 
     Boolean existsByUsername(String username);
 
@@ -18,7 +18,7 @@ public interface IUserService {
     //
 //    UserAppResponse findById(Long id);
 //
-    UserApp save(UserApp userApp);
+    UserEntity save(UserEntity userEntity);
 
 //    UserAppResponse save(UserAppRequest userAppRequest);
 //
