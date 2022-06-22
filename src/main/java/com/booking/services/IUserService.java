@@ -1,7 +1,6 @@
 package com.booking.services;
 
 import com.booking.entity.UserApp;
-import com.booking.payload.request.UserAppRequest;
 import com.booking.payload.response.UserAppResponse;
 
 import java.util.List;
@@ -14,13 +13,14 @@ public interface IUserService {
 
     Boolean existsByEmail(String email);
 
-//    List<UserAppResponse> getAll();
-//
+    List<UserAppResponse> getAll();
+
+    //
 //    UserAppResponse findById(Long id);
 //
     UserApp save(UserApp userApp);
 
-    UserAppResponse save(UserAppRequest userAppRequest);
+//    UserAppResponse save(UserAppRequest userAppRequest);
 //
 //    UserApp edit(Long id, UserAppRequest userAppRequest);
 //

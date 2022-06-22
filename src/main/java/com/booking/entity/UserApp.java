@@ -41,9 +41,9 @@ public class UserApp extends AbstractEntity {
     @Size(max = 120)
     private String password;
 
-
+    @Column(name = "full_name")
     private String fullName;
-
+    @Column(name = "phone_number")
     private String phoneNumber;
 
     @OneToOne(cascade = CascadeType.ALL)
@@ -56,10 +56,12 @@ public class UserApp extends AbstractEntity {
             inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles = new HashSet<>();
 
-    public UserApp(String username, String email, String password) {
+
+    public UserApp(String username, String email, String password, String fullName, String phoneNumber) {
         this.username = username;
         this.email = email;
         this.password = password;
+        this.fullName = fullName;
+        this.phoneNumber = phoneNumber;
     }
-
 }

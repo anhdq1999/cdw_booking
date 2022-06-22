@@ -43,6 +43,18 @@ public class AddressServiceImpl implements IAddressServiceImpl {
         Address saved = addressRepository.save(address);
         return addressConverter.toResponse(saved);
     }
+//
+//    @Override
+//    public AddressResponse createAddress(Address address) {
+//        Address saved = addressRepository.save(address);
+//        return addressConverter.toResponse(saved);
+//    }
+
+    @Override
+    public Address createAddress(Address address) {
+        return addressRepository.save(address);
+    }
+
 
     @Override
     public AddressResponse editAddress(Long id, AddressRequest addressRequest) {

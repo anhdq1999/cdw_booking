@@ -1,23 +1,30 @@
 package com.booking.services.impl;
 
 import com.booking.converter.UserConverter;
-import com.booking.entity.Address;
 import com.booking.entity.UserApp;
-import com.booking.payload.request.UserAppRequest;
 import com.booking.payload.response.UserAppResponse;
+import com.booking.repository.AddressRepository;
 import com.booking.repository.UserRepository;
 import com.booking.services.IUserService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Service
+@Slf4j
 public class UserServiceImpl implements IUserService {
     @Autowired
     private UserRepository userRepository;
 
+    @Autowired
+    private AddressRepository addressRepository;
+
     private UserConverter userConverter;
+
 
     @Override
     public Optional<UserApp> findByUsername(String username) {
@@ -34,16 +41,17 @@ public class UserServiceImpl implements IUserService {
         return userRepository.existsByEmail(email);
     }
 
-    //    @Override
-//    public List<UserAppResponse> getAll() {
-//        List<UserAppResponse> listUserAppResponse = new ArrayList<>();
-//        List<UserApp> listUser = userRepository.findAll();
-//        for (UserApp user : listUser) {
-//            listUserAppResponse.add(userConverter.toResponse(user));
-//        }
-//        return listUserAppResponse;
-//    }
-//
+    @Override
+    public List<UserAppResponse> getAll() {
+        List<UserAppResponse> listUserAppResponse = new ArrayList<>();
+        List<UserApp> listUser = userRepository.findAll();
+        for (UserApp user : listUser) {
+            listUserAppResponse.add(userConverter.toResponse(user));
+        }
+        return listUserAppResponse;
+    }
+
+    //
 //    @Override
 //    public UserAppResponse findById(Long id) {
 //        UserApp user = userRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Not found user by id: " + id));
@@ -52,19 +60,18 @@ public class UserServiceImpl implements IUserService {
 //
     @Override
     public UserApp save(UserApp userApp) {
-//        UserApp userEntity = userConverter.toEntity(userAppRequest);
-        userRepository.save(userApp);
         return userRepository.save(userApp);
 
     }
 
-    @Override
-    public UserAppResponse save(UserAppRequest userAppRequest) {
-        UserApp userApp = userConverter.toEntity(userAppRequest);
-        Address address = userApp.getAddress();
-        
-        return null;
-    }
+//    @Override
+//    public UserAppResponse save(UserAppRequest userAppRequest) {
+//        UserApp userApp = userConverter.toEntity(userAppRequest);
+//        Address address = userApp.getAddress();
+//        addressRepository.save(address);
+//        UserApp saved = userRepository.save(userApp);
+//        return userConverter.toResponse(saved);
+//    }
 //    @Override
 //    public UserAppResponse edit(Long id, UserAppRequest userAppRequest) {
 //////        User userEntity = userConverter.toEntity(userRequest);
