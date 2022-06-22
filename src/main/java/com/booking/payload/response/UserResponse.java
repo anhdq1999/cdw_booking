@@ -1,6 +1,5 @@
 package com.booking.payload.response;
 
-import com.booking.entity.Address;
 import com.booking.entity.RoleEntity;
 import lombok.Builder;
 import lombok.Data;
@@ -9,7 +8,7 @@ import java.util.Set;
 
 @Data
 @Builder
-public class UserAppResponse {
+public class UserResponse {
     private String username;
     private String email;
     private String password;

@@ -9,7 +9,7 @@ import java.util.Set;
 
 @Data
 @Builder
-public class UserAppRequest {
+public class UserRequest {
     private String username;
     private String email;
     private String password;

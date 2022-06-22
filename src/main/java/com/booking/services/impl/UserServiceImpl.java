@@ -2,7 +2,8 @@ package com.booking.services.impl;
 
 import com.booking.converter.UserConverter;
 import com.booking.entity.UserEntity;
-import com.booking.payload.response.UserAppResponse;
+import com.booking.payload.request.UserRequest;
+import com.booking.payload.response.UserResponse;
 import com.booking.repository.AddressRepository;
 import com.booking.repository.UserRepository;
 import com.booking.services.IUserService;
@@ -23,6 +24,8 @@ public class UserServiceImpl implements IUserService {
     @Autowired
     private AddressRepository addressRepository;
 
+    @Autowired
+
     private UserConverter userConverter;
 
 
@@ -42,93 +45,50 @@ public class UserServiceImpl implements IUserService {
     }
 
     @Override
-    public List<UserAppResponse> getAll() {
-        List<UserAppResponse> listUserAppResponse = new ArrayList<>();
+    public List<UserResponse> getAll() {
+        List<UserResponse> listUserResponse = new ArrayList<>();
         List<UserEntity> listUser = userRepository.findAll();
+        log.info("[UserServiceImpl] list users : {} ", listUser);
         for (UserEntity user : listUser) {
-            listUserAppResponse.add(userConverter.toResponse(user));
+            listUserResponse.add(userConverter.toResponse(user));
         }
-        return listUserAppResponse;
+        log.info("[UserServiceImpl] list usersResponse : {} ", listUserResponse);
+//        List<UserResponse> listUser = userRepository.findAll().stream().map(userEntity ->
+//                userConverter.toResponse(userEntity)
+//        ).collect(Collectors.toList());
+//        log.info("[UserServiceImpl] list users : {} ", listUser);
+        return listUserResponse;
     }
 
     @Override
-    public Optional<UserAppResponse> findById(Long id) {
-//        UserEntity user = userRepository.findById(id);
+    public UserResponse findById(Long id) {
+        UserEntity user = userRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Not found user by id: " + id));
+        return userConverter.toResponse(user);
+    }
+
+    @Override
+    public UserResponse update(Long id, UserRequest request) {
+        UserEntity userEntity = userConverter.toEntity(request);
+        Optional<UserEntity> user = userRepository.findById(id);
+
+        if (user.isPresent()) {
+            userEntity.setId(id);
+            UserEntity userEntitySaved = userRepository.save(userEntity);
+            return userConverter.toResponse(userEntitySaved);
+        }
         return null;
     }
 
-    //
-//    @Override
-//    public UserAppResponse findById(Long id) {
-//        UserApp user = userRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Not found user by id: " + id));
-//        return userConverter.toResponse(user);
-//    }
-//
     @Override
     public UserEntity save(UserEntity userEntity) {
         return userRepository.save(userEntity);
 
     }
 
-//    @Override
-//    public UserAppResponse save(UserAppRequest userAppRequest) {
-//        UserApp userApp = userConverter.toEntity(userAppRequest);
-//        Address address = userApp.getAddress();
-//        addressRepository.save(address);
-//        UserApp saved = userRepository.save(userApp);
-//        return userConverter.toResponse(saved);
-//    }
-//    @Override
-//    public UserAppResponse edit(Long id, UserAppRequest userAppRequest) {
-//////        User userEntity = userConverter.toEntity(userRequest);
-////        Optional<UserApp> user = userRepository.findById(id);
-////        if (user.isPresent()) {
-////            UserApp _user = user.get();
-////            _user.setAddress(userRequest.getAddress());
-////            _user.setEmail(userRequest.getEmail());
-//////            _user.setUsername(userRequest.getUsername()); Khum ai sửa username bao giờ cả
-////            _user.setPassword(userRequest.getPassword());
-////            _user.setFullName(userRequest.getFullName());
-////            _user.setPhoneNumber(userRequest.getPhoneNumber());
-////            _user.setRole(userRequest.getRole());
-////            userRepository.save(_user);
-////            return userConverter.toResponse(_user);
-////        }
-//        return null;
-//    }
-//
-//    @Override
-//    public void delete(Long id) {
-//
-//    }
-//
-////
-////    public List<UserResponse> getAll() {
-////        List<UserResponse> userResponseList = new ArrayList<>();
-////        List<User> listUser = userRepository.findAll();
-////        for (User user : listUser) {
-////            userResponseList.add(userConverter.getInstance().toResponse(user));
-////        }
-////        return userResponseList;
-////    }
-////
-////    public User insert(UserRequest userRequest) {
-////        User user = UserConverter.getInstance().toEntity(userRequest);
-////        return userRepository.save(user);
-////    }
-////
-////    public User update(Long id, UserRequest userRequest) {
-////        User userFound = userRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Not found user by id: " + id));
-////        User user = User.builder()
-////                .fullName(userRequest.getFullName())
-////                .username(userRequest.getUsername())
-////                .email(userRequest.getEmail())
-////                .address(userRequest.getAddress())
-////                .phoneNumber(userRequest.getPhoneNumber())
-////                .password(userRequest.getPassword())
-////                .role(userRequest.getRole())
-////                .build();
-////        return user;
-////    }
+    @Override
+    public void delete(Long id) {
+        userRepository.deleteById(id);
+    }
+
 
 }

@@ -1,5 +1,6 @@
 package com.booking.controller;
 
+import com.booking.common.Response;
 import com.booking.converter.AddressConverter;
 import com.booking.converter.UserConverter;
 import com.booking.entity.ERole;
@@ -56,7 +57,7 @@ public class AuthController {
     private UserConverter userConverter;
     private AddressConverter addressConverter;
 
-    @PostMapping("/signin")
+    @PostMapping("/login")
     public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
 
         Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(loginRequest.getUsername(), loginRequest.getPassword()));
@@ -67,7 +68,7 @@ public class AuthController {
         UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
         List<String> roles = userDetails.getAuthorities().stream().map(item -> item.getAuthority()).collect(Collectors.toList());
 
-        return ResponseEntity.ok(new JwtResponse(jwt, userDetails.getId(), userDetails.getUsername(), userDetails.getEmail(), roles));
+        return ResponseEntity.ok(Response.success("Login successfully ", new JwtResponse(jwt, userDetails.getId(), userDetails.getUsername(), userDetails.getEmail(), roles)));
     }
 
     @PostMapping("/signup")
@@ -111,7 +112,7 @@ public class AuthController {
             });
         }
         user.setRoleEntities(roleEntities);
-        userService.save(user);
-        return ResponseEntity.ok(new MessageResponse("User registered successfully!"));
+        UserEntity userEntity = userService.save(user);
+        return ResponseEntity.ok(Response.success("Create user successfully", userEntity));
     }
 }
