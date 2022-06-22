@@ -25,6 +25,7 @@ public class UserController {
     @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<?> getUserById(@PathVariable Long id) {
 //        return ResponseEntity.ok(Response.success("Get user"))
+        return null;
     }
 
 }
