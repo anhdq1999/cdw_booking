@@ -1,8 +1,8 @@
 package com.booking.payload.request;
 
-import com.booking.entity.Address;
 import com.booking.entity.RoleEntity;
-import lombok.*;
+import lombok.Builder;
+import lombok.Data;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -15,6 +15,6 @@ public class UserAppRequest {
     private String password;
     private String fullName;
     private String phoneNumber;
-    private Address address;
+    private String address;
     private Set<RoleEntity> roleEntities = new HashSet<>();
 }
