@@ -1,0 +1,18 @@
+{
+  "username": "anhquang1",
+  "password": "anhquang123",
+  "email": "anhquang@gmail",
+  "fullName": "Đoàn Quang Anh",
+  "phoneNumber": "hé hé hé",
+  "address": {
+    "country": "VN",
+    "province": "HCM",
+    "district": "TD",
+    "ward": "LT",
+    "street": "120",
+    "googleAddress": "googleAddress"
+  },
+  "role": [
+    "user"
+  ]
+}

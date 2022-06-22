@@ -1,19 +1,12 @@
 package com.booking.payload.response;
 
+import com.booking.entity.ERole;
 import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
-
-import javax.persistence.Column;
-import java.util.Date;
+import lombok.Data;
 
 @Builder
-@Getter
-@Setter
+@Data
 public class RoleResponse {
     Long id;
-    String name;
-    String code;
-    Date createdDate;
-    Date modifiedDate;
+    ERole name;
 }
