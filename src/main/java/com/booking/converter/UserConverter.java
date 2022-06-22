@@ -1,8 +1,8 @@
 package com.booking.converter;
 
 import com.booking.entity.UserEntity;
-import com.booking.payload.request.UserAppRequest;
-import com.booking.payload.response.UserAppResponse;
+import com.booking.payload.request.UserRequest;
+import com.booking.payload.response.UserResponse;
 
 public class UserConverter {
     private static UserConverter instance;
@@ -14,8 +14,8 @@ public class UserConverter {
         return instance;
     }
 
-    public UserAppResponse toResponse(UserEntity entity) {
-        return UserAppResponse.builder()
+    public UserResponse toResponse(UserEntity entity) {
+        return UserResponse.builder()
                 .username(entity.getUsername())
                 .email(entity.getEmail())
                 .fullName(entity.getFullName())
@@ -25,7 +25,7 @@ public class UserConverter {
                 .build();
     }
 
-    public UserEntity toEntity(UserAppRequest userRequest) {
+    public UserEntity toEntity(UserRequest userRequest) {
         return UserEntity.builder()
                 .username(userRequest.getUsername())
                 .email(userRequest.getEmail())

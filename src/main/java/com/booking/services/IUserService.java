@@ -1,7 +1,7 @@
 package com.booking.services;
 
 import com.booking.entity.UserEntity;
-import com.booking.payload.response.UserAppResponse;
+import com.booking.payload.response.UserResponse;
 
 import java.util.List;
 import java.util.Optional;
@@ -13,10 +13,10 @@ public interface IUserService {
 
     Boolean existsByEmail(String email);
 
-    List<UserAppResponse> getAll();
+    List<UserResponse> getAll();
 
 
-    Optional<UserAppResponse> findById(Long id);
+    Optional<UserResponse> findById(Long id);
 
     //
     UserEntity save(UserEntity userEntity);
