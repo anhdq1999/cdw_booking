@@ -27,27 +27,21 @@ public class UserEntity extends AbstractEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     @NotBlank
     @Size(max = 20)
     private String username;
-
     @NotBlank
     @Size(max = 50)
     @Email
     private String email;
-
     @NotBlank
     @Size(max = 120)
     private String password;
-
-    @Column(name = "full_name")
+    @Column(name = "fullName")
     private String fullName;
     @Column(name = "phone_number")
     private String phoneNumber;
-
     private String address;
-
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "user_roles",
             joinColumns = @JoinColumn(name = "user_id"),

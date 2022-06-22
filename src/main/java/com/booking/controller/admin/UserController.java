@@ -32,8 +32,7 @@ public class UserController {
     @GetMapping("/{id}")
     @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<?> getUserById(@PathVariable Long id) {
-        UserResponse userResponse = userService.findById(id);
-
+        UserResponse userResponse = null;
         return ResponseEntity.ok(Response.success("get User by id successfully", userResponse));
     }
 

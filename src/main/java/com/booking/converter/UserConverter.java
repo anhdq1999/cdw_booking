@@ -5,8 +5,8 @@ import com.booking.payload.request.UserRequest;
 import com.booking.payload.response.UserResponse;
 import org.springframework.stereotype.Component;
 
-@Component
 
+@Component
 public class UserConverter {
     private static UserConverter instance;
 

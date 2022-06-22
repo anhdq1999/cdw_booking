@@ -15,12 +15,10 @@ public interface IUserService {
     Boolean existsByEmail(String email);
 
     List<UserResponse> getAll();
-//    List<UserEntity>getAll();
-
-
-    UserResponse findById(Long id);
 
     UserResponse update(Long id, UserRequest request);
+
+    Optional<UserResponse> findById(Long id);
 
 
     UserEntity save(UserEntity userEntity);

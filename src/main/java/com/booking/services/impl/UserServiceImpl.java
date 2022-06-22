@@ -52,19 +52,12 @@ public class UserServiceImpl implements IUserService {
         for (UserEntity user : listUser) {
             listUserResponse.add(userConverter.toResponse(user));
         }
+
         log.info("[UserServiceImpl] list usersResponse : {} ", listUserResponse);
-//        List<UserResponse> listUser = userRepository.findAll().stream().map(userEntity ->
-//                userConverter.toResponse(userEntity)
-//        ).collect(Collectors.toList());
-//        log.info("[UserServiceImpl] list users : {} ", listUser);
+
         return listUserResponse;
     }
 
-    @Override
-    public UserResponse findById(Long id) {
-        UserEntity user = userRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Not found user by id: " + id));
-        return userConverter.toResponse(user);
-    }
 
     @Override
     public UserResponse update(Long id, UserRequest request) {
@@ -76,8 +69,15 @@ public class UserServiceImpl implements IUserService {
             UserEntity userEntitySaved = userRepository.save(userEntity);
             return userConverter.toResponse(userEntitySaved);
         }
+
         return null;
     }
+
+    @Override
+    public Optional<UserResponse> findById(Long id) {
+        return null;
+    }
+
 
     @Override
     public UserEntity save(UserEntity userEntity) {
