@@ -31,6 +31,11 @@ public class OrderDetailsEntity {
     String note;
     double price;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "order_id", nullable = false)
+    OrderEntity order;
+
+
     public OrderDetailsEntity(RoomEntity roomEntity, int adults, int child, int infants, Date checkIn, Date checkOut, String note, double price) {
         this.roomEntity = roomEntity;
         this.adults = adults;

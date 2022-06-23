@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.Set;
 
 @Data
 @Entity
@@ -21,7 +22,6 @@ public class OrderEntity {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id", nullable = false)
-
     UserEntity userEntity;
 
     String status;
@@ -33,4 +33,8 @@ public class OrderEntity {
     Date refundAt;
     String customer_name;
     String customer_phone;
+//
+//    @OneToMany(mappedBy = "orders")
+//    private Set<OrderDetailsEntity> listOrderDetails;
 }
+
