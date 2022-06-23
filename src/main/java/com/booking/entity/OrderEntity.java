@@ -1,6 +1,7 @@
 package com.booking.entity;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -12,13 +13,17 @@ import java.util.Date;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "orders")
+@Builder
 public class OrderEntity {
     @Id
-        @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
+
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id",nullable = false)
+    @JoinColumn(name = "user_id", nullable = false)
+
     UserEntity userEntity;
+
     String status;
     double tax_price;
     double total_price;
@@ -28,6 +33,4 @@ public class OrderEntity {
     Date refundAt;
     String customer_name;
     String customer_phone;
-
-
 }

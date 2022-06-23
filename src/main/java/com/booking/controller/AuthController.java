@@ -43,17 +43,14 @@ public class AuthController {
     UserServiceImpl userService;
 
     @Autowired
-    AddressServiceImpl addressService;
+    AddressServiceImpl addressServiceImpl;
 
     @Autowired
     RoleServiceImpl roleService;
-
-    @Autowired
-    PasswordEncoder encoder;
-
     @Autowired
     JwtUtils jwtUtils;
-
+    @Autowired
+    private PasswordEncoder encoder;
     private UserConverter userConverter;
     private AddressConverter addressConverter;
 
@@ -73,7 +70,6 @@ public class AuthController {
 
     @PostMapping("/signup")
     public ResponseEntity<?> registerUser(@RequestBody SignupRequest signUpRequest) {
-        log.info("[AUTH]: SignUpRequest {}: ", signUpRequest);
         if (userService.existsByUsername(signUpRequest.getUsername())) {
             return ResponseEntity.badRequest().body(new MessageResponse("Error: Username is already taken!"));
         }
@@ -115,4 +111,5 @@ public class AuthController {
         UserEntity userEntity = userService.save(user);
         return ResponseEntity.ok(Response.success("Create user successfully", userEntity));
     }
+
 }

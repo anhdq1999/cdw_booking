@@ -14,11 +14,11 @@ import java.util.List;
 @RequestMapping("/api/user/address")
 public class AddressController {
     @Autowired
-    private AddressServiceImpl addressService;
+    private AddressServiceImpl addressServiceImpl;
 
     @GetMapping
     @PreAuthorize("hasRole('USER')")
     public List<AddressResponse> getAllAddress() {
-        return addressService.getAllAddress();
+        return addressServiceImpl.getAllAddress();
     }
 }

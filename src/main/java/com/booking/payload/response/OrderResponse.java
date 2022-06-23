@@ -4,20 +4,20 @@ import com.booking.entity.UserEntity;
 import lombok.Builder;
 import lombok.Data;
 
-import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
+
 @Data
 @Builder
 public class OrderResponse {
-    Long id;
-    UserEntity userEntity;
-    String status;
-    double tax_price;
-    double total_price;
-    Date paidAt;
-    Date refundAt;
-    String customer_name;
-    String customer_phone;
-    List<OrderDetailsResponse> orderDetails;
+    private Long id;
+    private UserEntity userEntity;
+    private String status;
+    private double tax_price;
+    private double total_price;
+    private Date paidAt;
+    private Date refundAt;
+    private String customerName;
+    private String customerPhone;
+    private List<OrderDetailsResponse> orderDetails;
 }

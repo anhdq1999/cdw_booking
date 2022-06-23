@@ -9,6 +9,7 @@ import com.booking.repository.UserRepository;
 import com.booking.services.IUserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -25,9 +26,7 @@ public class UserServiceImpl implements IUserService {
     private AddressRepository addressRepository;
 
     @Autowired
-
     private UserConverter userConverter;
-
 
     @Override
     public Optional<UserEntity> findByUsername(String username) {
@@ -52,7 +51,6 @@ public class UserServiceImpl implements IUserService {
         for (UserEntity user : listUser) {
             listUserResponse.add(userConverter.toResponse(user));
         }
-
         log.info("[UserServiceImpl] list usersResponse : {} ", listUserResponse);
 
         return listUserResponse;
@@ -62,20 +60,21 @@ public class UserServiceImpl implements IUserService {
     @Override
     public UserResponse update(Long id, UserRequest request) {
         UserEntity userEntity = userConverter.toEntity(request);
-        Optional<UserEntity> user = userRepository.findById(id);
-
-        if (user.isPresent()) {
-            userEntity.setId(id);
+        Optional<UserEntity> userFound = userRepository.findById(id);
+        if (userFound.isPresent()) {
+            userEntity.setId(userFound.get().getId());
+            userEntity.setRoleEntities(userFound.get().getRoleEntities());
+            userEntity.setPassword(userFound.get().getPassword());
             UserEntity userEntitySaved = userRepository.save(userEntity);
             return userConverter.toResponse(userEntitySaved);
         }
-
         return null;
     }
 
     @Override
-    public Optional<UserResponse> findById(Long id) {
-        return null;
+    public UserResponse findById(Long id) {
+        UserEntity userEntity = userRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Not found User by id" + id));
+        return userConverter.toResponse(userEntity);
     }
 
 

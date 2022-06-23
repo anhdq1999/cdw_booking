@@ -18,7 +18,7 @@ public interface IUserService {
 
     UserResponse update(Long id, UserRequest request);
 
-    Optional<UserResponse> findById(Long id);
+    UserResponse findById(Long id);
 
 
     UserEntity save(UserEntity userEntity);

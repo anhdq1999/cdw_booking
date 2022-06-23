@@ -1,18 +1,41 @@
+//
+//{
+//  "username": "anhquang1",
+//  "password": "anhquang123",
+//  "email": "anhquang@gmail",
+//  "fullName": "Đoàn Quang Anh",
+//  "phoneNumber": "hé hé hé",
+//  "address": {
+//    "country": "VN",
+//    "province": "HCM",
+//    "district": "TD",
+//    "ward": "LT",
+//    "street": "120",
+//    "googleAddress": "googleAddress"
+//  },
+//  "role": [
+//    "user"
+//  ]
+//}
+//{
+//  "paymentMethod": "Paypal",
+//  "taxPrice": 15,
+//  "totalPrice": 84,
+//  "user": "627d20fb57fd988f85530261",
+//  "customerName": "anhquang",
+//  "customerPhone": "000123-123"
+//}
+
 {
-  "username": "anhquang1",
-  "password": "anhquang123",
-  "email": "anhquang@gmail",
-  "fullName": "Đoàn Quang Anh",
-  "phoneNumber": "hé hé hé",
-  "address": {
-    "country": "VN",
-    "province": "HCM",
-    "district": "TD",
-    "ward": "LT",
-    "street": "120",
-    "googleAddress": "googleAddress"
+  "quantity" : 1,
+  "price" : 99,
+  "rooms" : "627c86122707f10df1b585f3",
+  "dates" : {
+    "checkInDate" : 1652769777430,
+    "checkOutDate" : 1652769777430
   },
-  "role": [
-    "user"
-  ]
-}
+  "status": "CONFIRMING",
+  "paidAt" : 1652769777430,
+  "deliveredAt": 1652769777430
+},
+

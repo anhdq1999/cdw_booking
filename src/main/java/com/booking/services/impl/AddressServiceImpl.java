@@ -5,7 +5,7 @@ import com.booking.entity.Address;
 import com.booking.payload.request.AddressRequest;
 import com.booking.payload.response.AddressResponse;
 import com.booking.repository.AddressRepository;
-import com.booking.services.IAddressServiceImpl;
+import com.booking.services.IAddressService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class AddressServiceImpl implements IAddressServiceImpl {
+public class AddressServiceImpl implements IAddressService {
     @Autowired
     private AddressRepository addressRepository;
 

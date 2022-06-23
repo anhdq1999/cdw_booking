@@ -6,7 +6,7 @@ import com.booking.payload.response.AddressResponse;
 
 import java.util.List;
 
-public interface IAddressServiceImpl {
+public interface IAddressService {
 
 
     List<AddressResponse> getAllAddress();
@@ -14,8 +14,6 @@ public interface IAddressServiceImpl {
     AddressResponse findAddressById(Long id);
 
     AddressResponse createAddress(AddressRequest addressRequest);
-
-//    AddressResponse createAddress(Address address);
 
     Address createAddress(Address address);
 

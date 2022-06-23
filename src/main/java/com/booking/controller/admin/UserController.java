@@ -2,6 +2,7 @@ package com.booking.controller.admin;
 
 
 import com.booking.common.Response;
+import com.booking.entity.UserEntity;
 import com.booking.payload.request.UserRequest;
 import com.booking.payload.response.UserResponse;
 import com.booking.services.impl.UserServiceImpl;
@@ -12,6 +13,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @CrossOrigin(origins = "*", maxAge = 3600)
@@ -29,15 +31,15 @@ public class UserController {
         return ResponseEntity.ok(Response.success("Get all users successfully", listUsers));
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/{username}")
     @PreAuthorize("hasRole('ADMIN')")
-    public ResponseEntity<?> getUserById(@PathVariable Long id) {
-        UserResponse userResponse = null;
+    public ResponseEntity<?> getUserByUsername(@PathVariable String username) {
+        Optional<UserEntity> userResponse = userService.findByUsername(username);
         return ResponseEntity.ok(Response.success("get User by id successfully", userResponse));
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<?> updateUserById(@PathVariable Long id, UserRequest userRequest) {
+    public ResponseEntity<?> updateUserById(@PathVariable Long id, @RequestBody UserRequest userRequest) {
         UserResponse userResponse = userService.update(id, userRequest);
         log.info("[UserController] User Response : {}", userResponse);
         return ResponseEntity.ok(Response.success("Update User by id successfully", userResponse));
