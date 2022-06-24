@@ -12,7 +12,7 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="cdw_booking" target="11" />
+      <module name="cdw_booking" target="17" />
       <module name="HotelBookingAPI" target="17" />
     </bytecodeTargetLevel>
   </component>
