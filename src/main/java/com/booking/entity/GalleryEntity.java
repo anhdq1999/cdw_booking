@@ -1,6 +1,7 @@
 package com.booking.entity;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.Fetch;
@@ -11,6 +12,7 @@ import javax.persistence.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "gallery")
+@Builder
 public class GalleryEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

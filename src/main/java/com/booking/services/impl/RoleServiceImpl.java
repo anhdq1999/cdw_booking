@@ -24,24 +24,30 @@ public class RoleServiceImpl implements IRoleService {
         return roleRepository.findAll();
     }
 
-    public boolean addRole(RoleEntity roleEntity) {
-        try {
-            roleRepository.save(roleEntity);
-            return true;
-        } catch (Exception e) {
-            return false;
-        }
+    @Override
+    public RoleEntity getById(Long id) {
+        return null;
     }
 
-    public RoleEntity updateRole(Long id, RoleRequest roleRequest) {
+    public RoleEntity save(RoleRequest roleRequest) {
+        RoleEntity entity = RoleConverter.toEntity(roleRequest);
+        return roleRepository.save(entity);
+
+    }
+
+    @Override
+    public void save(RoleEntity roleEntityRequest) {
+    }
+
+    public RoleEntity update(Long id, RoleRequest roleRequest) {
         RoleEntity roleEntity = roleRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Role with " + id + " not found"));
-        RoleEntity roleEntityUpdate = RoleConverter.getInstance().toEntity(roleRequest);
+        RoleEntity roleEntityUpdate = RoleConverter.toEntity(roleRequest);
         roleEntityUpdate.setId(roleEntity.getId());
         return roleRepository.save(roleEntityUpdate);
 
     }
 
-    public boolean deleteRole(Long id) {
+    public boolean delete(Long id) {
         try {
             roleRepository.deleteById(id);
             return true;
@@ -49,38 +55,6 @@ public class RoleServiceImpl implements IRoleService {
             System.out.println(e.getMessage());
             return false;
         }
-    }
-
-    @Override
-    public List<RoleResponse> getAllRoles() {
-        List<RoleEntity> listRoleEntities = roleRepository.findAll();
-
-        return null;
-    }
-
-    @Override
-    public RoleResponse findById(Long id) {
-        return null;
-    }
-
-    @Override
-    public RoleResponse save(RoleRequest roleRequest) {
-        return null;
-    }
-
-    @Override
-    public void save(RoleEntity roleEntityRequest) {
-        roleRepository.save(roleEntityRequest);
-    }
-
-    @Override
-    public RoleResponse edit(Long id, RoleRequest roleRequest) {
-        return null;
-    }
-
-    @Override
-    public void delete(Long id) {
-
     }
 
     @Override

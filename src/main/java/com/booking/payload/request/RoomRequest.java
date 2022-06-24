@@ -9,7 +9,6 @@ import lombok.Data;
 @Builder
 public class RoomRequest {
     Long id;
-
     String name;
     String shortDescription;
     String description;

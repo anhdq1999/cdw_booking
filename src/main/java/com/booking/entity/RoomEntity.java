@@ -1,6 +1,7 @@
 package com.booking.entity;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -13,6 +14,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "rooms")
+@Builder
 public class RoomEntity {
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -21,9 +23,9 @@ public class RoomEntity {
     String shortDescription;
     String description;
     double price;
-    int rating;
-    int numRating;
-    boolean status;
+    int rating=0;
+    int numRating=0;
+    boolean status=true;
     @ManyToOne(fetch = FetchType.LAZY)
            @JoinColumn(name = "address_id",nullable = false)
     Address address;

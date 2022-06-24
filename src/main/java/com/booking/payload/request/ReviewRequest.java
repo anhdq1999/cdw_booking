@@ -9,5 +9,5 @@ public class ReviewRequest {
     String name;
     String comment;
     int rating;
-
+    Long roomId;
 }

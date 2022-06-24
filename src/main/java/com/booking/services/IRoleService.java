@@ -9,17 +9,17 @@ import java.util.List;
 import java.util.Optional;
 
 public interface IRoleService {
-    List<RoleResponse> getAllRoles();
+    List<RoleEntity> getAll();
 
-    RoleResponse findById(Long id);
+    RoleEntity getById(Long id);
 
-    RoleResponse save(RoleRequest roleRequest);
+    RoleEntity save(RoleRequest roleRequest);
 
     void save(RoleEntity roleEntityRequest);
 
-    RoleResponse edit(Long id, RoleRequest roleRequest);
+    RoleEntity update(Long id, RoleRequest roleRequest);
 
-    void delete(Long id);
+    boolean delete(Long id);
 
     Optional<RoleEntity> findByName(ERole name);
 }

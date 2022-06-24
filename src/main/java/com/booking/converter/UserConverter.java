@@ -5,16 +5,9 @@ import com.booking.payload.request.UserRequest;
 import com.booking.payload.response.UserResponse;
 
 public class UserConverter {
-    private static UserConverter instance;
 
-    public static UserConverter getInstance() {
-        if (instance == null) {
-            instance = new UserConverter();
-        }
-        return instance;
-    }
 
-    public UserResponse toResponse(UserEntity entity) {
+    public static UserResponse toResponse(UserEntity entity) {
         return UserResponse.builder()
                 .username(entity.getUsername())
                 .email(entity.getEmail())
@@ -25,7 +18,7 @@ public class UserConverter {
                 .build();
     }
 
-    public UserEntity toEntity(UserRequest userRequest) {
+    public static UserEntity toEntity(UserRequest userRequest) {
         return UserEntity.builder()
                 .username(userRequest.getUsername())
                 .email(userRequest.getEmail())

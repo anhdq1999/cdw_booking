@@ -1,6 +1,7 @@
 package com.booking.services;
 
 import com.booking.entity.UserEntity;
+import com.booking.payload.request.UserRequest;
 import com.booking.payload.response.UserResponse;
 
 import java.util.List;
@@ -18,14 +19,10 @@ public interface IUserService {
 
     Optional<UserResponse> findById(Long id);
 
-    //
-    UserEntity save(UserEntity userEntity);
+    UserEntity save(UserRequest request);
 
-//    UserAppResponse save(UserAppRequest userAppRequest);
-//
-//    UserApp edit(Long id, UserAppRequest userAppRequest);
-//
-//    void delete(Long id);
+
+
 
 
 }

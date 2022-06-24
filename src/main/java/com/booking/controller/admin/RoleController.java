@@ -14,33 +14,31 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping("/api/admin/roles")
+@RequestMapping("/api/v1/roles")
 public class RoleController {
     @Autowired
     private RoleServiceImpl roleServiceImpl;
 
     @GetMapping
     public ResponseEntity<?> getAll() {
-        List<RoleResponse> roleResponseList = roleServiceImpl.getAll().stream().map(role -> RoleConverter.getInstance().toResponse(role))
+        List<RoleResponse> roleResponseList = roleServiceImpl.getAll().stream().map(role -> RoleConverter.toResponse(role))
                 .collect(Collectors.toList());
         return ResponseEntity.ok(Response.success("Get all role successfully", roleResponseList));
     }
 
     @PostMapping
-    public ResponseEntity<?> createRole(@RequestBody RoleEntity roleEntity) {
-        if (roleServiceImpl.addRole(roleEntity)) {
-            RoleResponse roleResponse = RoleConverter.getInstance().toResponse(roleEntity);
-            return ResponseEntity.ok(Response.success("Create role successfully", roleResponse));
-        } else {
-            return ResponseEntity.internalServerError().body(Response.fail("Fail"));
-        }
+    public ResponseEntity<?> save(@RequestBody RoleRequest roleRequest) {
+        RoleEntity entity = roleServiceImpl.save(roleRequest);
+        RoleResponse roleResponse = RoleConverter.toResponse(entity);
+        return ResponseEntity.ok(Response.success("Create role successfully", roleResponse));
+
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<?> updateRole(@PathVariable Long id, @RequestBody RoleRequest roleRequest) {
+    public ResponseEntity<?> update(@PathVariable Long id, @RequestBody RoleRequest roleRequest) {
         try {
-            RoleEntity roleEntity = roleServiceImpl.updateRole(id, roleRequest);
-            RoleResponse roleResponse = RoleConverter.getInstance().toResponse(roleEntity);
+            RoleEntity roleEntity = roleServiceImpl.update(id, roleRequest);
+            RoleResponse roleResponse = RoleConverter.toResponse(roleEntity);
             return ResponseEntity.ok(Response.success("Update role successfully", roleResponse));
         } catch (IllegalArgumentException e) {
             return ResponseEntity.ok(Response.fail(e.getMessage()));
@@ -48,8 +46,8 @@ public class RoleController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<?> deleteRole(@PathVariable("id") Long id) {
-        if (roleServiceImpl.deleteRole(id)) {
+    public ResponseEntity<?> delete(@PathVariable Long id) {
+        if (roleServiceImpl.delete(id)) {
             return ResponseEntity.ok(Response.success("Delete role with id " + id + " successfully", null));
         } else {
             return ResponseEntity.internalServerError().body("xảy ra lỗi");
