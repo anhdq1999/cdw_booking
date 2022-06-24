@@ -26,16 +26,47 @@
 //  "customerPhone": "000123-123"
 //}
 
-{
-  "quantity" : 1,
-  "price" : 99,
-  "rooms" : "627c86122707f10df1b585f3",
-  "dates" : {
-    "checkInDate" : 1652769777430,
-    "checkOutDate" : 1652769777430
-  },
-  "status": "CONFIRMING",
-  "paidAt" : 1652769777430,
-  "deliveredAt": 1652769777430
-},
+//{
+//  "quantity" : 1,
+//  "price" : 99,
+//  "rooms" : "627c86122707f10df1b585f3",
+//  "dates" : {
+//    "checkInDate" : 1652769777430,
+//    "checkOutDate" : 1652769777430
+//  },
+//  "status": "CONFIRMING",
+//  "paidAt" : 1652769777430,
+//  "deliveredAt": 1652769777430
+//},
 
+//"orderDetailsEntity":"",
+//"status":"",
+//"paymentMethod":"",
+//"taxPrice":"",
+//"totalPrice":"",
+//"user":"",
+//"paidAt":"",
+//"refundAt":"",
+//"customerName":"",
+//"customerPhone":"",
+{
+  "orderDetailsEntity": {
+    "room": "",
+    "adults": "",
+    "child": "",
+    "infants": "",
+    "checkIn": "",
+    "checkOut": "",
+    "note": "",
+    "price": ""
+  },
+  "status": "",
+  "paymentMethod": "",
+  "taxPrice": "",
+  "totalPrice": "",
+  "user": "",
+  "paidAt": "",
+  "refundAt": "",
+  "customerName": "",
+  "customerPhone": ""
+}

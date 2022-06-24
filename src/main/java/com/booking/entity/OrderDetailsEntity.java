@@ -32,7 +32,6 @@ public class OrderDetailsEntity {
     double price;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "order_id", nullable = false)
     OrderEntity order;
 
 

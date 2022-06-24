@@ -6,8 +6,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.Collection;
 import java.util.Date;
-import java.util.Set;
 
 @Data
 @Entity
@@ -18,23 +18,30 @@ import java.util.Set;
 public class OrderEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Long id;
+    private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id", nullable = false)
-    UserEntity userEntity;
 
-    String status;
-    double tax_price;
-    double total_price;
+    private UserEntity userEntity;
+
+    private String status;
+
+    private Double tax_price;
+
+    private Double total_price;
+
     @Temporal(TemporalType.TIMESTAMP)
-    Date paidAt;
+    private Date paidAt;
+
     @Temporal(TemporalType.TIMESTAMP)
-    Date refundAt;
-    String customer_name;
-    String customer_phone;
-//
-//    @OneToMany(mappedBy = "orders")
-//    private Set<OrderDetailsEntity> listOrderDetails;
+    private Date refundAt;
+
+    private String customer_name;
+
+    private String customer_phone;
+
+    @OneToMany(targetEntity = OrderDetailsEntity.class, fetch = FetchType.LAZY)
+    private Collection<OrderDetailsEntity> listOrderDetails;
 }
 

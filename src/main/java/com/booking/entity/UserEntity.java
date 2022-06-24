@@ -9,6 +9,7 @@ import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -24,6 +25,7 @@ import java.util.Set;
                 @UniqueConstraint(columnNames = "email")
         })
 public class UserEntity extends AbstractEntity {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -47,6 +49,10 @@ public class UserEntity extends AbstractEntity {
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<RoleEntity> roleEntities = new HashSet<>();
+    @OneToMany(targetEntity = OrderEntity.class, fetch = FetchType.LAZY)
+    private Collection<OrderEntity> orders;
+    @ManyToOne(fetch = FetchType.LAZY)
+    private UserEntity user;
 
     public UserEntity(String username, String email, String password, String fullName, String phoneNumber, String address) {
         this.username = username;

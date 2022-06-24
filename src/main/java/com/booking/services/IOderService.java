@@ -1,9 +1,15 @@
 package com.booking.services;
 
-import com.booking.payload.request.OrderRequest;
-import com.booking.payload.response.OrderResponse;
+import com.booking.entity.OrderEntity;
+
+import java.util.List;
 
 public interface IOderService {
-    OrderResponse createOrder(OrderRequest request);
+    OrderEntity createOrder(OrderEntity request);
+
+    List<OrderEntity> getAll();
+
+    OrderEntity getOrderById(Long id);
+
 
 }
