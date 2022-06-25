@@ -17,9 +17,8 @@ public class ReviewService {
     @Autowired
     private ReviewRepository reviewRepository;
 
-    public List<ReviewResponse> getAll(){
-        return reviewRepository.findAll().stream().map(review -> ReviewConverter.toResponse(review))
-                .collect(Collectors.toList());
+    public List<ReviewEntity> getAll(){
+        return reviewRepository.findAll();
     }
     public ReviewEntity save(ReviewRequest reviewRequest){
         ReviewEntity review = ReviewConverter.toEntity(reviewRequest);

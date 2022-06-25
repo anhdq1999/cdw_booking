@@ -7,6 +7,7 @@ import com.booking.entity.RoleEntity;
 import com.booking.entity.UserEntity;
 import com.booking.payload.request.LoginRequest;
 import com.booking.payload.request.SignupRequest;
+import com.booking.payload.request.UserRequest;
 import com.booking.payload.response.JwtResponse;
 import com.booking.payload.response.MessageResponse;
 import com.booking.security.jwt.JwtUtils;
@@ -80,14 +81,14 @@ public class AuthController {
         if (userService.existsByEmail(signUpRequest.getEmail())) {
             return ResponseEntity.badRequest().body(new MessageResponse("Error: Email is already in use!"));
         }
-
-        UserEntity user = new
-                UserEntity(signUpRequest.getUsername(), signUpRequest.getEmail(), encoder.encode(signUpRequest.getPassword())
-                , signUpRequest.getFullName(), signUpRequest.getPhoneNumber(), signUpRequest.getAddress()
+        Set<RoleEntity> roleEntities = new HashSet<>();
+        UserRequest user = new
+                UserRequest(signUpRequest.getUsername(), signUpRequest.getEmail(), encoder.encode(signUpRequest.getPassword())
+                , signUpRequest.getFullName(), signUpRequest.getPhoneNumber(), signUpRequest.getAddress(),roleEntities
         );
 
         Set<String> strRoles = signUpRequest.getRole();
-        Set<RoleEntity> roleEntities = new HashSet<>();
+
 
 
         if (strRoles == null) {

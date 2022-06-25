@@ -2,6 +2,7 @@ package com.booking.services.impl;
 
 import com.booking.converter.UserConverter;
 import com.booking.entity.UserEntity;
+import com.booking.payload.request.SignupRequest;
 import com.booking.payload.request.UserRequest;
 import com.booking.payload.response.UserResponse;
 import com.booking.repository.AddressRepository;
@@ -68,7 +69,6 @@ public class UserServiceImpl implements IUserService {
     @Override
     public UserEntity save(UserRequest request) {
         UserEntity entity =UserConverter.toEntity(request);
-
         return userRepository.save(entity);
     }
 
