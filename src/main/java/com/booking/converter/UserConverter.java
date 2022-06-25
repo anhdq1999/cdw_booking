@@ -19,6 +19,7 @@ public class UserConverter {
 
     public UserResponse toResponse(UserEntity entity) {
         return UserResponse.builder()
+                .id(entity.getId())
                 .username(entity.getUsername())
                 .email(entity.getEmail())
                 .fullName(entity.getFullName())

@@ -50,23 +50,25 @@
 //"customerName":"",
 //"customerPhone":"",
 {
-  "orderDetailsEntity": {
-    "room": "",
-    "adults": "",
-    "child": "",
-    "infants": "",
-    "checkIn": "",
-    "checkOut": "",
-    "note": "",
-    "price": ""
-  },
-  "status": "",
-  "paymentMethod": "",
-  "taxPrice": "",
-  "totalPrice": "",
-  "user": "",
-  "paidAt": "",
-  "refundAt": "",
-  "customerName": "",
-  "customerPhone": ""
+  "orderDetailsEntity": [
+    {
+      "room": 1,
+      "adults": 1,
+      "child": 1,
+      "infants": 0,
+      "checkIn": "2019-02-03 10:08:02",
+      "checkOut": "2019-02-03 10:08:02",
+      "note": "No",
+      "price": 1000
+    }
+  ],
+  "status": "REFUND",
+  "paymentMethod": "VISA",
+  "taxPrice": 10,
+  "totalPrice": 1100,
+  "user": 1,
+  "paidAt": "2019-02-03 10:08:02",
+  "refundAt": "2019-02-03 10:08:02",
+  "customerName": "AnhQuang",
+  "customerPhone": "0978121"
 }

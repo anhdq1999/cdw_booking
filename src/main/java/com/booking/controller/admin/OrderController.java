@@ -21,7 +21,7 @@ import java.util.stream.Collectors;
 public class OrderController {
     @Autowired
     private OrderServiceImpl orderService;
-
+    @Autowired
     private OrderConverter orderConverter;
 
     @GetMapping()
@@ -42,7 +42,9 @@ public class OrderController {
 
     @PostMapping
     public void createOrder(@RequestBody OrderRequest request) {
-        log.info("[ORDER] {}", request);
+        OrderEntity order = orderConverter.toEntity(request);
+        OrderEntity saved = orderService.createOrder(order);
+        log.info("[ORDER] {}", saved);
     }
 
 

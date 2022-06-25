@@ -17,16 +17,16 @@ public class HotelBookingApiApplication {
         SpringApplication.run(HotelBookingApiApplication.class, args);
     }
 
-    @Bean
-    CommandLineRunner commandLineRunner(RoleServiceImpl roleRepository) {
-        return args -> {
-            RoleEntity roleEntityUser = new RoleEntity(ERole.ROLE_USER);
-            RoleEntity roleEntityAdmin = new RoleEntity(ERole.ROLE_ADMIN);
-            RoleEntity roleEntityHost = new RoleEntity(ERole.ROLE_HOST);
-            roleRepository.save(roleEntityUser);
-            roleRepository.save(roleEntityAdmin);
-            roleRepository.save(roleEntityHost);
-
-        };
-    }
+//    @Bean
+//    CommandLineRunner commandLineRunner(RoleServiceImpl roleRepository) {
+//        return args -> {
+//            RoleEntity roleEntityUser = new RoleEntity(ERole.ROLE_USER);
+//            RoleEntity roleEntityAdmin = new RoleEntity(ERole.ROLE_ADMIN);
+//            RoleEntity roleEntityHost = new RoleEntity(ERole.ROLE_HOST);
+//            roleRepository.save(roleEntityUser);
+//            roleRepository.save(roleEntityAdmin);
+//            roleRepository.save(roleEntityHost);
+//
+//        };
+//    }
 }

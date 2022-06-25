@@ -3,9 +3,11 @@ package com.booking.converter;
 import com.booking.entity.OrderEntity;
 import com.booking.payload.request.OrderRequest;
 import com.booking.payload.response.OrderResponse;
+import org.springframework.stereotype.Component;
 
 import java.util.Optional;
 
+@Component
 public class OrderConverter {
     private static OrderConverter instance;
 
