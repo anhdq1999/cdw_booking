@@ -1,5 +1,6 @@
 package com.booking.entity;
 
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -15,7 +16,8 @@ import java.util.List;
 @AllArgsConstructor
 @Table(name = "rooms")
 @Builder
-public class RoomEntity {
+@JsonSerialize
+public class RoomEntity extends AbstractEntity {
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     Long id;
@@ -27,17 +29,17 @@ public class RoomEntity {
     int numRating=0;
     boolean status=true;
     @ManyToOne(fetch = FetchType.LAZY)
-           @JoinColumn(name = "address_id",nullable = false)
+           @JoinColumn(name = "addressId",nullable = false)
     Address address;
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "category_id",nullable = false)
+    @JoinColumn(name = "categoryId",nullable = false)
     CategoryEntity category;
     @OneToMany(fetch = FetchType.LAZY,mappedBy = "room")
     List<ReviewEntity> reviews;
-    @OneToMany(fetch = FetchType.LAZY,mappedBy = "roomEntity")
+    @OneToMany(fetch = FetchType.LAZY,mappedBy = "room")
     List<GalleryEntity> images;
-    @ManyToOne
-    @JoinColumn(name = "host_id",nullable = false)
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "userId",nullable = false)
      UserEntity user;
 
 }

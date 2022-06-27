@@ -16,13 +16,8 @@ public interface IUserService {
 
     List<UserResponse> getAll();
 
-
     Optional<UserResponse> findById(Long id);
 
     UserEntity save(UserRequest request);
-
-
-
-
 
 }

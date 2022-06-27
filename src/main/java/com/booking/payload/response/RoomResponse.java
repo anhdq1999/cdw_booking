@@ -1,15 +1,18 @@
 package com.booking.payload.response;
 
 import com.booking.entity.*;
+import com.booking.payload.response.roomRespsonse.RoomGalleryResponse;
+import com.booking.payload.response.roomRespsonse.RoomReviewResponse;
+import com.booking.payload.response.roomRespsonse.RoomUserResponse;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import lombok.Builder;
 import lombok.Data;
 
 import java.util.List;
-import javax.persistence.FetchType;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+
 @Data
 @Builder
+
 public class RoomResponse {
     Long id;
     String name;
@@ -19,9 +22,9 @@ public class RoomResponse {
     int rating;
     int numRating;
     boolean status;
-    Address address;
-    CategoryEntity category;
-    List<ReviewResponse> reviews;
-    List<GalleryResponse> images;
-    UserEntity user;
+    AddressResponse address;
+    CategoryResponse category;
+    List<RoomReviewResponse> reviews;
+    List<RoomGalleryResponse> images;
+    RoomUserResponse user;
 }

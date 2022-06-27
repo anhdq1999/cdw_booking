@@ -4,6 +4,7 @@ import com.booking.entity.UserEntity;
 import com.booking.payload.request.SignupRequest;
 import com.booking.payload.request.UserRequest;
 import com.booking.payload.response.UserResponse;
+import com.booking.payload.response.roomRespsonse.RoomUserResponse;
 
 public class UserConverter {
 
@@ -16,7 +17,7 @@ public class UserConverter {
                 .fullName(entity.getFullName())
                 .phoneNumber(entity.getPhoneNumber())
                 .address(entity.getAddress())
-                .roleEntities(entity.getRoleEntities())
+                .role(RoleConverter.toResponse(entity.getRoleEntity()))
                 .build();
     }
 
@@ -28,17 +29,13 @@ public class UserConverter {
                 .fullName(userRequest.getFullName())
                 .phoneNumber(userRequest.getPhoneNumber())
                 .address(userRequest.getAddress())
-                .roleEntities(userRequest.getRoleEntities())
                 .build();
     }
-    public static UserEntity toEntity(SignupRequest userRequest) {
-        return UserEntity.builder()
-                .username(userRequest.getUsername())
-                .email(userRequest.getEmail())
-                .password(userRequest.getPassword())
-                .fullName(userRequest.getFullName())
-                .phoneNumber(userRequest.getPhoneNumber())
-                .address(userRequest.getAddress())
+
+    public static RoomUserResponse toRoomResponse(UserEntity entity) {
+        return RoomUserResponse.builder()
+                .id(entity.getId())
+                .fullName(entity.getFullName())
                 .build();
     }
 

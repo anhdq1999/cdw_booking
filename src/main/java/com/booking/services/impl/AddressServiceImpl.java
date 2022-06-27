@@ -12,70 +12,49 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class AddressServiceImpl implements IAddressServiceImpl {
     @Autowired
     private AddressRepository addressRepository;
 
-    private AddressConverter addressConverter;
-
     @Override
-    public List<AddressResponse> getAllAddress() {
-        List<Address> listAddressRepository = addressRepository.findAll();
-        List<AddressResponse> listAddressResponse = new ArrayList<>();
-        for (Address address : listAddressRepository) {
-            listAddressResponse.add(addressConverter.toResponse(address));
-        }
-        return listAddressResponse;
+    public List<AddressResponse> getAll() {
+        return addressRepository.findAll()
+                .stream().map(address->AddressConverter.toResponse(address))
+                .collect(Collectors.toList());
     }
 
     @Override
-    public AddressResponse findAddressById(Long id) {
-        Address addressRepo = addressRepository.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException("Not found address by id : " + id));
-        return addressConverter.toResponse(addressRepo);
+    public AddressResponse getById(Long id) {
+        Address entity = addressRepository.findById(id)
+                .orElseThrow(()-> new IllegalArgumentException("Not found address with id:"+id));
+        AddressResponse response =AddressConverter.toResponse(entity);
+        return response;
     }
 
     @Override
-    public AddressResponse createAddress(AddressRequest addressRequest) {
-        Address address = addressConverter.toEntity(addressRequest);
-        Address saved = addressRepository.save(address);
-        return addressConverter.toResponse(saved);
-    }
-//
-//    @Override
-//    public AddressResponse createAddress(Address address) {
-//        Address saved = addressRepository.save(address);
-//        return addressConverter.toResponse(saved);
-//    }
-
-    @Override
-    public Address createAddress(Address address) {
-        return addressRepository.save(address);
-    }
-
-
-    @Override
-    public AddressResponse editAddress(Long id, AddressRequest addressRequest) {
-        Optional<Address> addressRepo = addressRepository.findById(id);
-        Address address = addressConverter.toEntity(addressRequest);
-        if (addressRepo.isPresent()) {
-            Address _address = addressRepo.get();
-            _address.setCountry(address.getCountry());
-            _address.setProvince(address.getProvince());
-            _address.setDistrict(address.getDistrict());
-            _address.setWard(address.getWard());
-            _address.setStreet(address.getWard());
-            _address.setStreet(address.getStreet());
-            addressRepository.save(_address);
-            return addressConverter.toResponse(_address);
-        }
+    public AddressResponse save(AddressRequest addressRequest) {
+        Address rawEntity = AddressConverter.toEntity(addressRequest);
+        Address entity =addressRepository.save(rawEntity);
+        if(entity!=null) return AddressConverter.toResponse(entity);
         return null;
     }
 
     @Override
-    public AddressResponse deleteAddress(AddressRequest addressRequest) {
+    public AddressResponse update(Long id, AddressRequest addressRequest) {
+        Address entity = addressRepository.findById(id)
+                .orElseThrow(()-> new IllegalArgumentException("Not found Address by id:"+id));
+        Address rawNewEntity=AddressConverter.toEntity(addressRequest);
+        rawNewEntity.setId(entity.getId());
+        Address newEntity = addressRepository.save(rawNewEntity);
+        if(newEntity!=null) return AddressConverter.toResponse(newEntity);
         return null;
+    }
+
+    @Override
+    public void delete(Long id) {
+        addressRepository.deleteById(id);
     }
 }

@@ -19,7 +19,7 @@ public class GalleryEntity {
     Long id;
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "roomId",nullable = false)
-    RoomEntity roomEntity;
+    RoomEntity room;
     String url;
 
 }

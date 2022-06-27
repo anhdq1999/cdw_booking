@@ -27,16 +27,6 @@ public class ReviewController {
         return ResponseEntity.ok(Response.success("Get all reviews successfully",reviews));
     }
 
-    @PostMapping
-    public ResponseEntity<?> save(@RequestBody ReviewRequest reviewRequest){
-        ReviewEntity entity = reviewService.save(reviewRequest);
-        if(entity!=null){
-            ReviewResponse response= ReviewConverter.toResponse(entity);
-            return ResponseEntity.ok(Response.success("Create a review successfully",response));
-        }else{
-            return ResponseEntity.internalServerError().body("Create a review failure");
-        }
-    }
     @PutMapping("/{id}")
     public ResponseEntity<?> update(@PathVariable Long id,@RequestBody ReviewRequest reviewRequest){
         try {

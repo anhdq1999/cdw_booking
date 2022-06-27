@@ -15,8 +15,6 @@ public interface IRoleService {
 
     RoleEntity save(RoleRequest roleRequest);
 
-    void save(RoleEntity roleEntityRequest);
-
     RoleEntity update(Long id, RoleRequest roleRequest);
 
     boolean delete(Long id);

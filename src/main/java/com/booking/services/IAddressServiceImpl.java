@@ -9,17 +9,13 @@ import java.util.List;
 public interface IAddressServiceImpl {
 
 
-    List<AddressResponse> getAllAddress();
+    List<AddressResponse> getAll();
 
-    AddressResponse findAddressById(Long id);
+    AddressResponse getById(Long id);
 
-    AddressResponse createAddress(AddressRequest addressRequest);
+    AddressResponse save(AddressRequest addressRequest);
 
-//    AddressResponse createAddress(Address address);
+    AddressResponse update(Long id, AddressRequest addressRequest);
 
-    Address createAddress(Address address);
-
-    AddressResponse editAddress(Long id, AddressRequest addressRequest);
-
-    AddressResponse deleteAddress(AddressRequest addressRequest);
+    void delete(Long id);
 }

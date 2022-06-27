@@ -1,5 +1,6 @@
 package com.booking.controller;
 
+import com.booking.common.Response;
 import com.booking.converter.AddressConverter;
 import com.booking.converter.UserConverter;
 import com.booking.entity.ERole;
@@ -10,6 +11,7 @@ import com.booking.payload.request.SignupRequest;
 import com.booking.payload.request.UserRequest;
 import com.booking.payload.response.JwtResponse;
 import com.booking.payload.response.MessageResponse;
+import com.booking.payload.response.UserResponse;
 import com.booking.security.jwt.JwtUtils;
 import com.booking.security.services.UserDetailsImpl;
 import com.booking.services.impl.AddressServiceImpl;
@@ -54,9 +56,6 @@ public class AuthController {
     @Autowired
     JwtUtils jwtUtils;
 
-    private UserConverter userConverter;
-    private AddressConverter addressConverter;
-
     @PostMapping("/signin")
     public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
 
@@ -66,53 +65,26 @@ public class AuthController {
         String jwt = jwtUtils.generateJwtToken(authentication);
 
         UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
-        List<String> roles = userDetails.getAuthorities().stream().map(item -> item.getAuthority()).collect(Collectors.toList());
-
-        return ResponseEntity.ok(new JwtResponse(jwt, userDetails.getId(), userDetails.getUsername(), userDetails.getEmail(), roles));
+        String role = userDetails.getAuthority().getAuthority();
+        JwtResponse response=new JwtResponse(jwt, userDetails.getId(), userDetails.getUsername(), userDetails.getEmail(), role);
+        return ResponseEntity.ok(Response.success("Login successfully",response));
     }
 
     @PostMapping("/signup")
-    public ResponseEntity<?> registerUser(@RequestBody SignupRequest signUpRequest) {
-        log.info("[AUTH]: SignUpRequest {}: ", signUpRequest);
-        if (userService.existsByUsername(signUpRequest.getUsername())) {
-            return ResponseEntity.badRequest().body(new MessageResponse("Error: Username is already taken!"));
+    public ResponseEntity<?> registerUser(@RequestBody UserRequest userRequest) {
+        if (userService.existsByUsername(userRequest.getUsername())) {
+            return ResponseEntity.badRequest().body(
+                    Response.fail("Username is existed")
+            );
         }
-
-        if (userService.existsByEmail(signUpRequest.getEmail())) {
-            return ResponseEntity.badRequest().body(new MessageResponse("Error: Email is already in use!"));
+        if (userService.existsByEmail(userRequest.getEmail())) {
+            return ResponseEntity.badRequest().body(
+                    Response.fail("Email is existed")
+            );
         }
-        Set<RoleEntity> roleEntities = new HashSet<>();
-        UserRequest user = new
-                UserRequest(signUpRequest.getUsername(), signUpRequest.getEmail(), encoder.encode(signUpRequest.getPassword())
-                , signUpRequest.getFullName(), signUpRequest.getPhoneNumber(), signUpRequest.getAddress(),roleEntities
-        );
+        UserEntity entity = userService.save(userRequest);
+        UserResponse response = UserConverter.toResponse(entity);
+        return ResponseEntity.ok(Response.success("User registered successfully!", response));
 
-        Set<String> strRoles = signUpRequest.getRole();
-
-
-
-        if (strRoles == null) {
-            RoleEntity userRoleEntity = roleService.findByName(ERole.ROLE_USER).orElseThrow(() -> new RuntimeException("Error: Role is not found."));
-            roleEntities.add(userRoleEntity);
-        } else {
-            strRoles.forEach(role -> {
-                switch (role) {
-                    case "admin":
-                        RoleEntity adminRoleEntity = roleService.findByName(ERole.ROLE_ADMIN).orElseThrow(() -> new RuntimeException("Error: Role is not found."));
-                        roleEntities.add(adminRoleEntity);
-                        break;
-                    case "host":
-                        RoleEntity hostRoleEntity = roleService.findByName(ERole.ROLE_HOST).orElseThrow(() -> new RuntimeException("Error: Role is not found."));
-                        roleEntities.add(hostRoleEntity);
-                        break;
-                    default:
-                        RoleEntity userRoleEntity = roleService.findByName(ERole.ROLE_USER).orElseThrow(() -> new RuntimeException("Error: Role is not found."));
-                        roleEntities.add(userRoleEntity);
-                }
-            });
-        }
-        user.setRoleEntities(roleEntities);
-        userService.save(user);
-        return ResponseEntity.ok(new MessageResponse("User registered successfully!"));
     }
 }

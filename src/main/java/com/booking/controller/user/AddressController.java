@@ -18,7 +18,7 @@ public class AddressController {
 
     @GetMapping
     @PreAuthorize("hasRole('USER')")
-    public List<AddressResponse> getAllAddress() {
-        return addressService.getAllAddress();
+    public List<AddressResponse> getAll() {
+        return addressService.getAll();
     }
 }

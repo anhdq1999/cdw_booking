@@ -23,33 +23,30 @@ public class UserDetailsImpl implements UserDetails {
     @JsonIgnore
     private String password;
 
-    private Collection<? extends GrantedAuthority> authorities;
+    private GrantedAuthority authority;
 
     public UserDetailsImpl(Long id, String username, String email, String password,
-                           Collection<? extends GrantedAuthority> authorities) {
+                           GrantedAuthority authority) {
         this.id = id;
         this.username = username;
         this.email = email;
         this.password = password;
-        this.authorities = authorities;
+        this.authority = authority;
     }
 
     public static UserDetailsImpl build(UserEntity user) {
-        List<GrantedAuthority> authorities = user.getRoleEntities().stream()
-                .map(role -> new SimpleGrantedAuthority(role.getName().name()))
-                .collect(Collectors.toList());
+        GrantedAuthority authority = new SimpleGrantedAuthority(user.getRoleEntity().getName().name());
 
         return new UserDetailsImpl(
                 user.getId(),
                 user.getUsername(),
                 user.getEmail(),
                 user.getPassword(),
-                authorities);
+                authority);
     }
 
-    @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-        return authorities;
+    public GrantedAuthority getAuthority() {
+        return authority;
     }
 
     public Long getId() {
@@ -58,6 +55,11 @@ public class UserDetailsImpl implements UserDetails {
 
     public String getEmail() {
         return email;
+    }
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return null;
     }
 
     @Override

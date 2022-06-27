@@ -35,10 +35,6 @@ public class RoleServiceImpl implements IRoleService {
 
     }
 
-    @Override
-    public void save(RoleEntity roleEntityRequest) {
-    }
-
     public RoleEntity update(Long id, RoleRequest roleRequest) {
         RoleEntity roleEntity = roleRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Role with " + id + " not found"));
         RoleEntity roleEntityUpdate = RoleConverter.toEntity(roleRequest);

@@ -8,6 +8,7 @@ import lombok.Data;
 //@NoArgsConstructor
 @Builder
 public class AddressResponse {
+    private Long id;
     private String country;
     private String province;
     private String district;

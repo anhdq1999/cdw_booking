@@ -8,6 +8,7 @@ public class RoleConverter {
 
     public static RoleResponse toResponse(RoleEntity entity){
         return RoleResponse.builder()
+                .id(entity.getId())
                 .name(entity.getName())
                 .build();
     }

@@ -5,17 +5,10 @@ import com.booking.payload.request.AddressRequest;
 import com.booking.payload.response.AddressResponse;
 
 public class AddressConverter {
-    private static AddressConverter instance;
 
-    public static AddressConverter getInstance() {
-        if (instance == null) {
-            instance = new AddressConverter();
-        }
-        return instance;
-    }
-
-    public AddressResponse toResponse(Address entity) {
+    public static AddressResponse toResponse(Address entity) {
         return AddressResponse.builder()
+                .id(entity.getId())
                 .country(entity.getCountry())
                 .province(entity.getProvince())
                 .district(entity.getDistrict())
@@ -25,7 +18,7 @@ public class AddressConverter {
                 .build();
     }
 
-    public Address toEntity(AddressRequest request) {
+    public static Address toEntity(AddressRequest request) {
         return Address.builder()
                 .country(request.getCountry())
                 .province(request.getProvince())

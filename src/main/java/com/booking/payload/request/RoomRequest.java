@@ -1,14 +1,13 @@
 package com.booking.payload.request;
 
-import com.booking.entity.Address;
-import com.booking.entity.CategoryEntity;
+import com.booking.converter.ReviewConverter;
 import lombok.Builder;
 import lombok.Data;
+import java.util.List;
 
 @Data
 @Builder
 public class RoomRequest {
-    Long id;
     String name;
     String shortDescription;
     String description;
@@ -16,7 +15,9 @@ public class RoomRequest {
     int rating;
     int numRating;
     boolean status;
-    Long addressId;
+    AddressRequest address;
+    List<GalleryRequest> images;
+    List<ReviewRequest> reviews;
     Long categoryId;
-    Long hostId;
+    Long userId;
 }

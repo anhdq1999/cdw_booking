@@ -36,4 +36,9 @@ public class CategoryService {
         categoryRepository.deleteById(id);
     }
 
+    public CategoryEntity getById(Long id){
+         CategoryEntity entity=categoryRepository.findById(id)
+                 .orElseThrow(()-> new IllegalArgumentException("Not found category with id:"+id));
+         return entity;
+    }
 }

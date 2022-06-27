@@ -15,4 +15,5 @@ public class ReviewResponse {
     String name;
     String comment;
     int rating;
+    Long roomId;
 }

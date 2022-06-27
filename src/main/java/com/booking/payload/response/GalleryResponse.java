@@ -12,4 +12,5 @@ import javax.persistence.ManyToOne;
 public class GalleryResponse {
     Long id;
     String url;
+    Long roomId;
 }
