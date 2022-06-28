@@ -4,7 +4,6 @@ import com.booking.converter.UserConverter;
 import com.booking.entity.ERole;
 import com.booking.entity.RoleEntity;
 import com.booking.entity.UserEntity;
-import com.booking.payload.request.SignupRequest;
 import com.booking.payload.request.UserRequest;
 import com.booking.payload.response.UserResponse;
 import com.booking.repository.AddressRepository;
@@ -26,7 +25,7 @@ import java.util.Optional;
 
 @Service
 @Slf4j
-public class UserServiceImpl implements IUserService {
+public class UserService implements IUserService {
     @Autowired
     private UserRepository userRepository;
     @Autowired
@@ -86,6 +85,7 @@ public class UserServiceImpl implements IUserService {
     public UserEntity signUp(UserEntity entity) {
         return userRepository.save(entity);
     }
+
     @Transactional
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         UserEntity user = userRepository.findByUsername(username)

@@ -1,22 +1,17 @@
 package com.booking.controller;
 
 import com.booking.common.Response;
-import com.booking.converter.AddressConverter;
 import com.booking.converter.UserConverter;
-import com.booking.entity.ERole;
-import com.booking.entity.RoleEntity;
 import com.booking.entity.UserEntity;
 import com.booking.payload.request.LoginRequest;
-import com.booking.payload.request.SignupRequest;
 import com.booking.payload.request.UserRequest;
 import com.booking.payload.response.JwtResponse;
-import com.booking.payload.response.MessageResponse;
 import com.booking.payload.response.UserResponse;
 import com.booking.security.jwt.JwtUtils;
 import com.booking.security.services.UserDetailsImpl;
-import com.booking.services.impl.AddressServiceImpl;
-import com.booking.services.impl.RoleServiceImpl;
-import com.booking.services.impl.UserServiceImpl;
+import com.booking.services.impl.AddressService;
+import com.booking.services.impl.RoleService;
+import com.booking.services.impl.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -28,10 +23,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-import java.util.stream.Collectors;
 
 @Slf4j
 @CrossOrigin(origins = "*", maxAge = 3600)
@@ -42,13 +33,13 @@ public class AuthController {
     AuthenticationManager authenticationManager;
 
     @Autowired
-    UserServiceImpl userService;
+    UserService userService;
 
     @Autowired
-    AddressServiceImpl addressService;
+    AddressService addressService;
 
     @Autowired
-    RoleServiceImpl roleService;
+    RoleService roleService;
 
     @Autowired
     PasswordEncoder encoder;

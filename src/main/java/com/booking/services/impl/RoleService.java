@@ -4,7 +4,6 @@ import com.booking.converter.RoleConverter;
 import com.booking.entity.ERole;
 import com.booking.entity.RoleEntity;
 import com.booking.payload.request.RoleRequest;
-import com.booking.payload.response.RoleResponse;
 import com.booking.repository.RoleRepository;
 import com.booking.services.IRoleService;
 import lombok.RequiredArgsConstructor;
@@ -15,7 +14,7 @@ import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
-public class RoleServiceImpl implements IRoleService {
+public class RoleService implements IRoleService {
 
     private final RoleRepository roleRepository;
     private RoleConverter roleConverter;

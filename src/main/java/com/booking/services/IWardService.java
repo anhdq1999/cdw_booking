@@ -12,4 +12,6 @@ public interface IWardService {
     WardEntity save(WardRequest request);
 
     List<WardEntity> getByDistrictId(Long id);
+
+    WardEntity getById(Long id);
 }

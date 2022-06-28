@@ -35,8 +35,18 @@ public class ProvinceController {
     public ResponseEntity<?> save(@RequestBody ProvinceRequest request){
         ProvinceEntity entity = provinceService.save(request);
         ProvinceResponse response = ProvinceConverter.toResponse(entity);
-        return ResponseEntity.ok(Response.success("Insert provincce successfully",response));
-
-
+        return ResponseEntity.ok(Response.success("Insert province successfully",response));
     }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<?> getById(@PathVariable Long id){
+        try {
+            ProvinceEntity entity = provinceService.getById(id);
+            ProvinceResponse response = ProvinceConverter.toResponse(entity);
+            return ResponseEntity.ok(Response.success("Get province by id successfully", response));
+        }catch (IllegalArgumentException e){
+            return ResponseEntity.ok(Response.fail(e.getMessage()));
+        }
+    }
+
 }

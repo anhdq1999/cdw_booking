@@ -1,7 +1,6 @@
 package com.booking.security.jwt;
 
-import com.booking.security.services.UserDetailsServiceImpl;
-import com.booking.services.impl.UserServiceImpl;
+import com.booking.services.impl.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -23,7 +22,7 @@ public class AuthTokenFilter extends OncePerRequestFilter {
     private JwtUtils jwtUtils;
 
     @Autowired
-    private UserServiceImpl userService;
+    private UserService userService;
 
 
     @Override

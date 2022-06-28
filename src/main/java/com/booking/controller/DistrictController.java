@@ -2,9 +2,12 @@ package com.booking.controller;
 
 import com.booking.common.Response;
 import com.booking.converter.DistrictConverter;
+import com.booking.converter.ProvinceConverter;
 import com.booking.entity.DistrictEntity;
+import com.booking.entity.ProvinceEntity;
 import com.booking.payload.request.DistrictRequest;
 import com.booking.payload.response.DistrictResponse;
+import com.booking.payload.response.ProvinceResponse;
 import com.booking.services.impl.DistrictService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -41,6 +44,16 @@ public class DistrictController {
                 .stream().map(district->DistrictConverter.toResponse(district))
                 .collect(Collectors.toList());
         return ResponseEntity.ok(Response.success("Get all district successfully",responses));
+    }
+    @GetMapping("/{id}")
+    public ResponseEntity<?> getById(@PathVariable Long id){
+        try {
+            DistrictEntity entity = districtService.getById(id);
+            DistrictResponse response = DistrictConverter.toResponse(entity);
+            return ResponseEntity.ok(Response.success("Insert district by id successfully", response));
+        }catch (IllegalArgumentException e){
+            return ResponseEntity.ok(Response.fail(e.getMessage()));
+        }
     }
 
 }

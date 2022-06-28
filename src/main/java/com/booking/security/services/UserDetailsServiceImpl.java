@@ -2,7 +2,6 @@ package com.booking.security.services;
 
 import com.booking.entity.UserEntity;
 import com.booking.repository.UserRepository;
-import com.booking.services.impl.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

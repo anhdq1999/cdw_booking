@@ -16,6 +16,7 @@ public class DistrictConverter {
                 .type(request.getType())
                 .path(request.getPath())
                 .pathWithType(request.getPathWithType())
+
                 .build();
     }
 

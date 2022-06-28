@@ -1,6 +1,5 @@
 package com.booking.payload.request;
 
-import com.booking.converter.ReviewConverter;
 import lombok.Builder;
 import lombok.Data;
 import java.util.List;

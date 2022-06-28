@@ -6,7 +6,7 @@ import com.booking.converter.UserConverter;
 import com.booking.entity.UserEntity;
 import com.booking.payload.request.UserRequest;
 import com.booking.payload.response.UserResponse;
-import com.booking.services.impl.UserServiceImpl;
+import com.booking.services.impl.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.*;
 public class UserController {
 
     @Autowired
-    private UserServiceImpl userService;
+    private UserService userService;
 
     @GetMapping("/")
     @PreAuthorize("hasRole('ADMIN')")

@@ -37,4 +37,11 @@ public class DistrictService implements IDistrictService {
     public List<DistrictEntity> getByProvinceId(Long id) {
         return districtRepository.findAllByProvinceId(id);
     }
+
+    @Override
+    public DistrictEntity getById(Long id) {
+        return districtRepository.findById(id)
+                .orElseThrow(()-> new IllegalArgumentException("Not found district with id = "+id));
+    }
+
 }

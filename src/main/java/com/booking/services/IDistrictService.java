@@ -13,4 +13,6 @@ public interface IDistrictService {
     DistrictEntity save(DistrictRequest request);
 
     List<DistrictEntity> getByProvinceId(Long id);
+
+    DistrictEntity getById(Long id);
 }

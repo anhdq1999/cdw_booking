@@ -37,4 +37,11 @@ public class WardService implements IWardService {
     public List<WardEntity> getByDistrictId(Long id) {
         return wardRepository.findAllByDistrictId(id);
     }
+
+    @Override
+    public WardEntity getById(Long id) {
+        return wardRepository.findById(id)
+                .orElseThrow(()->new IllegalArgumentException("Not found ward with id = "+id));
+    }
+
 }

@@ -1,6 +1,7 @@
 package com.booking.converter;
 
 import com.booking.entity.GalleryEntity;
+import com.booking.entity.RoomEntity;
 import com.booking.payload.request.GalleryRequest;
 import com.booking.payload.response.GalleryResponse;
 import com.booking.payload.response.roomRespsonse.RoomGalleryResponse;

@@ -1,7 +1,7 @@
 package com.booking.controller.user;
 
 import com.booking.payload.response.AddressResponse;
-import com.booking.services.impl.AddressServiceImpl;
+import com.booking.services.impl.AddressService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,7 +14,7 @@ import java.util.List;
 @RequestMapping("/api/user/address")
 public class AddressController {
     @Autowired
-    private AddressServiceImpl addressService;
+    private AddressService addressService;
 
     @GetMapping
     @PreAuthorize("hasRole('USER')")

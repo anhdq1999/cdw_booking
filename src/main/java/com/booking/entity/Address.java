@@ -24,12 +24,4 @@ public class Address {
     private String street;
     private String googleAddress;
 
-    public Address(String country, String province, String district, String ward, String street, String googleAddress) {
-        this.country = country;
-        this.province = province;
-        this.district = district;
-        this.ward = ward;
-        this.street = street;
-        this.googleAddress = googleAddress;
-    }
 }

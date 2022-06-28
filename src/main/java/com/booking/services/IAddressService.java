@@ -1,12 +1,11 @@
 package com.booking.services;
 
-import com.booking.entity.Address;
 import com.booking.payload.request.AddressRequest;
 import com.booking.payload.response.AddressResponse;
 
 import java.util.List;
 
-public interface IAddressServiceImpl {
+public interface IAddressService {
 
 
     List<AddressResponse> getAll();

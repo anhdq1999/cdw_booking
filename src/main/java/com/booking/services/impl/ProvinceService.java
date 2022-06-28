@@ -25,4 +25,11 @@ public class ProvinceService implements IProvinceService {
         ProvinceEntity entity = ProvinceConverter.toEntity(request);
         return provinceRepository.save(entity);
     }
+
+    @Override
+    public ProvinceEntity getById(Long id) {
+        return provinceRepository
+                .findById(id)
+                .orElseThrow(()->new IllegalArgumentException("Not found province with id = "+id));
+    }
 }

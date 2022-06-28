@@ -10,4 +10,5 @@ public interface IProvinceService {
 
     ProvinceEntity save(ProvinceRequest request);
 
+    ProvinceEntity getById(Long id);
 }

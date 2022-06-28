@@ -1,28 +1,21 @@
 package com.booking.services.impl;
 
 import com.booking.converter.AddressConverter;
-import com.booking.converter.GalleryConverter;
-import com.booking.converter.ReviewConverter;
 import com.booking.converter.RoomConverter;
 import com.booking.entity.*;
-import com.booking.payload.request.GalleryRequest;
 import com.booking.payload.request.RoomRequest;
-import com.booking.payload.response.GalleryResponse;
 import com.booking.payload.response.RoomResponse;
-import com.booking.payload.response.roomRespsonse.RoomGalleryResponse;
-import com.booking.payload.response.roomRespsonse.RoomReviewResponse;
 import com.booking.repository.AddressRepository;
 import com.booking.repository.RoomRepository;
+import com.booking.services.IRoomService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
-public class RoomService {
+public class RoomService implements IRoomService {
     @Autowired
     private RoomRepository roomRepository;
     @Autowired
@@ -32,40 +25,24 @@ public class RoomService {
     @Autowired
     private CategoryService categoryService;
     @Autowired
-    private UserServiceImpl userService;
+    private UserService userService;
     @Autowired
     private ReviewService reviewService;
 
+    @Override
     public List<RoomResponse> getAll() {
         return roomRepository.findAll()
-                .stream().map(room -> {
-//                    List<RoomGalleryResponse> images =room.getImages()
-//                            .stream().map(image->GalleryConverter.toRoomResponse(image))
-//                            .collect(Collectors.toList());
-//                    List<RoomReviewResponse> reviews =room.getReviews()
-//                            .stream().map(review->ReviewConverter.toRoomResponse(review))
-//                            .collect(Collectors.toList());
-                    RoomResponse response = RoomConverter.toResponse(room);
-//                    response.setReviews(reviews);
-//                    response.setImages(images);
-                    return response;
-                })
+                .stream().map(room -> RoomConverter.toResponse(room))
                 .collect(Collectors.toList());
     }
-
+    @Override
     public RoomResponse save(RoomRequest roomRequest) {
         RoomEntity rawEntity = RoomConverter.toEntity(roomRequest);
 
         Address addressRawEntity = AddressConverter.toEntity(roomRequest.getAddress());
         Address addressEntity = addressRepository.save(addressRawEntity);
 
-        CategoryEntity category = categoryService.getById(roomRequest.getCategoryId());
-
-        UserEntity user = userService.getById(roomRequest.getUserId());
-
         rawEntity.setAddress(addressEntity);
-        rawEntity.setCategory(category);
-        rawEntity.setUser(user);
 
         RoomEntity entity = roomRepository.save(rawEntity);
 
@@ -75,10 +52,9 @@ public class RoomService {
         entity.setImages(images);
         entity.setReviews(reviews);
 
-        RoomResponse response = RoomConverter.toResponse(entity);
-        return response;
+        return RoomConverter.toResponse(entity);
     }
-
+    @Override
     public RoomResponse update(Long id, RoomRequest roomRequest) {
         RoomEntity rawEntity = RoomConverter.toEntity(roomRequest);
         RoomEntity entity = roomRepository.findById(id)
@@ -90,13 +66,13 @@ public class RoomService {
         } else
             return null;
     }
-
+    @Override
     public void delete(Long id) {
         RoomEntity entity = roomRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Not found room with id:" + id));
         if (entity != null) roomRepository.deleteById(id);
     }
-
+    @Override
     public RoomResponse getById(Long id) {
         RoomEntity entity = roomRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException(("Not found room with id:" + id)));
