@@ -1,12 +1,12 @@
 package com.booking.services.impl;
 
 import com.booking.converter.UserConverter;
-import com.booking.entity.ERole;
+import com.booking.constant.ERole;
 import com.booking.entity.RoleEntity;
 import com.booking.entity.UserEntity;
+import com.booking.payload.request.SignupRequest;
 import com.booking.payload.request.UserRequest;
 import com.booking.payload.response.UserResponse;
-import com.booking.repository.AddressRepository;
 import com.booking.repository.RoleRepository;
 import com.booking.repository.UserRepository;
 import com.booking.security.services.UserDetailsImpl;
@@ -32,13 +32,6 @@ public class UserService implements IUserService {
     private RoleRepository roleRepository;
     @Autowired
     private PasswordEncoder encoder;
-    @Autowired
-    private AddressRepository addressRepository;
-
-    @Override
-    public Optional<UserEntity> findByUsername(String username) {
-        return userRepository.findByUsername(username);
-    }
 
     @Override
     public Boolean existsByUsername(String username) {
@@ -51,47 +44,45 @@ public class UserService implements IUserService {
     }
 
     @Override
-    public List<UserResponse> getAll() {
-        List<UserResponse> listUserResponse = new ArrayList<>();
-        List<UserEntity> listUser = userRepository.findAll();
-        for (UserEntity user : listUser) {
-            listUserResponse.add(UserConverter.toResponse(user));
-        }
-        return listUserResponse;
+    public List<UserEntity> getAll() {
+
+        return userRepository.findAll();
     }
 
     @Override
-    public Optional<UserResponse> findById(Long id) {
-//        UserEntity user = userRepository.findById(id);
-        return null;
-    }
-    public UserEntity getById(Long id){
+    public UserEntity findById(Long id) {
         return userRepository.findById(id)
-                .orElseThrow(()->new IllegalArgumentException("Not found by id:"+id));
+                .orElseThrow(()-> new IllegalArgumentException("Not found by id: "+id));
+    }
+
+
+    public UserEntity getById(Long id) {
+        return userRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Not found by id:" + id));
     }
 
     @Override
     public UserEntity save(UserRequest request) {
-        Optional<RoleEntity> optionalRole =roleRepository.findByName(ERole.valueOf(request.getRoleName()));
-        if(optionalRole.isPresent()) {
-            String hash_password = encoder.encode(request.getPassword());
-            request.setPassword(hash_password);
-            UserEntity entity = UserConverter.toEntity(request);
-            entity.setRoleEntity(optionalRole.get());
-            return userRepository.save(entity);
-        }else return null;
+        RoleEntity role = roleRepository.findByName("USER");
+        if(request.getRoleId()==null) request.setRoleId(role.getId());
+        String hash_password = encoder.encode(request.getPassword());
+        request.setPassword(hash_password);
+        UserEntity entity = UserConverter.toEntity(request);
+        return userRepository.save(entity);
+
     }
 
-    public UserEntity signUp(UserEntity entity) {
+    @Override
+    public UserEntity update(Long id,UserRequest request){
+        String hash_password = encoder.encode(request.getPassword());
+        request.setPassword(hash_password);
+        UserEntity entity = UserConverter.toEntity(request);
+        entity.setId(id);
         return userRepository.save(entity);
     }
-
-    @Transactional
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        UserEntity user = userRepository.findByUsername(username)
-                .orElseThrow(() -> new UsernameNotFoundException("User Not Found with username: " + username));
-        return UserDetailsImpl.build(user);
+    @Override
+    public void deleteById(Long id){
+        UserEntity entity = getById(id);
+        userRepository.delete(entity);
     }
-
-
 }

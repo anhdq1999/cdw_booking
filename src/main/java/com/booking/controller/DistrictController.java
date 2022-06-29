@@ -5,6 +5,7 @@ import com.booking.converter.DistrictConverter;
 import com.booking.converter.ProvinceConverter;
 import com.booking.entity.DistrictEntity;
 import com.booking.entity.ProvinceEntity;
+import com.booking.exception.ExceptionControllerHandle;
 import com.booking.payload.request.DistrictRequest;
 import com.booking.payload.response.DistrictResponse;
 import com.booking.payload.response.ProvinceResponse;
@@ -18,7 +19,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/districts")
-public class DistrictController {
+public class DistrictController extends ExceptionControllerHandle {
     @Autowired
     private DistrictService districtService;
 
@@ -47,13 +48,10 @@ public class DistrictController {
     }
     @GetMapping("/{id}")
     public ResponseEntity<?> getById(@PathVariable Long id){
-        try {
+
             DistrictEntity entity = districtService.getById(id);
             DistrictResponse response = DistrictConverter.toResponse(entity);
-            return ResponseEntity.ok(Response.success("Insert district by id successfully", response));
-        }catch (IllegalArgumentException e){
-            return ResponseEntity.ok(Response.fail(e.getMessage()));
-        }
+            return ResponseEntity.ok(Response.success("Get district by id successfully", response));
     }
 
 }

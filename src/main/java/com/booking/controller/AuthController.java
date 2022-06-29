@@ -4,6 +4,7 @@ import com.booking.common.Response;
 import com.booking.converter.UserConverter;
 import com.booking.entity.UserEntity;
 import com.booking.payload.request.LoginRequest;
+import com.booking.payload.request.SignupRequest;
 import com.booking.payload.request.UserRequest;
 import com.booking.payload.response.JwtResponse;
 import com.booking.payload.response.UserResponse;
@@ -62,18 +63,18 @@ public class AuthController {
     }
 
     @PostMapping("/signup")
-    public ResponseEntity<?> registerUser(@RequestBody UserRequest userRequest) {
-        if (userService.existsByUsername(userRequest.getUsername())) {
+    public ResponseEntity<?> registerUser(@RequestBody UserRequest request) {
+        if (userService.existsByUsername(request.getUsername())) {
             return ResponseEntity.badRequest().body(
                     Response.fail("Username is existed")
             );
         }
-        if (userService.existsByEmail(userRequest.getEmail())) {
+        if (userService.existsByEmail(request.getEmail())) {
             return ResponseEntity.badRequest().body(
                     Response.fail("Email is existed")
             );
         }
-        UserEntity entity = userService.save(userRequest);
+        UserEntity entity = userService.save(request);
         UserResponse response = UserConverter.toResponse(entity);
         return ResponseEntity.ok(Response.success("User registered successfully!", response));
 

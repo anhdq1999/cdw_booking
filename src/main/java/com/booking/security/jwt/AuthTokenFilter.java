@@ -1,5 +1,7 @@
 package com.booking.security.jwt;
 
+import com.booking.security.services.UserDetailsImpl;
+import com.booking.security.services.UserDetailsServiceImpl;
 import com.booking.services.impl.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +24,7 @@ public class AuthTokenFilter extends OncePerRequestFilter {
     private JwtUtils jwtUtils;
 
     @Autowired
-    private UserService userService;
+    private UserDetailsServiceImpl userDetailsService;
 
 
     @Override
@@ -32,7 +34,7 @@ public class AuthTokenFilter extends OncePerRequestFilter {
             String jwt = parseJwt(request);
             if (jwt != null && jwtUtils.validateJwtToken(jwt)) {
                 String username = jwtUtils.getUserNameFromJwtToken(jwt);
-                UserDetails userDetails = userService.loadUserByUsername(username);
+                UserDetails userDetails = userDetailsService.loadUserByUsername(username);
                 UsernamePasswordAuthenticationToken authentication =
                         new UsernamePasswordAuthenticationToken(
                                 userDetails,

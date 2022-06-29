@@ -20,5 +20,5 @@ public class UserRequest {
     private String fullName;
     private String phoneNumber;
     private String address;
-    private String roleName;
+    private Long roleId;
 }

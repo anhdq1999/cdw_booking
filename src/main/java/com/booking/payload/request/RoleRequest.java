@@ -1,13 +1,11 @@
 package com.booking.payload.request;
 
-import com.booking.entity.ERole;
+import com.booking.constant.ERole;
 import lombok.Builder;
 import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
 
 @Data
 @Builder
 public class RoleRequest {
-    ERole name;
+    String name;
 }

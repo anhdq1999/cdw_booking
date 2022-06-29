@@ -1,5 +1,6 @@
 package com.booking.entity;
 
+import com.booking.constant.ERole;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -17,11 +18,7 @@ public class RoleEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Enumerated(EnumType.STRING)
     @Column(length = 20,unique = true)
-    private ERole name;
-    public RoleEntity(ERole name) {
-        this.name = name;
-    }
+    private String name;
 
 }

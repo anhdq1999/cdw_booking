@@ -6,6 +6,7 @@ import com.booking.entity.RoomEntity;
 import com.booking.payload.request.ReviewRequest;
 import com.booking.payload.response.ReviewResponse;
 import com.booking.repository.ReviewRepository;
+import com.booking.services.IReviewService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,39 +15,41 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
-public class ReviewService {
+public class ReviewService implements IReviewService {
     @Autowired
     private ReviewRepository reviewRepository;
-
+@Override
     public List<ReviewEntity> getAll(){
         return reviewRepository.findAll();
     }
-    public ReviewEntity save(ReviewRequest reviewRequest,RoomEntity room){
+    @Override
+    public ReviewEntity save(ReviewRequest reviewRequest,Long roomId){
         ReviewEntity review = ReviewConverter.toEntity(reviewRequest);
-        review.setRoom(room);
+        review.setRoom(RoomEntity.builder().id(roomId).build());
         return reviewRepository.save(review);
     }
-
-    public void update(Long id,ReviewRequest reviewRequest){
+    @Override
+    public ReviewEntity update(Long id,ReviewRequest reviewRequest){
         ReviewEntity review =ReviewConverter.toEntity(reviewRequest);
-        Optional<ReviewEntity> optionalReview=reviewRepository.findById(id);
-        if(optionalReview.isPresent()){
-            review.setId(id);
-            reviewRepository.save(review);
-        }
+        review.setId(id);
+        return reviewRepository.save(review);
     }
-    public void delete(Long id){
-        reviewRepository.deleteById(id);
+    @Override
+    public void deleteById(Long id){
+        ReviewEntity entity = getById(id);
+        reviewRepository.delete(entity);
     }
+    @Override
     public ReviewEntity getById(Long id){
-        Optional<ReviewEntity> optionalReview=reviewRepository.findById(id);
-        if(optionalReview.isPresent()) return optionalReview.get();
-        return null;
+        return reviewRepository.findById(id)
+                .orElseThrow(()->new IllegalArgumentException("Review with id: "+id+"is not exist"));
+
     }
-    public List<ReviewEntity> saveAll(List<ReviewRequest> requests, RoomEntity room){
+    @Override
+    public List<ReviewEntity> saveAllByRoom(List<ReviewRequest> requests, Long roomId){
         List<ReviewEntity> reviews = requests.stream().map(review ->{
            ReviewEntity entity= ReviewConverter.toEntity(review);
-           entity.setRoom(room);
+           entity.setRoom(RoomEntity.builder().id(roomId).build());
            return entity;
         }).collect(Collectors.toList());
        return reviewRepository.saveAll(reviews);

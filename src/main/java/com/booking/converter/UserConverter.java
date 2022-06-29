@@ -1,5 +1,6 @@
 package com.booking.converter;
 
+import com.booking.entity.RoleEntity;
 import com.booking.entity.UserEntity;
 import com.booking.payload.request.SignupRequest;
 import com.booking.payload.request.UserRequest;
@@ -22,6 +23,9 @@ public class UserConverter {
     }
 
     public static UserEntity toEntity(UserRequest userRequest) {
+        RoleEntity role = RoleEntity.builder()
+                .id(userRequest.getRoleId())
+                .build();
         return UserEntity.builder()
                 .username(userRequest.getUsername())
                 .email(userRequest.getEmail())
@@ -29,6 +33,18 @@ public class UserConverter {
                 .fullName(userRequest.getFullName())
                 .phoneNumber(userRequest.getPhoneNumber())
                 .address(userRequest.getAddress())
+                .roleEntity(role)
+                .build();
+    }
+
+    public static UserEntity toEntity(SignupRequest request) {
+        return UserEntity.builder()
+                .username(request.getUsername())
+                .email(request.getEmail())
+                .password(request.getPassword())
+                .fullName(request.getFullName())
+                .phoneNumber(request.getPhoneNumber())
+                .address(request.getAddress())
                 .build();
     }
 

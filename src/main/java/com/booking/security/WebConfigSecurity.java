@@ -58,6 +58,11 @@ public class WebConfigSecurity extends WebSecurityConfigurerAdapter {
                 .antMatchers("/api/test/**").permitAll()
                 .antMatchers(HttpMethod.GET,"/api/v1/rooms").permitAll()
                 .antMatchers(HttpMethod.GET,"/api/v1/rooms/{id}").permitAll()
+                .antMatchers("/api/v1/wards**").permitAll()
+                .antMatchers("/api/v1/districts**").permitAll()
+                .antMatchers("/api/v1/provinces**").permitAll()
+                .antMatchers("/api/v1/roles**").permitAll()
+                .antMatchers("/api/v1/roles/**").permitAll()
                 .anyRequest().authenticated();
         http.addFilterBefore(authenticationJwtTokenFilter(), UsernamePasswordAuthenticationFilter.class);
     }

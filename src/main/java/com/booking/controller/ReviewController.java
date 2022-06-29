@@ -39,7 +39,7 @@ public class ReviewController {
     @DeleteMapping("/{id}")
     public ResponseEntity<?> delete(@PathVariable Long id){
         try{
-            reviewService.delete(id);
+            reviewService.deleteById(id);
             return ResponseEntity.ok(Response.success("Delete review with id:"+id+" successfully",null));
         }catch (IllegalArgumentException e){
             return ResponseEntity.internalServerError().body(Response.fail(e.getMessage()));

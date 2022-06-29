@@ -35,7 +35,7 @@ public class UserDetailsImpl implements UserDetails {
     }
 
     public static UserDetailsImpl build(UserEntity user) {
-        GrantedAuthority authority = new SimpleGrantedAuthority(user.getRoleEntity().getName().name());
+        GrantedAuthority authority = new SimpleGrantedAuthority(user.getRoleEntity().getName());
 
         return new UserDetailsImpl(
                 user.getId(),

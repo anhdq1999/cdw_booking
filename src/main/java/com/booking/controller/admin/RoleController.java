@@ -3,6 +3,7 @@ package com.booking.controller.admin;
 import com.booking.common.Response;
 import com.booking.converter.RoleConverter;
 import com.booking.entity.RoleEntity;
+import com.booking.exception.ExceptionControllerHandle;
 import com.booking.payload.request.RoleRequest;
 import com.booking.payload.response.RoleResponse;
 import com.booking.services.impl.RoleService;
@@ -15,7 +16,7 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/v1/roles")
-public class RoleController {
+public class RoleController extends ExceptionControllerHandle {
     @Autowired
     private RoleService roleService;
 
@@ -36,21 +37,16 @@ public class RoleController {
 
     @PutMapping("/{id}")
     public ResponseEntity<?> update(@PathVariable Long id, @RequestBody RoleRequest roleRequest) {
-        try {
-            RoleEntity roleEntity = roleService.update(id, roleRequest);
-            RoleResponse roleResponse = RoleConverter.toResponse(roleEntity);
-            return ResponseEntity.ok(Response.success("Update role successfully", roleResponse));
-        } catch (IllegalArgumentException e) {
-            return ResponseEntity.ok(Response.fail(e.getMessage()));
-        }
+        RoleEntity roleEntity = roleService.update(id, roleRequest);
+        RoleResponse roleResponse = RoleConverter.toResponse(roleEntity);
+        return ResponseEntity.ok(Response.success("Update role successfully", roleResponse));
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<?> delete(@PathVariable Long id) {
-        if (roleService.delete(id)) {
-            return ResponseEntity.ok(Response.success("Delete role with id " + id + " successfully", null));
-        } else {
-            return ResponseEntity.internalServerError().body("xảy ra lỗi");
-        }
+        roleService.deleteById(id);
+        return ResponseEntity.ok(Response.success("Delete role with id " + id + " successfully", null));
     }
+
+
 }

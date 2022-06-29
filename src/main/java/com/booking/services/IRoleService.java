@@ -1,9 +1,8 @@
 package com.booking.services;
 
-import com.booking.entity.ERole;
+import com.booking.constant.ERole;
 import com.booking.entity.RoleEntity;
 import com.booking.payload.request.RoleRequest;
-import com.booking.payload.response.RoleResponse;
 
 import java.util.List;
 import java.util.Optional;
@@ -17,7 +16,7 @@ public interface IRoleService {
 
     RoleEntity update(Long id, RoleRequest roleRequest);
 
-    boolean delete(Long id);
+    void deleteById(Long id);
 
-    Optional<RoleEntity> findByName(ERole name);
+    RoleEntity findByName(String name);
 }

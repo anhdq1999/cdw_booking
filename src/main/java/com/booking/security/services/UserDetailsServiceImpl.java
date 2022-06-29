@@ -1,3 +1,8 @@
+//
+// Source code recreated from a .class file by IntelliJ IDEA
+// (powered by FernFlower decompiler)
+//
+
 package com.booking.security.services;
 
 import com.booking.entity.UserEntity;
@@ -14,12 +19,14 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     @Autowired
     private UserRepository userRepository;
 
-    @Override
+    public UserDetailsServiceImpl() {
+    }
+
     @Transactional
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         UserEntity user = userRepository.findByUsername(username)
-                .orElseThrow(() -> new UsernameNotFoundException("User Not Found with username: " + username));
+                .orElseThrow(() ->
+                        new UsernameNotFoundException("User Not Found with username: " + username));
         return UserDetailsImpl.build(user);
     }
-
 }

@@ -8,16 +8,18 @@ import java.util.List;
 import java.util.Optional;
 
 public interface IUserService {
-    Optional<UserEntity> findByUsername(String username);
 
     Boolean existsByUsername(String username);
 
     Boolean existsByEmail(String email);
 
-    List<UserResponse> getAll();
+    List<UserEntity> getAll();
 
-    Optional<UserResponse> findById(Long id);
+    UserEntity findById(Long id);
 
     UserEntity save(UserRequest request);
 
+    UserEntity update(Long id,UserRequest request);
+
+    void deleteById(Long id);
 }

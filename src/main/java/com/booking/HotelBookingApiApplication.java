@@ -1,24 +1,8 @@
 package com.booking;
 
-import com.booking.converter.ProvinceConverter;
-import com.booking.entity.DistrictEntity;
-import com.booking.entity.ERole;
-import com.booking.entity.ProvinceEntity;
-import com.booking.payload.request.*;
-import com.booking.services.impl.*;
-
-import org.apache.tomcat.util.json.JSONParser;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.Bean;
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
-
-
-import java.io.FileReader;
-import java.util.LinkedHashMap;
-import java.util.List;
 
 @SpringBootApplication
 @EnableJpaAuditing

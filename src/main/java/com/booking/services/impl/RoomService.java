@@ -46,8 +46,8 @@ public class RoomService implements IRoomService {
 
         RoomEntity entity = roomRepository.save(rawEntity);
 
-        List<GalleryEntity> images = galleryService.saveAll(roomRequest.getImages(), entity);
-        List<ReviewEntity> reviews = reviewService.saveAll(roomRequest.getReviews(), entity);
+        List<GalleryEntity> images = galleryService.saveAllByRoom(roomRequest.getImages(), entity.getId());
+        List<ReviewEntity> reviews = reviewService.saveAllByRoom(roomRequest.getReviews(), entity.getId());
 
         entity.setImages(images);
         entity.setReviews(reviews);
