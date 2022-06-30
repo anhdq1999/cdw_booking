@@ -20,30 +20,44 @@ public class ReviewController {
     private ReviewService reviewService;
 
     @GetMapping
-    public ResponseEntity<?> getAll(){
+    public ResponseEntity<?> getAll() {
         List<ReviewResponse> reviews = reviewService.getAll().stream()
-                .map(review-> ReviewConverter.toResponse(review))
+                .map(review -> ReviewConverter.toResponse(review))
                 .collect(Collectors.toList());
-        return ResponseEntity.ok(Response.success("Get all reviews successfully",reviews));
+        return ResponseEntity.ok(Response.success("Get all reviews successfully", reviews));
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<?> update(@PathVariable Long id,@RequestBody ReviewRequest reviewRequest){
-        try {
-            reviewService.update(id, reviewRequest);
-            return ResponseEntity.ok(Response.success("Update review with id:"+id+" successfully",null));
-        }catch (IllegalArgumentException e){
-            return ResponseEntity.internalServerError().body(Response.fail(e.getMessage()));
-        }
+    public ResponseEntity<?> update(@PathVariable Long id, @RequestBody ReviewRequest reviewRequest) {
+        reviewService.update(id, reviewRequest);
+        return ResponseEntity.ok(Response.success("Update review with id:" + id + " successfully", null));
     }
+
     @DeleteMapping("/{id}")
-    public ResponseEntity<?> delete(@PathVariable Long id){
-        try{
-            reviewService.deleteById(id);
-            return ResponseEntity.ok(Response.success("Delete review with id:"+id+" successfully",null));
-        }catch (IllegalArgumentException e){
-            return ResponseEntity.internalServerError().body(Response.fail(e.getMessage()));
-        }
+    public ResponseEntity<?> delete(@PathVariable Long id) {
+        reviewService.deleteById(id);
+        return ResponseEntity.ok(Response.success("Delete review with id:" + id + " successfully", null));
+    }
+
+    @PostMapping
+    public ResponseEntity<?> save(@RequestBody ReviewRequest reviewRequest) {
+        ReviewEntity entity = reviewService.save(reviewRequest);
+        ReviewResponse response = ReviewConverter.toResponse(entity);
+        return ResponseEntity.ok(Response.success("Create a review sucessfully", response));
+    }
+
+    @GetMapping("/room/{id}")
+    public ResponseEntity<?> getAllByRoomId(@PathVariable Long id) {
+        List<ReviewResponse> responses = reviewService.getAllByRoomId(id)
+                .stream().map(review -> ReviewConverter.toResponse(review))
+                .collect(Collectors.toList());
+        return ResponseEntity.ok(Response.success("Get all review by room id successfully", responses));
+    }
+
+    @DeleteMapping("/room/{id}")
+    public ResponseEntity<?> deleteAllByRoomId(@PathVariable Long id) {
+        reviewService.deleteByRoomId(id);
+        return ResponseEntity.ok(Response.success("Delete all review by room id successfully", null));
     }
 
 

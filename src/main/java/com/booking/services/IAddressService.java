@@ -1,5 +1,6 @@
 package com.booking.services;
 
+import com.booking.entity.Address;
 import com.booking.payload.request.AddressRequest;
 import com.booking.payload.response.AddressResponse;
 
@@ -8,13 +9,13 @@ import java.util.List;
 public interface IAddressService {
 
 
-    List<AddressResponse> getAll();
+    List<Address> getAll();
 
-    AddressResponse getById(Long id);
+    Address getById(Long id);
 
-    AddressResponse save(AddressRequest addressRequest);
+    Address save(AddressRequest addressRequest);
 
-    AddressResponse update(Long id, AddressRequest addressRequest);
+    Address update(Long id, AddressRequest addressRequest);
 
-    void delete(Long id);
+    void deleteById(Long id);
 }

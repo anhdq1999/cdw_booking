@@ -4,10 +4,12 @@ import com.booking.converter.GalleryConverter;
 import com.booking.entity.GalleryEntity;
 import com.booking.entity.RoomEntity;
 import com.booking.payload.request.GalleryRequest;
+import com.booking.payload.request.roomResquest.RoomGalleryRequest;
 import com.booking.repository.GalleryRepository;
 import com.booking.services.IGalleryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -24,23 +26,30 @@ public class GalleryService implements IGalleryService {
     }
 
     @Override
-    public List<GalleryEntity> getAllByRoomId(Long id){
+    public List<GalleryEntity> getAllByRoomId(Long id) {
         return galleryRepository.findAllByRoomId(id);
     }
-@Override
-    public GalleryEntity save(GalleryRequest galleryRequest, Long roomId) {
+
+    @Override
+    public GalleryEntity save(GalleryRequest galleryRequest) {
         GalleryEntity entity = GalleryConverter.toEntity(galleryRequest);
-        entity.setRoom(RoomEntity.builder().id(roomId).build());
         return galleryRepository.save(entity);
     }
+
     @Override
-    public List<GalleryEntity> saveAllByRoom(List<GalleryRequest> requests,Long roomId) {
+    public List<GalleryEntity> saveAllByRoom(List<RoomGalleryRequest> requests, Long roomId) {
         List<GalleryEntity> entities = requests.stream().map(request -> {
-           GalleryEntity entity= GalleryConverter.toEntity(request);
+            GalleryEntity entity = GalleryConverter.toEntity(request);
             entity.setRoom(RoomEntity.builder().id(roomId).build());
-           return entity;
+            return entity;
         }).collect(Collectors.toList());
         return galleryRepository.saveAll(entities);
+    }
+
+    @Override
+    @Transactional
+    public void deleteByRoomId(Long roomId) {
+        galleryRepository.deleteByRoomId(roomId);
     }
 
     public void update(Long id, GalleryRequest galleryRequest) {

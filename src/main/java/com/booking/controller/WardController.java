@@ -3,6 +3,7 @@ package com.booking.controller;
 import com.booking.common.Response;
 import com.booking.converter.WardConverter;
 import com.booking.entity.WardEntity;
+import com.booking.exception.ExceptionControllerHandle;
 import com.booking.payload.request.WardRequest;
 import com.booking.payload.response.WardResponse;
 import com.booking.services.impl.WardService;
@@ -15,7 +16,7 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/v1/wards")
-public class WardController {
+public class WardController extends ExceptionControllerHandle {
     @Autowired
     private WardService wardService;
 
@@ -35,7 +36,7 @@ public class WardController {
         return ResponseEntity.ok(Response.success("Get all ward successfully",responses));
 
     }
-    @GetMapping("/getByProvinceId/{id}")
+    @GetMapping("/province/{id}")
     public ResponseEntity<?> getByDistrictId(@PathVariable Long id){
         List<WardResponse> responses = wardService.getByDistrictId(id)
                 .stream().map(ward->WardConverter.toResponse(ward))
@@ -44,13 +45,9 @@ public class WardController {
     }
     @GetMapping("/{id}")
     public ResponseEntity<?> getById(@PathVariable Long id){
-        try {
             WardEntity entity = wardService.getById(id);
             WardResponse response = WardConverter.toResponse(entity);
             return ResponseEntity.ok(Response.success("Insert ward by id successfully", response));
-        }catch (IllegalArgumentException e){
-            return ResponseEntity.ok(Response.fail(e.getMessage()));
-        }
     }
 
 }

@@ -18,9 +18,15 @@ public class Address {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String country;
-    private String province;
-    private String district;
-    private String ward;
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "provinceId",nullable = false)
+    private ProvinceEntity province;
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "districtId",nullable = false)
+    private DistrictEntity district;
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "wardId",nullable = false)
+    private WardEntity ward;
     private String street;
     private String googleAddress;
 

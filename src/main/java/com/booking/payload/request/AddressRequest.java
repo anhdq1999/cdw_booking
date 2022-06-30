@@ -10,9 +10,9 @@ import lombok.NoArgsConstructor;
 //@NoArgsConstructor
 public class AddressRequest {
     private String country;
-    private String province;
-    private String district;
-    private String ward;
+    private Long province;
+    private Long district;
+    private Long ward;
     private String street;
     private String googleAddress;
 

@@ -1,8 +1,18 @@
 package com.booking;
 
+import com.booking.payload.request.CategoryRequest;
+import com.booking.payload.request.ProvinceRequest;
+import com.booking.payload.request.RoleRequest;
+import com.booking.services.impl.*;
+import org.apache.tomcat.util.json.JSONParser;
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
+
+import java.io.FileReader;
+import java.util.LinkedHashMap;
 
 @SpringBootApplication
 @EnableJpaAuditing
@@ -24,12 +34,7 @@ public class HotelBookingApiApplication {
 //            saveDistrict(provinceService,districtService);
 //            saveWard(districtService,wardService);
 //            RoleRequest roleRequest;
-//            for(ERole s:ERole.values()){
-//                roleRequest=RoleRequest.builder()
-//                        .name(ERole.valueOf(s.name()))
-//                        .build();
-//                roleService.save(roleRequest);
-//            }
+//
 //
 //            CategoryRequest categoryRequest = CategoryRequest.builder()
 //                    .name("Home Stay")
@@ -54,7 +59,7 @@ public class HotelBookingApiApplication {
 //
 //        };
 //    }
-
+//
 //    public static void saveProvince(ProvinceService provinceService){
 //        try {
 //            FileReader file = new FileReader("C:\\Users\\Admin\\Desktop\\CDWEB_\\cdw_booking\\src\\main\\java\\com\\booking\\data\\province.json");

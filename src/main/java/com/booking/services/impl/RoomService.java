@@ -19,7 +19,7 @@ public class RoomService implements IRoomService {
     @Autowired
     private RoomRepository roomRepository;
     @Autowired
-    private AddressRepository addressRepository;
+    private AddressService addressService;
     @Autowired
     private GalleryService galleryService;
     @Autowired
@@ -30,52 +30,62 @@ public class RoomService implements IRoomService {
     private ReviewService reviewService;
 
     @Override
-    public List<RoomResponse> getAll() {
-        return roomRepository.findAll()
-                .stream().map(room -> RoomConverter.toResponse(room))
-                .collect(Collectors.toList());
+    public List<RoomEntity> getAll() {
+        return roomRepository.findAll();
     }
     @Override
-    public RoomResponse save(RoomRequest roomRequest) {
+    public RoomEntity save(RoomRequest roomRequest) {
         RoomEntity rawEntity = RoomConverter.toEntity(roomRequest);
 
-        Address addressRawEntity = AddressConverter.toEntity(roomRequest.getAddress());
-        Address addressEntity = addressRepository.save(addressRawEntity);
+        Address addressEntity = addressService.save(roomRequest.getAddress());
 
         rawEntity.setAddress(addressEntity);
 
         RoomEntity entity = roomRepository.save(rawEntity);
 
-        List<GalleryEntity> images = galleryService.saveAllByRoom(roomRequest.getImages(), entity.getId());
-        List<ReviewEntity> reviews = reviewService.saveAllByRoom(roomRequest.getReviews(), entity.getId());
+        galleryService.saveAllByRoom(roomRequest.getImages(), entity.getId());
+        reviewService.saveAllByRoom(roomRequest.getReviews(), entity.getId());
 
-        entity.setImages(images);
-        entity.setReviews(reviews);
-
-        return RoomConverter.toResponse(entity);
+        return entity;
     }
     @Override
-    public RoomResponse update(Long id, RoomRequest roomRequest) {
+    public RoomEntity update(Long id, RoomRequest roomRequest) {
         RoomEntity rawEntity = RoomConverter.toEntity(roomRequest);
         RoomEntity entity = roomRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Not found room with id:" + id));
-        if (entity != null) {
-            rawEntity.setId(id);
-            roomRepository.save(rawEntity);
-            return RoomConverter.toResponse(rawEntity);
-        } else
-            return null;
+
+        //Delete all old galleries reviews
+        galleryService.deleteByRoomId(id);
+        reviewService.deleteByRoomId(id);
+
+        //Update address
+        Address newAddress= addressService.update(entity.getAddress().getId(),roomRequest.getAddress());
+        rawEntity.setAddress(newAddress);
+
+        //Save new galleries and reviews
+        List<GalleryEntity> images = galleryService.saveAllByRoom(roomRequest.getImages(), entity.getId());
+        List<ReviewEntity> reviews = reviewService.saveAllByRoom(roomRequest.getReviews(), entity.getId());
+
+        rawEntity.setImages(images);
+        rawEntity.setReviews(reviews);
+        rawEntity.setId(id);
+
+        return roomRepository.save(rawEntity);
     }
     @Override
     public void delete(Long id) {
         RoomEntity entity = roomRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Not found room with id:" + id));
-        if (entity != null) roomRepository.deleteById(id);
+        galleryService.deleteByRoomId(id);
+        reviewService.deleteByRoomId(id);
+        Long addressId = entity.getAddress().getId();
+        roomRepository.delete(entity);
+        addressService.deleteById(addressId);
     }
     @Override
-    public RoomResponse getById(Long id) {
+    public RoomEntity getById(Long id) {
         RoomEntity entity = roomRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException(("Not found room with id:" + id)));
-        return RoomConverter.toResponse(entity);
+        return entity;
     }
 }

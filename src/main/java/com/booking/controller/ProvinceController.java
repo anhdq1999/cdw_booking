@@ -5,6 +5,7 @@ import com.booking.converter.DistrictConverter;
 import com.booking.converter.ProvinceConverter;
 import com.booking.entity.DistrictEntity;
 import com.booking.entity.ProvinceEntity;
+import com.booking.exception.ExceptionControllerHandle;
 import com.booking.payload.request.DistrictRequest;
 import com.booking.payload.request.ProvinceRequest;
 import com.booking.payload.response.DistrictResponse;
@@ -19,7 +20,7 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/v1/provinces")
-public class ProvinceController {
+public class ProvinceController extends ExceptionControllerHandle {
     @Autowired
     private ProvinceService provinceService;
 
@@ -40,13 +41,10 @@ public class ProvinceController {
 
     @GetMapping("/{id}")
     public ResponseEntity<?> getById(@PathVariable Long id){
-        try {
             ProvinceEntity entity = provinceService.getById(id);
             ProvinceResponse response = ProvinceConverter.toResponse(entity);
             return ResponseEntity.ok(Response.success("Get province by id successfully", response));
-        }catch (IllegalArgumentException e){
-            return ResponseEntity.ok(Response.fail(e.getMessage()));
-        }
+
     }
 
 }

@@ -6,6 +6,8 @@ import com.booking.payload.request.DistrictRequest;
 import com.booking.payload.request.ProvinceRequest;
 import com.booking.payload.response.DistrictResponse;
 import com.booking.payload.response.ProvinceResponse;
+import com.booking.payload.response.addressResponse.AddressDistrictResponse;
+import com.booking.payload.response.addressResponse.AddressProvinceResponse;
 
 public class DistrictConverter {
     public static DistrictEntity toEntity(DistrictRequest request){
@@ -28,6 +30,14 @@ public class DistrictConverter {
                 .slug(entity.getSlug())
                 .type(entity.getType())
                 .path(entity.getPath())
+                .pathWithType(entity.getPathWithType())
+                .build();
+    }
+    public static AddressDistrictResponse toAddressResponse(DistrictEntity entity) {
+        return AddressDistrictResponse.builder()
+                .id(entity.getId())
+                .name(entity.getName())
+                .nameWithType(entity.getNameWithType())
                 .pathWithType(entity.getPathWithType())
                 .build();
     }

@@ -36,7 +36,7 @@ public class RoomEntity extends AbstractEntity {
     CategoryEntity category;
     @OneToMany(fetch = FetchType.LAZY,mappedBy = "room")
     List<ReviewEntity> reviews;
-    @OneToMany(fetch = FetchType.LAZY,mappedBy = "room")
+    @OneToMany(fetch = FetchType.EAGER,mappedBy = "room")
     List<GalleryEntity> images;
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "userId",nullable = false)

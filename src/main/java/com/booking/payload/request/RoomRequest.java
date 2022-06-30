@@ -1,5 +1,7 @@
 package com.booking.payload.request;
 
+import com.booking.payload.request.roomResquest.RoomGalleryRequest;
+import com.booking.payload.request.roomResquest.RoomReviewRequest;
 import lombok.Builder;
 import lombok.Data;
 import java.util.List;
@@ -15,8 +17,8 @@ public class RoomRequest {
     int numRating;
     boolean status;
     AddressRequest address;
-    List<GalleryRequest> images;
-    List<ReviewRequest> reviews;
+    List<RoomGalleryRequest> images;
+    List<RoomReviewRequest> reviews;
     Long categoryId;
     Long userId;
 }

@@ -18,41 +18,38 @@ public class AddressService implements IAddressService {
     private AddressRepository addressRepository;
 
     @Override
-    public List<AddressResponse> getAll() {
-        return addressRepository.findAll()
-                .stream().map(address->AddressConverter.toResponse(address))
-                .collect(Collectors.toList());
+    public List<Address> getAll() {
+        return addressRepository.findAll();
     }
 
     @Override
-    public AddressResponse getById(Long id) {
+    public Address getById(Long id) {
         Address entity = addressRepository.findById(id)
                 .orElseThrow(()-> new IllegalArgumentException("Not found address with id:"+id));
-        AddressResponse response =AddressConverter.toResponse(entity);
-        return response;
+
+        return entity;
     }
 
     @Override
-    public AddressResponse save(AddressRequest addressRequest) {
-        Address rawEntity = AddressConverter.toEntity(addressRequest);
-        Address entity =addressRepository.save(rawEntity);
-        if(entity!=null) return AddressConverter.toResponse(entity);
-        return null;
+    public Address save(AddressRequest addressRequest) {
+        Address entity = AddressConverter.toEntity(addressRequest);
+        return addressRepository.save(entity);
+
     }
 
     @Override
-    public AddressResponse update(Long id, AddressRequest addressRequest) {
+    public Address update(Long id, AddressRequest addressRequest) {
         Address entity = addressRepository.findById(id)
                 .orElseThrow(()-> new IllegalArgumentException("Not found Address by id:"+id));
-        Address rawNewEntity=AddressConverter.toEntity(addressRequest);
-        rawNewEntity.setId(entity.getId());
-        Address newEntity = addressRepository.save(rawNewEntity);
-        if(newEntity!=null) return AddressConverter.toResponse(newEntity);
-        return null;
+        Address newAddress=AddressConverter.toEntity(addressRequest);
+        newAddress.setId(id);
+        return addressRepository.save(newAddress);
     }
 
     @Override
-    public void delete(Long id) {
-        addressRepository.deleteById(id);
+    public void deleteById(Long id) {
+        Address entity = addressRepository.findById(id)
+                        .orElseThrow(()->new IllegalArgumentException("Address with id:"+id+" is not exist"));
+        addressRepository.delete(entity);
     }
 }

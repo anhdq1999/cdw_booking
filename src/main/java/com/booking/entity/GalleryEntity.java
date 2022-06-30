@@ -11,9 +11,9 @@ import javax.persistence.*;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "gallery")
+@Table(name = "galleries")
 @Builder
-public class GalleryEntity {
+public class GalleryEntity  {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;

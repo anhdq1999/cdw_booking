@@ -4,6 +4,7 @@ import com.booking.entity.ProvinceEntity;
 import com.booking.payload.request.ProvinceRequest;
 import com.booking.payload.response.DistrictResponse;
 import com.booking.payload.response.ProvinceResponse;
+import com.booking.payload.response.addressResponse.AddressProvinceResponse;
 
 import java.util.stream.Collectors;
 import java.util.List;
@@ -31,6 +32,13 @@ public class ProvinceConverter {
                 .slug(entity.getSlug())
                 .type(entity.getType())
                 .districts(districtResponses)
+                .build();
+    }
+    public static AddressProvinceResponse toAddressResponse(ProvinceEntity entity) {
+        return AddressProvinceResponse.builder()
+                .id(entity.getId())
+                .name(entity.getName())
+                .nameWithType(entity.getNameWithType())
                 .build();
     }
 }
