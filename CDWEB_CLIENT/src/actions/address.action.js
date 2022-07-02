@@ -18,38 +18,38 @@ function getAllProvince() {
     function success(provinces) { return { type: addressConstants.GET_ALL_PROVINCE, payload: provinces } }
 }
 
-function getAllDistrict(code) {
+function getAllDistrict(id) {
     return dispatch => {
-        addressService.getDistrictByProvinceCode(code)
+        addressService.getDistrictByProvinceId(id)
             .then(res => dispatch(success(res.data)))
     }
     function success(districts) { return { type: addressConstants.GET_ALL_DISTRICT, payload: districts } }
 }
 
-function getAllWard(code) {
+function getAllWard(id) {
     return dispatch => {
-        addressService.getWardByDistrictCode(code)
+        addressService.getWardByDistrictId(id)
             .then(res => dispatch(success(res.data)))
     }
     function success(wards) { return { type: addressConstants.GET_ALL_WARD, payload: wards } }
 }
-function getProvince(code) {
+function getProvince(id) {
     return dispatch => {
-        addressService.getProvinceByCode(code)
+        addressService.getProvinceById(id)
             .then(res => dispatch(success(res.data)))
     }
     function success(province) { return { type: addressConstants.GET_PROVINCE, payload: province } }
 }
-function getDistrict(code) {
+function getDistrict(id) {
     return dispatch => {
-        addressService.getDistrictByCode(code)
+        addressService.getDistrictById(id)
             .then(res => dispatch(success(res.data)))
     }
     function success(district) { return { type: addressConstants.GET_DISTRICT, payload: district } }
 }
-function getWard(code) {
+function getWard(id) {
     return dispatch => {
-        addressService.getWardByCode(code)
+        addressService.getWardById(id)
             .then(res => dispatch(success(res.data)))
     }
     function success(ward) { return { type: addressConstants.GET_WARD, payload: ward } }

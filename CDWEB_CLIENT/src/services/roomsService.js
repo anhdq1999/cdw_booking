@@ -62,8 +62,8 @@ function groupByProvince() {
     const url = `/api/v1/rooms/groupByProvince/`;
     return axiosClient.get(url);
 }
-function getByProvince(province) {
-    const url = `/api/v1/rooms/getByProvince/${province}`;
+function getByProvince(id) {
+    const url = `/api/v1/rooms/province/${id}`;
     return axiosClient.get(url);
 }
 function formatPrice(price) {

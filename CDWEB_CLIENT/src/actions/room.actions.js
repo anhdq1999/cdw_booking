@@ -258,9 +258,9 @@ function restore(id) {
 function groupByProvince() {
   return dispatch => {
     roomsService.groupByProvince()
-      .then(rooms => {
-        dispatch(success(rooms));
-      });
+        .then(res => {
+          dispatch(success(res.data));
+        });
   };
 
   function success(rooms) {
@@ -268,12 +268,11 @@ function groupByProvince() {
   }
 }
 
-function getByProvince(province) {
+function getByProvince(id) {
   return dispatch => {
-    roomsService.getByProvince(province)
-      .then(rooms => {
-        console.log(rooms);
-        dispatch(success(rooms));
+    roomsService.getByProvince(id)
+      .then(res => {
+        dispatch(success(res.data));
       });
   };
 

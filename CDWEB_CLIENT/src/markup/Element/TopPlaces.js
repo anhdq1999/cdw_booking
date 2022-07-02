@@ -47,7 +47,7 @@ function TopPlaces(props) {
               <div className="dlab-box">
                 <div className="dlab-media">
                   <Link to={"./booking"}>
-                    <Image cloudName="dmtwoqysj" publicId={item.image}>
+                    <Image cloudName="dmtwoqysj" publicId={item.images[0].url}>
                       <Transformation width="400" height="250" gravity="south" crop="fill" />
                     </Image>
                     {/*<img src={item.image} alt="" />*/}
@@ -60,7 +60,7 @@ function TopPlaces(props) {
                 </div>
                 <div className="dlab-info p-a20 border-1 text-center">
                   <h4 className="dlab-title m-t0"><Link to={"./booking"}>{item.name}</Link></h4>
-                  <p>{item.description}</p>
+                  <p>{item.shortDescription}</p>
 
                   <div className="tr-btn-info">
                     <Link to={"./booking"} className="site-button radius-no"><i className="fa fa-location-arrow"
