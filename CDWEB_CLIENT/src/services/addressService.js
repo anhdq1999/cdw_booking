@@ -2,26 +2,26 @@ import axiosClient from "../api/axiosClient";
 
 export const addressService = {
     getAllProvince,
-    getDistrictByProvinceCode,
-    getWardByDistrictCode,
-    getProvinceByCode,
-    getDistrictByCode,
-    getWardByCode,
+    getDistrictByProvinceId,
+    getWardByDistrictId,
+    getProvinceById,
+    getDistrictById,
+    getWardById,
 }
 function getAllProvince() {
     return axiosClient.get('/api/v1/provinces');
 }
-function getDistrictByProvinceCode(code) {
-    return axiosClient.get(`/api/v1/districts/getByProvinceCode/${code}`)
+function getDistrictByProvinceId(id) {
+    return axiosClient.get(`/api/v1/districts/province/${id}`)
 }
-function getWardByDistrictCode(code) {
-    return axiosClient.get(`/api/v1/wards/getByDistrictCode/${code}`)
+function getWardByDistrictId(id) {
+    return axiosClient.get(`/api/v1/wards/district/${id}`)
 }
-function getProvinceByCode(code){
-    return axiosClient.get(`/api/v1/provinces/${code}`)
+function getProvinceById(id){
+    return axiosClient.get(`/api/v1/provinces/${id}`)
 }
-function getDistrictByCode(code){
-    return axiosClient.get(`/api/v1/districts/${code}`)
-}function getWardByCode(code){
-    return axiosClient.get(`/api/v1/wards/${code}`)
+function getDistrictById(id){
+    return axiosClient.get(`/api/v1/districts/${id}`)
+}function getWardById(id){
+    return axiosClient.get(`/api/v1/wards/${id}`)
 }

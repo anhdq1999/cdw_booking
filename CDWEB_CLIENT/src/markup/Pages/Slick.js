@@ -64,8 +64,8 @@ function Slick(props) {
                                             </Image>
                                             <div className="dlab-info-has p-a20 no-hover ">
                                                 <div className="dlab-info-has-text">
-                                                    <h3 className="text-white">{item._id} <span className="text-primary pull-right">{item.total} places</span></h3>
-                                                    <Link to={`/packages/${item._id}`} className="site-button-link">View All Tours</Link>
+                                                    <h3 className="text-white">{item.id} <span className="text-primary pull-right">{item.total} places</span></h3>
+                                                    <Link to={`/packages/${item.id}`} className="site-button-link">View All Tours</Link>
                                                 </div>
                                             </div>
                                         </div>

@@ -1,20 +1,17 @@
-
-import { yupResolver } from "@hookform/resolvers/yup";
-import { addressActions, alertActions, roomActions } from 'actions';
-import { Image } from "cloudinary-react";
-import React, { useEffect, useState } from 'react';
-import { useForm } from "react-hook-form";
-import { useDispatch, useSelector } from 'react-redux';
-import { Button, Col, Label, Modal, ModalBody, ModalFooter, ModalHeader, Row } from 'reactstrap';
-import { uploadService } from "services/uploadService";
+import {yupResolver} from "@hookform/resolvers/yup";
+import {addressActions, alertActions, roomActions} from 'actions';
+import {Image} from "cloudinary-react";
+import React, {useEffect, useState} from 'react';
+import {useForm} from "react-hook-form";
+import {useDispatch, useSelector} from 'react-redux';
+import {Button, Col, Label, Modal, ModalBody, ModalFooter, ModalHeader, Row} from 'reactstrap';
+import {uploadService} from "services/uploadService";
 import * as yup from 'yup';
 
 
 const schema = yup.object().shape({
     name: yup
         .string().required("Name room is required"),
-    user: yup
-        .string().required("Host room is required"),
     categoryId: yup
         .string().required("Type room is required"),
     description: yup
@@ -46,7 +43,6 @@ export default function RoomModal(props) {
     const room = props.room
     const alert = useSelector(state => state.alert)
 
-    const users = useSelector(state => state.userReducer.items)
 
     const newRoom = useSelector(state => state.roomReducer.editRoom)
 
@@ -72,7 +68,7 @@ export default function RoomModal(props) {
         setValue,
         handleSubmit,
         reset,
-        formState: { errors }
+        formState: {errors}
     } = useForm({
         mode: 'onBlur',
         resolver: yupResolver(schema),
@@ -87,13 +83,15 @@ export default function RoomModal(props) {
             setRoom(room)
         }
     }
+
     function toggle() {
         setSeletedImages([])
         return props.toggle()
     }
+
     function setRoom(data) {
         setValue("name", data.name)
-        setValue("user", data.user.name)
+        setValue("user", data.user.fullName)
         setValue("categoryId", data.category.id)
         setValue("description", data.description)
         setValue("shortDescription", data.shortDescription)
@@ -105,6 +103,7 @@ export default function RoomModal(props) {
         setValue("address.street", data.address.street)
 
     }
+
     function handleAdd(data) {
         const uploadData = new FormData();
         data.images.forEach(item => {
@@ -118,11 +117,12 @@ export default function RoomModal(props) {
                     dispatch(roomActions.create(data))
                 }
             ).catch(
-                err => {
-                    dispatch(alertActions.error(err.message))
-                }
-            )
+            err => {
+                dispatch(alertActions.error(err.message))
+            }
+        )
     }
+
     function handleEdit(data) {
         // data.images = selectedImages
         const uploadData = new FormData();
@@ -137,14 +137,15 @@ export default function RoomModal(props) {
                         dispatch(roomActions.update(room, data))
                     }
                 ).catch(
-                    err => {
-                        dispatch(alertActions.error(err.message))
-                    }
-                )
-        }else{
+                err => {
+                    dispatch(alertActions.error(err.message))
+                }
+            )
+        } else {
             dispatch(roomActions.update(room, data))
         }
     }
+
     const onSubmit = data => {
         if (!props.isAdd)
             handleEdit(data)
@@ -171,11 +172,11 @@ export default function RoomModal(props) {
 
 
     const handleProvinceChange = (e) => {
-        const { value } = e.target;
+        const {value} = e.target;
         dispatch(addressActions.getAllDistrict(value))
     }
     const handleDistrictChange = (e) => {
-        const { value } = e.target;
+        const {value} = e.target;
         dispatch(addressActions.getAllWard(value))
     }
 
@@ -201,54 +202,41 @@ export default function RoomModal(props) {
                                 {errors?.name &&
                                     <div className="alert-warning text-center">{errors.name?.message}</div>
                                 }
-                                <Label > Category: </Label>
+                                <Label> Category: </Label>
                                 <select className="form-control"  {...register("categoryId")}>
-                                    <option  value=''>...Chọn</option>
-                                    <option  value='4'>Homestay</option>
-                                    <option  value='2'>Resort</option>
-                                    <option  value='1'>Villa</option>
-                                    <option  value='3'>Hotel</option>
+                                    <option value=''>...Chọn</option>
+                                    <option value='4'>Homestay</option>
+                                    <option value='2'>Resort</option>
+                                    <option value='1'>Villa</option>
+                                    <option value='3'>Hotel</option>
                                 </select>
                                 {errors?.category &&
                                     <div className="alert-warning text-center">{errors.category?.message}</div>
                                 }
-                                <Label > Short Description:</Label>
-                                <textarea className="form-control" rows="7" name="shortDescription" id='shortDescription' {...register("shortDescription")}></textarea>
+                                <Label> Short Description:</Label>
+                                <textarea className="form-control" rows="7" name="shortDescription"
+                                          id='shortDescription' {...register("shortDescription")}></textarea>
                                 {errors?.shortDescription &&
                                     <div className="alert-warning text-center">{errors.shortDescription?.message}</div>
                                 }
                             </Col>
                             <Col md={6}>
-                                <Label > Host Room: </Label>
-                                <select className="form-control" id='host' {...register("host")}>
-                                    {users && users.map((item, index) => (
-                                        <option key={item.id} value={item.id}>{item.fullName}</option>
-                                    ))
-                                    }
-                                </select>
-                                {errors?.user &&
-                                    <div className="alert-warning text-center">{errors.user?.message}</div>
-                                }
                                 <Label for='price'> Price: </Label>
                                 <input className="form-control" type="text" id='price' {...register("price")}></input>
                                 {errors?.price &&
                                     <div className="alert-warning text-center">{errors.price?.message}</div>
                                 }
-                                <Label > Description:</Label>
-                                <textarea className="form-control" id='description' {...register("description")}></textarea>
+                                <Label> Description:</Label>
+                                <textarea className="form-control"
+                                          id='description' {...register("description")}></textarea>
                                 {errors?.description &&
                                     <div className="alert-warning text-center">{errors.description?.message}</div>
                                 }
                             </Col>
                         </Row>
-                        <Row  >
+                        <Row>
                             <Col>
                                 <Label name="country"> Country:
-                                    {/* <select className="form-control mb-3"    {...register("country")}>
-                                        <option name="country" value=''>...Chọn</option>
-                                        <option name="country" value='Việt Nam'>Viet Nam</option>
-                                        <option name="country" value='America'>America</option>
-                                        </select> */}
                                     <input
                                         value="Việt Nam"
                                         className="form-control"
@@ -257,7 +245,8 @@ export default function RoomModal(props) {
                                         {...register("address.country")}
                                     ></input>
                                     {errors?.address?.country &&
-                                        <div className="alert-warning text-center">{errors.address?.country?.message}</div>
+                                        <div
+                                            className="alert-warning text-center">{errors.address?.country?.message}</div>
                                     }
                                 </Label>
 
@@ -265,60 +254,62 @@ export default function RoomModal(props) {
                             <Col>
                                 <Label for='province' name="province"> Province:
                                     <select className="form-control mb-3"
-                                        {...register("address.province")}
-                                        onChange={handleProvinceChange}
-                                        disabled={districts.length===1?true:false}
+                                            {...register("address.province")}
+                                            onChange={handleProvinceChange}
+                                            disabled={districts.length === 1 ? true : false}
                                     >
                                         {provinces.length > 0 &&
                                             <option checked>Chọn tỉnh</option>
                                         }
                                         {(provinces.length > 0 &&
-                                            provinces.map((item, index) => (
-                                                <option key={item.id} value={item.id}>{item.name_with_type}</option>
-                                            ))) ||
-                                            <option >Đang load dữ liệu</option>
+                                                provinces.map((item, index) => (
+                                                    <option key={item.id} value={item.id}>{item.name_with_type}</option>
+                                                ))) ||
+                                            <option>Đang load dữ liệu</option>
                                         }
                                     </select>
 
                                     {errors?.address?.province &&
-                                        <div className="alert-warning text-center">{errors.address?.province?.message}</div>
+                                        <div
+                                            className="alert-warning text-center">{errors.address?.province?.message}</div>
                                     }
                                 </Label>
                             </Col>
                             <Col>
                                 <Label for='district' name="district"> District:
                                     <select className="form-control mb-3"
-                                        {...register("address.district")}
-                                        onChange={handleDistrictChange}
-                                        disabled={districts.length===1?true:false}
+                                            {...register("address.district")}
+                                            onChange={handleDistrictChange}
+                                            disabled={districts.length === 1 ? true : false}
                                     >
                                         {districts.length > 0 &&
                                             <option checked> Chọn Quận/huyện</option>
                                         }
                                         {(districts.length > 0 &&
-                                            districts.map((item, index) => (
-                                                <option key={item.id} value={item.id}>{item.name_with_type}</option>
-                                            ))) ||
+                                                districts.map((item, index) => (
+                                                    <option key={item.id} value={item.id}>{item.name_with_type}</option>
+                                                ))) ||
                                             <option>Vui lòng chọn tỉnh</option>}
                                     </select>
                                     {errors?.address?.district &&
-                                        <div className="alert-warning text-center">{errors.address?.district?.message}</div>
+                                        <div
+                                            className="alert-warning text-center">{errors.address?.district?.message}</div>
                                     }
                                 </Label>
                             </Col>
                             <Col>
                                 <Label for='ward' name="ward">Ward:
-                                    <select className="form-control mb-3"  
-                                    {...register("address.ward")}
-                                      disabled={districts.length===1?true:false}
-                                      >
+                                    <select className="form-control mb-3"
+                                            {...register("address.ward")}
+                                            disabled={districts.length === 1 ? true : false}
+                                    >
                                         {wards.length > 0 &&
                                             <option checked> Chọn phường/xã</option>
                                         }
                                         {(wards.length > 0 &&
-                                            wards.map((item, index) => (
-                                                <option key={item.id} value={item.id}>{item.name_with_type}</option>
-                                            ))) ||
+                                                wards.map((item, index) => (
+                                                    <option key={item.id} value={item.id}>{item.name_with_type}</option>
+                                                ))) ||
                                             <option>Vui lòng chọn huyện</option>}
                                     </select>
                                     {errors?.address?.ward &&
@@ -344,18 +335,19 @@ export default function RoomModal(props) {
                                 <Label htmlFor="file" className="label">
                                     Images
                                 </Label>
-                                <input className="form-control" type="file" id="file" multiple {...register("file")} onChange={(e) => handleImageChange(e)} />
+                                <input className="form-control" type="file" id="file" multiple {...register("file")}
+                                       onChange={(e) => handleImageChange(e)}/>
                             </Col>
                         </Row>
                         <Row>
                             {room && room.images.map((item, index) => (
                                 <Col className="mb-3" key={index} md={2}>
-                                    <Image cloudName="dmtwoqysj" publicId={item.url} />
+                                    <Image cloudName="dmtwoqysj" publicId={item.url}/>
                                 </Col>
                             ))}
                             {selectedImages.map((item, index) => (
                                 <Col className="mb-3" key={index} md={2}>
-                                    <img src={item} alt={item.filename} />
+                                    <img src={item} alt={item.filename}/>
                                 </Col>
                             ))}
                         </Row>

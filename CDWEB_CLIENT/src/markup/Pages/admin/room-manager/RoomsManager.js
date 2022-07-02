@@ -25,10 +25,6 @@ function RoomsManager(props) {
       selector: row => row.name
     },
     {
-      name: 'Host',
-      selector: row => row.user.fullName
-    },
-    {
       name: 'Type',
       selector: row => row.category.name
     },
@@ -51,7 +47,6 @@ function RoomsManager(props) {
   ]
   useEffect(() => {
     dispatch(roomActions.getAll())
-    dispatch(userActions.getAll())
   }, [dispatch]);
 
   function handleDelete(room) {

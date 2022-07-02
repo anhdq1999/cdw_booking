@@ -87,7 +87,7 @@ function Homepage(props) {
                                     }
                                     {(provinces.length > 0 &&
                                         provinces.map((item, index) => (
-                                            <option key={item._id} value={item.code}>{item.name_with_type}</option>
+                                            <option key={item.id} value={item.id}>{item.nameWithType}</option>
                                         ))) ||
                                         <option >Đang load dữ liệu</option>
                                     }
@@ -101,7 +101,7 @@ function Homepage(props) {
                                     }
                                     {(districts.length > 0 &&
                                         districts.map((item, index) => (
-                                            <option key={item._id} value={item.code}>{item.name_with_type}</option>
+                                            <option key={item.id} value={item.id}>{item.nameWithType}</option>
                                         ))) ||
                                         <option>Vui lòng chọn tỉnh</option>}
                                 </select>
@@ -114,7 +114,7 @@ function Homepage(props) {
                                     }
                                     {(wards.length > 0 &&
                                         wards.map((item, index) => (
-                                            <option value={item.code}>{item.name_with_type}</option>
+                                            <option value={item.id}>{item.nameWithType}</option>
                                         ))) ||
                                         <option>Vui lòng chọn huyện</option>
                                     }
