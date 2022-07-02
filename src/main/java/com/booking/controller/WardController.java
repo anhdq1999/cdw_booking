@@ -16,6 +16,7 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/v1/wards")
+@CrossOrigin
 public class WardController extends ExceptionControllerHandle {
     @Autowired
     private WardService wardService;

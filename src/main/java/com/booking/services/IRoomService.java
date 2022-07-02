@@ -17,4 +17,8 @@ public interface IRoomService {
     void delete(Long id);
 
     RoomEntity getById(Long id);
+
+    List<RoomEntity> saveAll(List<RoomRequest> requests);
+
+    void deleteAll();
 }

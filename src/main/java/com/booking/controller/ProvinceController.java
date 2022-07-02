@@ -20,6 +20,7 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/v1/provinces")
+@CrossOrigin
 public class ProvinceController extends ExceptionControllerHandle {
     @Autowired
     private ProvinceService provinceService;

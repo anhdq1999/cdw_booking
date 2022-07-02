@@ -21,4 +21,6 @@ public interface IGalleryService {
      void update(Long id, GalleryRequest galleryRequest) ;
 
      void deleteById(Long id);
+
+     void deleteAll();
 }

@@ -52,4 +52,9 @@ public class AddressService implements IAddressService {
                         .orElseThrow(()->new IllegalArgumentException("Address with id:"+id+" is not exist"));
         addressRepository.delete(entity);
     }
+
+    @Override
+    public void deleteAll() {
+        addressRepository.deleteAll();
+    }
 }

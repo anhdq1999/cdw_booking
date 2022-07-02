@@ -11,6 +11,7 @@ import com.booking.services.IRoomService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -87,5 +88,22 @@ public class RoomService implements IRoomService {
         RoomEntity entity = roomRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException(("Not found room with id:" + id)));
         return entity;
+    }
+
+    @Override
+    public List<RoomEntity> saveAll(List<RoomRequest> requests) {
+        List<RoomEntity> entities=new ArrayList<>();
+        for(RoomRequest request:requests){
+          entities.add(save(request));
+        }
+        return entities;
+    }
+
+    @Override
+    public void deleteAll() {
+        galleryService.deleteAll();
+        reviewService.deleteAll();
+        roomRepository.deleteAll();
+        addressService.deleteAll();
     }
 }

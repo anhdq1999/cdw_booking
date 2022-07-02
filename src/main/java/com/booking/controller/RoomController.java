@@ -19,6 +19,7 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/v1/rooms")
+@CrossOrigin
 public class RoomController extends ExceptionControllerHandle {
     @Autowired
     private RoomService roomService;
@@ -53,5 +54,18 @@ public class RoomController extends ExceptionControllerHandle {
     public ResponseEntity<?> delete(@PathVariable Long id) {
         roomService.delete(id);
         return ResponseEntity.ok(Response.success("Delete by id:" + id + " successfully", null));
+    }
+
+    @PostMapping("/all")
+    public ResponseEntity<?> saveAll(@RequestBody List<RoomRequest> requests){
+        List<RoomResponse> responses=roomService.saveAll(requests)
+                .stream().map(room->RoomConverter.toResponse(room))
+                .collect(Collectors.toList());
+        return ResponseEntity.ok(Response.success("Save all room successfully",responses));
+    }
+    @DeleteMapping("/all")
+    public ResponseEntity<?> deleteAll() {
+        roomService.deleteAll();
+        return ResponseEntity.ok(Response.success("Delete all room successfully", null));
     }
 }

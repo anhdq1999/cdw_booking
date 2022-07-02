@@ -64,4 +64,9 @@ public class GalleryService implements IGalleryService {
     public void deleteById(Long id) {
         galleryRepository.deleteById(id);
     }
+
+    @Override
+    public void deleteAll() {
+        galleryRepository.deleteAll();
+    }
 }

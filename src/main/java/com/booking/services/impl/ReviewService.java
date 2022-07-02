@@ -67,4 +67,9 @@ public class ReviewService implements IReviewService {
         List<ReviewEntity> entities=reviewRepository.findAllByRoomId(roomId);
         return entities;
     }
+
+    @Override
+    public void deleteAll() {
+        reviewRepository.deleteAll();
+    }
 }

@@ -58,4 +58,11 @@ public class GalleryController extends ExceptionControllerHandle {
         return ResponseEntity.ok(Response.success("Delete all gallery by room id successfully", null));
     }
 
+    @DeleteMapping("/all")
+    public ResponseEntity<?> deleteAll() {
+        galleryService.deleteAll();
+        return ResponseEntity.ok(Response.success("Delete all gallery successfully",null));
+    }
+
+
 }

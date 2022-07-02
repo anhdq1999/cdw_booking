@@ -15,4 +15,5 @@ public interface IReviewService {
      List<ReviewEntity> saveAllByRoom(List<RoomReviewRequest> requests, Long roomId);
      void deleteByRoomId(Long roomId);
      List<ReviewEntity> getAllByRoomId(Long roomId);
+     void deleteAll();
 }

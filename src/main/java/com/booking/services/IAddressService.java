@@ -18,4 +18,6 @@ public interface IAddressService {
     Address update(Long id, AddressRequest addressRequest);
 
     void deleteById(Long id);
+
+    void deleteAll();
 }

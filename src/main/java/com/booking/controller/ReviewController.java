@@ -59,6 +59,11 @@ public class ReviewController {
         reviewService.deleteByRoomId(id);
         return ResponseEntity.ok(Response.success("Delete all review by room id successfully", null));
     }
+    @DeleteMapping("/all")
+    public ResponseEntity<?> deleteAll() {
+        reviewService.deleteAll();
+        return ResponseEntity.ok(Response.success("Delete all review successfully", null));
+    }
 
 
 }

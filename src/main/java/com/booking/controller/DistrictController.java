@@ -19,6 +19,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/districts")
+@CrossOrigin
 public class DistrictController extends ExceptionControllerHandle {
     @Autowired
     private DistrictService districtService;
