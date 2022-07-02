@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/booking/HotelBookingAPI.iml" filepath="$PROJECT_DIR$/booking/HotelBookingAPI.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/cdw_booking.iml" filepath="$PROJECT_DIR$/.idea/cdw_booking.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/CDWEB_.iml" filepath="$PROJECT_DIR$/.idea/CDWEB_.iml" />
+      <module fileurl="file://$PROJECT_DIR$/cdw_booking/HotelBookingAPI.iml" filepath="$PROJECT_DIR$/cdw_booking/HotelBookingAPI.iml" />
     </modules>
   </component>
 </project>
