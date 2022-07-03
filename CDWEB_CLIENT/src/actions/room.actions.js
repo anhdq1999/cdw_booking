@@ -37,13 +37,14 @@ function search(type, key) {
 
 function getById(id) {
   return dispatch => {
-    roomsService.getById(id).then(res => {
+    roomsService.getById(id).
+    then(res => {
+      console.log(res)
       if (res.success) {
         dispatch(success(res.data));
       } else {
         dispatch(failure(res.message));
       }
-
     });
   };
 

@@ -58,8 +58,8 @@ function restoreRoom(id) {
     const url = `/api/v1/rooms/restore/${id}`;
     return axiosClient.post(url);
 }
-function groupByProvince() {
-    const url = `/api/v1/rooms/groupByProvince/`;
+function groupByProvince(id) {
+    const url = `/api/v1/rooms/province/${id}`;
     return axiosClient.get(url);
 }
 function getByProvince(id) {

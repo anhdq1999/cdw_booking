@@ -28,7 +28,7 @@ import javax.validation.Valid;
 @Slf4j
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
-@RequestMapping("/api/auth")
+@RequestMapping("/api/v1/auth")
 public class AuthController {
     @Autowired
     AuthenticationManager authenticationManager;
@@ -51,14 +51,16 @@ public class AuthController {
     @PostMapping("/signin")
     public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
 
+
         Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(loginRequest.getUsername(), loginRequest.getPassword()));
 
         SecurityContextHolder.getContext().setAuthentication(authentication);
+        System.out.println(authentication);
         String jwt = jwtUtils.generateJwtToken(authentication);
 
         UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
         String role = userDetails.getAuthority().getAuthority();
-        JwtResponse response=new JwtResponse(jwt, userDetails.getId(), userDetails.getUsername(), userDetails.getEmail(), role);
+        JwtResponse response=new JwtResponse(jwt, userDetails.getId(), userDetails.getUsername(), userDetails.getEmail(),userDetails.getFullName(), role);
         return ResponseEntity.ok(Response.success("Login successfully",response));
     }
 

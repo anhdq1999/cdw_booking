@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.annotation.security.PermitAll;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -37,7 +38,7 @@ public class WardController extends ExceptionControllerHandle {
         return ResponseEntity.ok(Response.success("Get all ward successfully",responses));
 
     }
-    @GetMapping("/province/{id}")
+    @GetMapping("/district/{id}")
     public ResponseEntity<?> getByDistrictId(@PathVariable Long id){
         List<WardResponse> responses = wardService.getByDistrictId(id)
                 .stream().map(ward->WardConverter.toResponse(ward))

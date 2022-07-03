@@ -16,7 +16,7 @@ export const userService = {
 };
 
 function login(username, password) {
-    const url = "/api/auth/signin";
+    const url = "/api/v1/auth/signin";
     return axiosClient.post(url, username, password);
 }
 
@@ -40,7 +40,7 @@ function getAllDeleted() {
 }
 
 function register(user) {
-    const url = "/api/auth/signup";
+    const url = "/api/v1/auth/signup";
     return axiosClient.post(url, user)
 }
 

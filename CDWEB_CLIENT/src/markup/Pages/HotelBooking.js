@@ -19,18 +19,17 @@ function HotelBooking(props) {
     useEffect(() => {
         dispatch(roomActions.getById(id))
     }, [dispatch, id])
-    const [isOpenModal, setIsOpenModal] = useState(false);
 
+    const [isOpenModal, setIsOpenModal] = useState(false);
     const handleOpenModal = () => {
         setIsOpenModal(!isOpenModal)
     }
-    console.log(room);
     const settings = {
         dots: false,
         slidesToShow: 1,
         infinite: true,
     };
-    const { country, province, district, street } = room.address || {}
+    const { country, ward, street } = room.address || {}
     return (
         <div>
             <Header2 />
@@ -56,8 +55,8 @@ function HotelBooking(props) {
                                     <div className="d-flex info-bx m-b30">
                                         <div className="tour-title">
                                             <h2>{room.name}</h2>
-                                            {room.address && <p><i className="fa fa-map-marker m-r5"></i>{country}, {province}, {district}, {street}</p>}
-                                            <p><span className="site-button button-sm button-gray">{room.category}</span> </p>
+                                            {room.address && <p><i className="fa fa-map-marker m-r5"></i>{country}, {ward.pathWithType}, {street}</p>}
+                                            <p><span className="site-button button-sm button-gray">{room.category?.name}</span> </p>
                                         </div>
                                         <div className="tour-price ml-auto">
                                             <span>Per Room Per Night</span>
@@ -71,7 +70,7 @@ function HotelBooking(props) {
                                                 <div className="item" key={index}>
                                                     <div className="dlab-box">
                                                         <div className="dlab-thum-bx">
-                                                            <Image cloudName="dmtwoqysj" publicId={item} >
+                                                            <Image cloudName="dmtwoqysj" publicId={item.url} >
                                                                 <Transformation width="650" height="425" gravity="south" />
                                                             </Image>
                                                         </div>

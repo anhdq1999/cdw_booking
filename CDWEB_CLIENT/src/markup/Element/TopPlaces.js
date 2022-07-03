@@ -11,7 +11,7 @@ function TopPlaces(props) {
   const rooms = useSelector(state => state.roomReducer.items);
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(roomActions.getAll(6));
+    dispatch(roomActions.getAll());
   }, [dispatch]);
   console.log(rooms);
   return (
@@ -63,7 +63,7 @@ function TopPlaces(props) {
                   <p>{item.shortDescription}</p>
 
                   <div className="tr-btn-info">
-                    <Link to={"./booking"} className="site-button radius-no"><i className="fa fa-location-arrow"
+                    <Link to={`./hotelbooking/${item.id}`} className="site-button radius-no"><i className="fa fa-location-arrow"
                                                                                 aria-hidden="true"></i> Japan</Link>
                     <Link to={"./booking"} className="site-button bg-primary-dark radius-no"><i
                       className="fa fa-info-circle" aria-hidden="true"></i> Relax </Link>
