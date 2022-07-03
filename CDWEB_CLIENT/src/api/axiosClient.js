@@ -13,7 +13,7 @@ const axiosClient = axios.create({
 axiosClient.interceptors.request.use(async (config) => {
     const token = authHeader();
     if (token) {
-        config.headers["bearer-token"] = token["bearer-token"]; // for Node.js Express back-end
+        config.headers["Authorization"] =token; // for Node.js Express back-end
     }
     return config;
 },

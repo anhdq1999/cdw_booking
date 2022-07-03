@@ -40,7 +40,7 @@ public class DistrictController extends ExceptionControllerHandle {
         return ResponseEntity.ok(Response.success("Get all district successfully",responses));
 
     }
-    @GetMapping("/getByProvinceId/{id}")
+    @GetMapping("/province/{id}")
     public ResponseEntity<?> getByProvinceId(@PathVariable Long id){
         List<DistrictResponse> responses = districtService.getByProvinceId(id)
                 .stream().map(district->DistrictConverter.toResponse(district))
