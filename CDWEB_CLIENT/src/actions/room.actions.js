@@ -13,8 +13,16 @@ export const roomActions = {
   delete: _delete,
   groupByProvince,
   getByProvince,
-  search
+  search,
+  setPageLimit
 };
+
+function setPageLimit(pageLimit){
+  return dispatch =>{
+    dispatch({type:roomConstants.SET_PAGE_LIMIT,payload:pageLimit})
+  }
+
+}
 
 
 function search(type, key) {

@@ -1,73 +1,145 @@
-import React from 'react'
+import React,{useEffect} from 'react'
 import Slider from 'react-animated-slider';
 import 'react-animated-slider/build/horizontal.css';
-import Slick2 from './Slick2';
-import HomeBlog from './../Element/HomeBlog';
+import Slick2 from '../Slick2';
+import HomeBlog from '../../Element/HomeBlog';
 import { Link } from 'react-router-dom';
-
-import Header2 from './../Layout/Header2';
-import Footer from './../Layout/Footer';
-import Tab2 from './../Pages/Tab2';
+import {useDispatch, useSelector} from "react-redux";
+import {addressActions} from "../../../actions";
 
 const content = [
     {
-        button: '-25% OFF ONLY THIS MONTH',
-        title: 'SEA TOURS ONLY THIS MONTH',
-        description: 'Discover amzaing places at exclusive deals',
-        image: require('./../../images/main-slider/slide1.jpg'),
+        title: 'Đặt Homstay không khó nhờ có booking ',
+        button: 'Book Now',
+        image: require('images/main-slider/slide5.jpg'),
     },
     {
-        button: '-25% OFF ONLY THIS MONTH',
-        title: 'SEA TOURS ONLY THIS MONTH',
-        description: 'Discover amzaing places at exclusive deals',
-        image: require('./../../images/main-slider/slide2.jpg'),
+        image: require('images/main-slider/slide1.png'),
     },
     {
-        button: '-25% OFF ONLY THIS MONTH',
-        title: 'SEA TOURS ONLY THIS MONTH',
-        description: 'Discover amzaing places at exclusive deals',
-        image: require('./../../images/main-slider/slide3.jpg'),
+        title: '',
+        button: 'Discover',
+        image: require('images/main-slider/slide3.jpg'),
+    },
+    {
+        title: '',
+        button: 'Discover',
+        image: require('images/main-slider/slide4.jpg'),
     }
 ];
 
 
 
 
-const bg1 = require('./../../images/background/bg1.jpg');
+const bg1 = require('../../../images/background/bg1.jpg');
 
 
 
 function Homepage2(props) {
 
+    const provinces = useSelector(state => state.addressReducer.provinces)
+    const districts = useSelector(state => state.addressReducer.districts)
+    const wards = useSelector(state => state.addressReducer.wards)
+    const dispatch = useDispatch();
+    useEffect(() => {
+        dispatch(addressActions.getAllProvince())
+    }, [dispatch])
+    const handleProvinceChange = (e) => {
+        const { value } = e.target;
+        dispatch(addressActions.getAllDistrict(value))
+    }
+    const handleDistrictChange = (e) => {
+        const { value } = e.target;
+        dispatch(addressActions.getAllWard(value))
+    }
     const settings = {
         dots: false,
         infinite: true,
         slidesToShow: 3,
         slidesToScroll: 1,
-
     };
 
     return (
         <div>
-
-            <Header2 />
-            <Slider className="slider-wrapper" {...settings}>
+            <Slider className="slider-wrapper" infinite autoplay>
                 {content.map((item, index) => (
                     <div
                         key={index}
                         className="slider-content"
                         style={{ background: `url('${item.image}') no-repeat center center` }}
                     >
-                        <div className="inner">
-                            <button className="site-button react-slide-btn">{item.button}</button>
-                            <h1 className="react-slide-title">{item.title}</h1>
-                            <p className="react-slide-desc">{item.description}</p>
-                        </div>
+                        {/*<div className="inner">*/}
+                        {/*    <h1>{item.title}</h1>*/}
+                        {/*    <p>{item.description}</p>*/}
+                        {/*    <Link to={'/place'} className="site-button">Book Now</Link>*/}
+                        {/*</div>*/}
                     </div>
                 ))}
             </Slider>
+            <div className="section-full book-form overlay-black-dark bg-img-fix p-t30 p-b10 mid" style={{ backgroundImage: "url(" + bg1 + ")" }}>
+                <div className="container">
+                    <form className="row">
+                        <div className="col-md-4 col-sm-6 col-6 col-lg-2 form-group">
+                            <label>Country</label>
+                            <select className="form-control" readonly>
+                                <option>Việt Nam</option>
+                            </select>
+                        </div>
+                        <div className="col-md-4 col-sm-6 col-6 col-lg-2 form-group">
+                            <label>Province</label>
+                            <select className="form-control" onChange={handleProvinceChange}>
+                                {provinces.length > 0 &&
+                                    <option checked>Chọn tỉnh</option>
+                                }
+                                {(provinces.length > 0 &&
+                                        provinces.map((item, index) => (
+                                            <option key={item.id} value={item.id}>{item.nameWithType}</option>
+                                        ))) ||
+                                    <option >Đang load dữ liệu</option>
+                                }
+                            </select>
+                        </div>
+                        <div className="col-md-4 col-sm-6 col-6 col-lg-2 form-group">
+                            <label>District</label>
+                            <select className="form-control" onChange={handleDistrictChange}>
+                                {districts.length > 0 &&
+                                    <option checked> Chọn Quận/huyện</option>
+                                }
+                                {(districts.length > 0 &&
+                                        districts.map((item, index) => (
+                                            <option key={item.id} value={item.id}>{item.nameWithType}</option>
+                                        ))) ||
+                                    <option>Vui lòng chọn tỉnh</option>}
+                            </select>
+                        </div>
+                        <div className="col-md-4 col-sm-6 col-6 col-lg-2 form-group">
+                            <label>Ward</label>
+                            <select className="form-control">
+                                {wards.length > 0 &&
+                                    <option checked> Chọn Phường/Xã</option>
+                                }
+                                {(wards.length > 0 &&
+                                        wards.map((item, index) => (
+                                            <option value={item.id}>{item.nameWithType}</option>
+                                        ))) ||
+                                    <option>Vui lòng chọn huyện</option>
+                                }
+                            </select>
+                        </div>
+                        <div className="col-md-4 col-sm-6 col-6 col-lg-2 form-group">
+                            <label>Date</label>
+                            <input type='text' className="form-control" id='datetimepicker4' />
+                        </div>
+                        <div className="col-md-4 col-sm-6 col-6 col-lg-2 form-group">
+                            <label>Find</label>
+                            <Link to={'/accommodation'} className="site-button btn-block">SEARCH</Link>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
             <div className="content-block" id="page_content">
-                <Tab2 />
+                {/*<Tab2 />*/}
 
                 <div className="section-full bg-white content-inner-2">
                     <div className="container">
@@ -80,7 +152,7 @@ function Homepage2(props) {
                             <div className="col-lg-4 col-md-6 col-sm-12">
                                 <div className="featured-bx style2">
                                     <div className="featured-media">
-                                        <img src={require('./../../images/featured/pic1.jpg')} alt="" />
+                                        <img src={require('../../../images/featured/pic1.jpg')} alt="" />
                                         <div className="featured-tag">5 Days</div>
                                     </div>
                                     <div className="featured-content text-white">
@@ -95,7 +167,7 @@ function Homepage2(props) {
                             <div className="col-lg-4 col-md-6 col-sm-12">
                                 <div className="featured-bx style2">
                                     <div className="featured-media">
-                                        <img src={require('./../../images/featured/pic2.jpg')} alt="" />
+                                        <img src={require('../../../images/featured/pic2.jpg')} alt="" />
                                         <div className="featured-tag">7 Days</div>
                                     </div>
                                     <div className="featured-content text-white">
@@ -110,7 +182,7 @@ function Homepage2(props) {
                             <div className="col-lg-4 col-md-6 col-sm-12">
                                 <div className="featured-bx style2">
                                     <div className="featured-media">
-                                        <img src={require('./../../images/featured/pic3.jpg')} alt="" />
+                                        <img src={require('../../../images/featured/pic3.jpg')} alt="" />
                                         <div className="featured-tag">3 Days</div>
                                     </div>
                                     <div className="featured-content text-white">
@@ -125,7 +197,7 @@ function Homepage2(props) {
                             <div className="col-lg-6 col-md-6 col-sm-12">
                                 <div className="featured-bx style2">
                                     <div className="featured-media">
-                                        <img src={require('./../../images/featured/pic4.jpg')} alt="" />
+                                        <img src={require('../../../images/featured/pic4.jpg')} alt="" />
                                         <div className="featured-tag">2 Days</div>
                                     </div>
                                     <div className="featured-content text-white">
@@ -140,7 +212,7 @@ function Homepage2(props) {
                             <div className="col-lg-6 col-md-12 col-sm-12">
                                 <div className="featured-bx style2">
                                     <div className="featured-media">
-                                        <img src={require('./../../images/featured/pic5.jpg')} alt="" />
+                                        <img src={require('../../../images/featured/pic5.jpg')} alt="" />
                                         <div className="featured-tag">6 Days</div>
                                     </div>
                                     <div className="featured-content text-white">
@@ -181,7 +253,7 @@ function Homepage2(props) {
                             <div className="col-lg-6">
                                 <div className="dlab-box packages-bx">
                                     <div className="dlab-media">
-                                        <Link to={'listing-details-1'}><img src={require('./../../images/gallery/img5.jpg')} alt="" /></Link>
+                                        <Link to={'listing-details-1'}><img src={require('../../../images/gallery/img5.jpg')} alt="" /></Link>
                                         <span className="tag yellow">Best Seller</span>
                                     </div>
                                     <div className="dlab-info">
@@ -211,7 +283,7 @@ function Homepage2(props) {
                             </div><div className="col-lg-6">
                                 <div className="dlab-box packages-bx">
                                     <div className="dlab-media">
-                                        <Link to={'listing-details-1'}><img src={require('./../../images/gallery/img2.jpg')} alt="" /></Link>
+                                        <Link to={'listing-details-1'}><img src={require('../../../images/gallery/img2.jpg')} alt="" /></Link>
                                         <span className="tag yellow">Best Seller</span>
                                     </div>
                                     <div className="dlab-info">
@@ -242,7 +314,7 @@ function Homepage2(props) {
                             <div className="col-lg-6">
                                 <div className="dlab-box packages-bx">
                                     <div className="dlab-media">
-                                        <Link to={'listing-details-1'}><img src={require('./../../images/gallery/img3.jpg')} alt="" /></Link>
+                                        <Link to={'listing-details-1'}><img src={require('../../../images/gallery/img3.jpg')} alt="" /></Link>
                                         <span className="tag yellow">Best Seller</span>
                                     </div>
                                     <div className="dlab-info">
@@ -273,7 +345,7 @@ function Homepage2(props) {
                             <div className="col-lg-6">
                                 <div className="dlab-box packages-bx">
                                     <div className="dlab-media">
-                                        <Link to={'listing-details-1'}><img src={require('./../../images/gallery/img4.jpg')} alt="" /></Link>
+                                        <Link to={'listing-details-1'}><img src={require('../../../images/gallery/img4.jpg')} alt="" /></Link>
                                         <span className="tag yellow">Best Seller</span>
                                     </div>
                                     <div className="dlab-info">
@@ -313,139 +385,7 @@ function Homepage2(props) {
 
             </div>
 
-            <Footer />
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-            {/* <header className="site-header mo-left header header-2">
-                    <div className="top-bar">
-                        <div className="container-fluid">
-                            <div className="row d-flex justify-content-between">
-                                <div className="dlab-topbar-left">
-                                    <ul>
-                                        <li><Link className="site-button-link" to={'hotel'}>Hotels</Link></li>
-                                        <li><Link className="site-button-link" to={'place'}>Places</Link></li>
-                                        <li><Link className="site-button-link" to={'packages'}>Packages</Link></li>
-                                    </ul>
-                                </div>
-                                <div className="dlab-topbar-right top-login">
-                                    <ul>
-                                        <li><Link to={'login'} className="site-button-link">Login</Link></li>
-                                        <li><Link to={'register'} className="site-button-link">Register</Link></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="sticky-header navbar-expand-lg main-bar-wraper">
-                        <div className="main-bar clearfix onepage">
-                            <div className="container-fluid clearfix">
-                                <div className="logo-header mostion">
-                                    <Link to={'index'}><img src={require('./../../images/logo-2.png')} alt="" /></Link>
-                                </div>
-                                <button className="navbar-toggler collapsed navicon justify-content-end" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-                                    <span></span>
-                                    <span></span>
-                                    <span></span>
-                                </button>
-                                <div className="extra-nav">
-                                    <div className="extra-cell">
-                                        <button id="quik-search-btn" type="button" className="site-button outline black"><i className="fa fa-search"></i></button>
-                                        <Link to={'add-listing'} className="site-button outline m-l5">Book Now</Link>
-                                    </div>
-                                </div>
-                                <div className="dlab-quik-search bg-primary search-style-1">
-                                    <form action="#">
-                                        <input name="search" value="" type="text" className="form-control" placeholder="Type to search" />
-                                        <span id="quik-search-remove"><i className="ti-close"></i></span>
-                                    </form>
-                                </div>
-                                <div className="header-nav navbar-collapse collapse navbar myNavbar justify-content-center" id="navbarNavDropdown">
-                                    <ul className="nav navbar-nav">
-                                        <li><Link to={' '}>Home <i className="fa fa-chevron-down"></i></Link>
-                                            <ul className="sub-menu">
-                                                <li><Link to={'index'} className="dez-page">Home 1</Link></li>
-                                                <li><Link to={'index-2'} className="dez-page">Home 2 <span className="new-page menu-new">New</span></Link></li>
-                                            </ul>
-                                        </li>
-                                        <li><Link to={' '}>Pages <i className="fa fa-chevron-down"></i></Link>
-                                            <ul className="sub-menu">
-                                                <li><Link to={' '}>Listing <i className="fa fa-angle-right"></i> <span className="new-page menu-new">New</span></Link>
-                                                    <ul className="sub-menu">
-                                                        <li><Link to={'add-listing'} className="dez-page">Add Listing<span className="new-page menu-new">New</span></Link></li>
-                                                        <li><Link to={'hotel'}>Hotels Listing</Link></li>
-                                                        <li><Link to={'place'}>Places Listing</Link></li>
-                                                        <li><Link to={'packages'}>Tour Packages</Link></li>
-                                                        <li><Link to={'listing-details-1'} className="dez-page">Listing Details 1<span className="new-page menu-new">New</span></Link></li>
-                                                        <li><Link to={'listing-details-2'} className="dez-page">Listing Details 2<span className="new-page menu-new">New</span></Link></li>
-                                                    </ul>
-                                                </li>
-                                                <li><Link to={'about-us'} className="dez-page">About Us</Link></li>
-                                                <li><Link to={'booking-details'}>Booking Details</Link></li>
-                                                <li><Link to={'gallery'}>Gallery</Link></li>
-                                                <li><Link to={'calendar'}>Calendar <span className="new-page menu-new">New</span></Link></li>
-                                                <li><Link to={'coming-soon'} className="dez-page">Coming Soon</Link></li>
-                                                <li><Link to={'error-404'} className="dez-page">Error 404</Link></li>
-                                                <li><Link to={'login'} className="dez-page">Login</Link></li>
-                                                <li><Link to={' '}>Register <i className="fa fa-angle-right"></i> <span className="new-page menu-new">New</span></Link>
-                                                    <ul className="sub-menu">
-                                                        <li><Link to={'register'} className="dez-page">Register</Link></li>
-                                                        <li><Link to={'register-2'} className="dez-page">Register 2 <span className="new-page menu-new">New</span></Link></li>
-                                                    </ul>
-                                                </li>
-                                            </ul>
-                                        </li>
-                                        <li><Link to={' '}>Hotels <i className="fa fa-chevron-down"></i></Link>
-                                            <ul className="sub-menu">
-                                                <li><Link to={'hotel'} className="dez-page">Hotel</Link></li>
-                                                <li><Link to={'hotel-booking'} className="dez-page">Hotel Booking</Link></li>
-                                            </ul>
-                                        </li>
-                                        <li><Link to={' '}>Blog <i className="fa fa-chevron-down"></i></Link>
-                                            <ul className="sub-menu">
-                                                <li><Link to={'blog-classic'} className="dez-page">Classic</Link></li>
-                                                <li><Link to={'blog-classic-sidebar'} className="dez-page">Classic Sidebar</Link></li>
-                                                <li><Link to={'blog-detailed-grid'} className="dez-page">Detailed Grid</Link></li>
-                                                <li><Link to={'blog-detailed-grid-sidebar'} className="dez-page">Detailed Grid Sidebar</Link></li>
-                                                <li><Link to={'blog-left-img'} className="dez-page">Left Image Sidebar</Link></li>
-                                                <li><Link to={'blog-details'} className="dez-page">Blog Details</Link></li>
-                                            </ul>
-                                        </li>
-                                        <li><Link to={' '}>Our Portfolio <i className="fa fa-chevron-down"></i></Link>
-                                            <ul className="sub-menu">
-                                                <li><Link to={'portfolio-grid-2'} className="dez-page">Portfolio Grid 2 </Link></li>
-                                                <li><Link to={'portfolio-grid-3'} className="dez-page">Portfolio Grid 3 </Link></li>
-                                                <li><Link to={'portfolio-grid-4'} className="dez-page">Portfolio Grid 4 </Link></li>
-                                            </ul>
-                                        </li>
-                                        <li><Link to={'contact'} className="dez-page">Contact Us</></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </header> */}
+            {/*<Footer />*/}
         </div>
     )
 

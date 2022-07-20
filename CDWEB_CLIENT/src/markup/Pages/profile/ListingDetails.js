@@ -1,12 +1,12 @@
 import React, { useState } from 'react'
-import Header2 from './../Layout/Header2';
-import Footer from './../Layout/Footer';
+import Header2 from '../../Layout/Header2';
+import Footer from '../../Layout/Footer';
 import { Link } from 'react-router-dom';
 import { TabContent, TabPane } from 'reactstrap';
 import classnames from 'classnames';
 
 
-const bg3 = require('./../../images/banner/bnr1.jpg');
+const bg3 = require('../../../images/banner/bnr1.jpg');
 
 function ListingDetails(props) {
     const [activeTab, setActiveTab] = useState('1');
@@ -17,7 +17,6 @@ function ListingDetails(props) {
 
     return (
         <div>
-            <Header2 />
             <div className="dlab-bnr-inr overlay-black-middle" style={{ backgroundImage: "url(" + bg3 + ")", backgroundSize: 'cover' }}>
                 <div className="container">
                     <div className="dlab-bnr-inr-entry">
@@ -35,7 +34,7 @@ function ListingDetails(props) {
                 <div className="container">
                     <div className="listing-info-box">
                         <div className="listing-theme-logo">
-                            <img src={require('./../../images/gallery/img1.jpg')} alt="" />
+                            <img src={require('../../../images/gallery/img1.jpg')} alt="" />
                         </div>
                         <div className="listing-info">
                             <div className="listing-info-left">
@@ -96,9 +95,6 @@ function ListingDetails(props) {
                     </ul>
                 </div>
             </div>
-
-
-
             <div className="section-full listing-details-content">
                 <div className="container">
                     <TabContent activeTab={activeTab}>
@@ -228,28 +224,28 @@ function ListingDetails(props) {
                                                     <li>
                                                         <span className="check-km" title="Light Gallery Grid 1">
                                                             <Link to={''}>
-                                                                <div className="dlab-post-thum"><img src={require('./../../images/gallery/img1.jpg')} alt="" /></div>
+                                                                <div className="dlab-post-thum"><img src={require('../../../images/gallery/img1.jpg')} alt="" /></div>
                                                             </Link>
                                                         </span>
                                                     </li>
                                                     <li>
                                                         <span className="check-km" title="Light Gallery Grid 1">
                                                             <Link to={''}>
-                                                                <div className="dlab-post-thum"><img src={require('./../../images/gallery/img2.jpg')} alt="" /></div>
+                                                                <div className="dlab-post-thum"><img src={require('../../../images/gallery/img2.jpg')} alt="" /></div>
                                                             </Link>
                                                         </span>
                                                     </li>
                                                     <li>
                                                         <span className="check-km" title="Light Gallery Grid 1">
                                                             <Link to={''}>
-                                                                <div className="dlab-post-thum"><img src={require('./../../images/gallery/img3.jpg')} alt="" /></div>
+                                                                <div className="dlab-post-thum"><img src={require('../../../images/gallery/img3.jpg')} alt="" /></div>
                                                             </Link>
                                                         </span>
                                                     </li>
                                                     <li>
                                                         <span className="check-km" title="Light Gallery Grid 1">
                                                             <Link to={''}>
-                                                                <div className="dlab-post-thum"><img src={require('./../../images/gallery/img4.jpg')} alt="" /></div>
+                                                                <div className="dlab-post-thum"><img src={require('../../../images/gallery/img4.jpg')} alt="" /></div>
                                                                 <div className="more-images">
                                                                     <div>
                                                                         <strong>6</strong>
@@ -275,7 +271,7 @@ function ListingDetails(props) {
                                                 <ul>
                                                     <li>
                                                         <div className="dlab-post-thum video-bx">
-                                                            <img src={require('./../../images/gallery/pic1.jpg')} alt="" />
+                                                            <img src={require('../../../images/gallery/pic1.jpg')} alt="" />
                                                             <div className="video-play-icon">
                                                                 <Link to={''} className="popup-youtube video"><i className="la la-play"></i></Link>
                                                             </div>
@@ -298,7 +294,7 @@ function ListingDetails(props) {
                                                     <div className="listing-bx event-listing m-b10">
                                                         <div className="listing-media">
                                                             <Link to={''}>
-                                                                <img src={require('./../../images/featured/pic3.jpg')} alt="" />
+                                                                <img src={require('../../../images/featured/pic3.jpg')} alt="" />
                                                             </Link>
                                                         </div>
                                                         <div className="listing-info">
@@ -322,7 +318,7 @@ function ListingDetails(props) {
                                                     <div className="listing-bx event-listing m-b10">
                                                         <div className="listing-media">
                                                             <Link to={''}>
-                                                                <img src={require('./../../images/featured/pic2.jpg')} alt="" />
+                                                                <img src={require('../../../images/featured/pic2.jpg')} alt="" />
                                                             </Link>
                                                         </div>
                                                         <div className="listing-info">
@@ -360,7 +356,7 @@ function ListingDetails(props) {
                                             <div className="review-header">
                                                 <div className="review-comment-author">
                                                     <div className="review-avatar">
-                                                        <img src={require('./../../images/testimonials/pic1.jpg')} alt="" />
+                                                        <img src={require('../../../images/testimonials/pic1.jpg')} alt="" />
                                                     </div>
                                                     <div className="comment-info">
                                                         <div className="info-group">
@@ -434,7 +430,7 @@ function ListingDetails(props) {
                                                         <li>
                                                             <div className="review-comment-author">
                                                                 <div className="review-avatar">
-                                                                    <img src={require('./../../images/testimonials/pic3.jpg')} alt="" />
+                                                                    <img src={require('../../../images/testimonials/pic3.jpg')} alt="" />
                                                                 </div>
                                                                 <div className="comment-info">
                                                                     <div className="info-group">
@@ -448,7 +444,7 @@ function ListingDetails(props) {
                                                         <li>
                                                             <div className="review-comment-author">
                                                                 <div className="review-avatar">
-                                                                    <img src={require('./../../images/testimonials/pic2.jpg')} alt="" />
+                                                                    <img src={require('../../../images/testimonials/pic2.jpg')} alt="" />
                                                                 </div>
                                                                 <div className="comment-info">
                                                                     <div className="info-group">
@@ -464,7 +460,7 @@ function ListingDetails(props) {
                                                 </div>
                                                 <div className="review-comments-form">
                                                     <div className="review-avatar">
-                                                        <img src={require('./../../images/testimonials/pic1.jpg')} alt="" />
+                                                        <img src={require('../../../images/testimonials/pic1.jpg')} alt="" />
                                                     </div>
                                                     <div className="form-area">
                                                         <textarea className="form-control" placeholder="Type To Message"></textarea>
@@ -476,7 +472,7 @@ function ListingDetails(props) {
                                             <div className="review-header">
                                                 <div className="review-comment-author">
                                                     <div className="review-avatar">
-                                                        <img src={require('./../../images/testimonials/pic1.jpg')} alt="" />
+                                                        <img src={require('../../../images/testimonials/pic1.jpg')} alt="" />
                                                     </div>
                                                     <div className="comment-info">
                                                         <div className="info-group">
@@ -550,7 +546,7 @@ function ListingDetails(props) {
                                                         <li>
                                                             <div className="review-comment-author">
                                                                 <div className="review-avatar">
-                                                                    <img src={require('./../../images/testimonials/pic3.jpg')} alt="" />
+                                                                    <img src={require('../../../images/testimonials/pic3.jpg')} alt="" />
                                                                 </div>
                                                                 <div className="comment-info">
                                                                     <div className="info-group">
@@ -564,7 +560,7 @@ function ListingDetails(props) {
                                                         <li>
                                                             <div className="review-comment-author">
                                                                 <div className="review-avatar">
-                                                                    <img src={require('./../../images/testimonials/pic2.jpg')} alt="" />
+                                                                    <img src={require('../../../images/testimonials/pic2.jpg')} alt="" />
                                                                 </div>
                                                                 <div className="comment-info">
                                                                     <div className="info-group">
@@ -580,7 +576,7 @@ function ListingDetails(props) {
                                                 </div>
                                                 <div className="review-comments-form">
                                                     <div className="review-avatar">
-                                                        <img src={require('./../../images/testimonials/pic1.jpg')} alt="" />
+                                                        <img src={require('../../../images/testimonials/pic1.jpg')} alt="" />
                                                     </div>
                                                     <div className="form-area">
                                                         <textarea className="form-control" placeholder="Type To Message"></textarea>
@@ -592,7 +588,7 @@ function ListingDetails(props) {
                                             <div className="review-header">
                                                 <div className="review-comment-author">
                                                     <div className="review-avatar">
-                                                        <img src={require('./../../images/testimonials/pic1.jpg')} alt="" />
+                                                        <img src={require('../../../images/testimonials/pic1.jpg')} alt="" />
                                                     </div>
                                                     <div className="comment-info">
                                                         <div className="info-group">
@@ -626,7 +622,7 @@ function ListingDetails(props) {
                                                 <p className="review-content">Lorem Ipsum is simply dummy text of the printing and typesetting industry</p>
                                                 <div className="row gallery-img">
                                                     <div className="col-lg-4">
-                                                        <img src={require('./../../images/gallery/pic1.jpg')} alt="" />
+                                                        <img src={require('../../../images/gallery/pic1.jpg')} alt="" />
                                                     </div>
                                                 </div>
                                             </div>
@@ -671,7 +667,7 @@ function ListingDetails(props) {
                                                         <li>
                                                             <div className="review-comment-author">
                                                                 <div className="review-avatar">
-                                                                    <img src={require('./../../images/testimonials/pic3.jpg')} alt="" />
+                                                                    <img src={require('../../../images/testimonials/pic3.jpg')} alt="" />
                                                                 </div>
                                                                 <div className="comment-info">
                                                                     <div className="info-group">
@@ -685,7 +681,7 @@ function ListingDetails(props) {
                                                         <li>
                                                             <div className="review-comment-author">
                                                                 <div className="review-avatar">
-                                                                    <img src={require('./../../images/testimonials/pic2.jpg')} alt="" />
+                                                                    <img src={require('../../../images/testimonials/pic2.jpg')} alt="" />
                                                                 </div>
                                                                 <div className="comment-info">
                                                                     <div className="info-group">
@@ -701,7 +697,7 @@ function ListingDetails(props) {
                                                 </div>
                                                 <div className="review-comments-form">
                                                     <div className="review-avatar">
-                                                        <img src={require('./../../images/testimonials/pic1.jpg')} alt="" />
+                                                        <img src={require('../../../images/testimonials/pic1.jpg')} alt="" />
                                                     </div>
                                                     <div className="form-area">
                                                         <textarea className="form-control" placeholder="Type To Message"></textarea>
@@ -760,7 +756,7 @@ function ListingDetails(props) {
                                                     <div className="widget-post-bx">
                                                         <div className="widget-post clearfix">
                                                             <div className="dlab-post-media">
-                                                                <img src={require('./../../images/blog/recent-blog/pic1.jpg')} width="200" height="143" alt="" />
+                                                                <img src={require('../../../images/blog/recent-blog/pic1.jpg')} width="200" height="143" alt="" />
                                                                 <span className="abb-bx">Add</span>
                                                             </div>
                                                             <div className="dlab-post-info">
@@ -788,7 +784,7 @@ function ListingDetails(props) {
                                                     <div className="widget-post-bx">
                                                         <div className="widget-post clearfix">
                                                             <div className="dlab-post-media">
-                                                                <img src={require('./../../images/blog/recent-blog/pic2.jpg')} width="200" height="143" alt="" />
+                                                                <img src={require('../../../images/blog/recent-blog/pic2.jpg')} width="200" height="143" alt="" />
                                                                 <span className="abb-bx">Add</span>
                                                             </div>
                                                             <div className="dlab-post-info">
@@ -816,7 +812,7 @@ function ListingDetails(props) {
                                                     <div className="widget-post-bx">
                                                         <div className="widget-post clearfix">
                                                             <div className="dlab-post-media">
-                                                                <img src={require('./../../images/blog/recent-blog/pic3.jpg')} width="200" height="143" alt="" />
+                                                                <img src={require('../../../images/blog/recent-blog/pic3.jpg')} width="200" height="143" alt="" />
                                                                 <span className="abb-bx">Add</span>
                                                             </div>
                                                             <div className="dlab-post-info">
@@ -844,7 +840,7 @@ function ListingDetails(props) {
                                                     <div className="widget-post-bx">
                                                         <div className="widget-post clearfix">
                                                             <div className="dlab-post-media">
-                                                                <img src={require('./../../images/blog/recent-blog/pic1.jpg')} width="200" height="143" alt="" />
+                                                                <img src={require('../../../images/blog/recent-blog/pic1.jpg')} width="200" height="143" alt="" />
                                                                 <span className="abb-bx">Add</span>
                                                             </div>
                                                             <div className="dlab-post-info">
@@ -1123,22 +1119,22 @@ function ListingDetails(props) {
                                                 <ul>
                                                     <li>
                                                         <span className="check-km" title="Light Gallery Grid 1">
-                                                            <img src={require('./../../images/gallery/img1.jpg')} alt="" />
+                                                            <img src={require('../../../images/gallery/img1.jpg')} alt="" />
                                                         </span>
                                                     </li>
                                                     <li>
                                                         <span className="check-km" title="Light Gallery Grid 1">
-                                                            <img src={require('./../../images/gallery/img2.jpg')} alt="" />
+                                                            <img src={require('../../../images/gallery/img2.jpg')} alt="" />
                                                         </span>
                                                     </li>
                                                     <li>
                                                         <span className="check-km" title="Light Gallery Grid 1">
-                                                            <img src={require('./../../images/gallery/img3.jpg')} alt="" />
+                                                            <img src={require('../../../images/gallery/img3.jpg')} alt="" />
                                                         </span>
                                                     </li>
                                                     <li>
                                                         <span className="check-km" title="Light Gallery Grid 1">
-                                                            <img src={require('./../../images/gallery/img4.jpg')} alt="" />
+                                                            <img src={require('../../../images/gallery/img4.jpg')} alt="" />
                                                         </span>
                                                     </li>
                                                 </ul>
@@ -1160,7 +1156,7 @@ function ListingDetails(props) {
                                                 <ul>
                                                     <li>
                                                         <div className="dlab-post-thum video-bx">
-                                                            <img src={require('./../../images/gallery/pic1.jpg')} alt="" />
+                                                            <img src={require('../../../images/gallery/pic1.jpg')} alt="" />
                                                             <div className="video-play-icon">
                                                                 <Link to={''} className="popup-youtube video"><i className="la la-play"></i></Link>
                                                             </div>
@@ -1186,7 +1182,7 @@ function ListingDetails(props) {
                                                     <div className="listing-bx event-listing m-b30">
                                                         <div className="listing-media">
                                                             <Link to={''}>
-                                                                <img src={require('./../../images/gallery/pic1.jpg')} alt="" />
+                                                                <img src={require('../../../images/gallery/pic1.jpg')} alt="" />
                                                             </Link>
                                                         </div>
                                                         <div className="listing-info">
@@ -1221,7 +1217,7 @@ function ListingDetails(props) {
                                             <div className="review-header">
                                                 <div className="review-comment-author">
                                                     <div className="review-avatar">
-                                                        <img src={require('./../../images/testimonials/pic1.jpg')} alt="" />
+                                                        <img src={require('../../../images/testimonials/pic1.jpg')} alt="" />
                                                     </div>
                                                     <div className="comment-info">
                                                         <div className="info-group">
@@ -1287,7 +1283,7 @@ function ListingDetails(props) {
                                                         <li>
                                                             <div className="review-comment-author">
                                                                 <div className="review-avatar">
-                                                                    <img src={require('./../../images/testimonials/pic1.jpg')} alt="" />
+                                                                    <img src={require('../../../images/testimonials/pic1.jpg')} alt="" />
                                                                 </div>
                                                                 <div className="comment-info">
                                                                     <div className="info-group">
@@ -1301,7 +1297,7 @@ function ListingDetails(props) {
                                                         <li>
                                                             <div className="review-comment-author">
                                                                 <div className="review-avatar">
-                                                                    <img src={require('./../../images/testimonials/pic1.jpg')} alt="" />
+                                                                    <img src={require('../../../images/testimonials/pic1.jpg')} alt="" />
                                                                 </div>
                                                                 <div className="comment-info">
                                                                     <div className="info-group">
@@ -1316,7 +1312,7 @@ function ListingDetails(props) {
                                                 </div>
                                                 <div className="review-comments-form">
                                                     <div className="review-avatar">
-                                                        <img src={require('./../../images/testimonials/pic1.jpg')} alt="" />
+                                                        <img src={require('../../../images/testimonials/pic1.jpg')} alt="" />
                                                     </div>
                                                     <div className="form-area">
                                                         <textarea className="form-control" placeholder="Type To Message"></textarea>
@@ -1328,7 +1324,7 @@ function ListingDetails(props) {
                                             <div className="review-header">
                                                 <div className="review-comment-author">
                                                     <div className="review-avatar">
-                                                        <img src={require('./../../images/testimonials/pic1.jpg')} alt="" />
+                                                        <img src={require('../../../images/testimonials/pic1.jpg')} alt="" />
                                                     </div>
                                                     <div className="comment-info">
                                                         <div className="info-group">
@@ -1394,7 +1390,7 @@ function ListingDetails(props) {
                                                         <li>
                                                             <div className="review-comment-author">
                                                                 <div className="review-avatar">
-                                                                    <img src={require('./../../images/testimonials/pic1.jpg')} alt="" />
+                                                                    <img src={require('../../../images/testimonials/pic1.jpg')} alt="" />
                                                                 </div>
                                                                 <div className="comment-info">
                                                                     <div className="info-group">
@@ -1408,7 +1404,7 @@ function ListingDetails(props) {
                                                         <li>
                                                             <div className="review-comment-author">
                                                                 <div className="review-avatar">
-                                                                    <img src={require('./../../images/testimonials/pic1.jpg')} alt="" />
+                                                                    <img src={require('../../../images/testimonials/pic1.jpg')} alt="" />
                                                                 </div>
                                                                 <div className="comment-info">
                                                                     <div className="info-group">
@@ -1423,7 +1419,7 @@ function ListingDetails(props) {
                                                 </div>
                                                 <div className="review-comments-form">
                                                     <div className="review-avatar">
-                                                        <img src={require('./../../images/testimonials/pic1.jpg')} alt="" />
+                                                        <img src={require('../../../images/testimonials/pic1.jpg')} alt="" />
                                                     </div>
                                                     <div className="form-area">
                                                         <textarea className="form-control" placeholder="Type To Message"></textarea>
@@ -1435,7 +1431,7 @@ function ListingDetails(props) {
                                             <div className="review-header">
                                                 <div className="review-comment-author">
                                                     <div className="review-avatar">
-                                                        <img src={require('./../../images/testimonials/pic1.jpg')} alt="" />
+                                                        <img src={require('../../../images/testimonials/pic1.jpg')} alt="" />
                                                     </div>
                                                     <div className="comment-info">
                                                         <div className="info-group">
@@ -1501,7 +1497,7 @@ function ListingDetails(props) {
                                                         <li>
                                                             <div className="review-comment-author">
                                                                 <div className="review-avatar">
-                                                                    <img src={require('./../../images/testimonials/pic1.jpg')} alt="" />
+                                                                    <img src={require('../../../images/testimonials/pic1.jpg')} alt="" />
                                                                 </div>
                                                                 <div className="comment-info">
                                                                     <div className="info-group">
@@ -1515,7 +1511,7 @@ function ListingDetails(props) {
                                                         <li>
                                                             <div className="review-comment-author">
                                                                 <div className="review-avatar">
-                                                                    <img src={require('./../../images/testimonials/pic1.jpg')} alt="" />
+                                                                    <img src={require('../../../images/testimonials/pic1.jpg')} alt="" />
                                                                 </div>
                                                                 <div className="comment-info">
                                                                     <div className="info-group">
@@ -1530,7 +1526,7 @@ function ListingDetails(props) {
                                                 </div>
                                                 <div className="review-comments-form">
                                                     <div className="review-avatar">
-                                                        <img src={require('./../../images/testimonials/pic1.jpg')} alt="" />
+                                                        <img src={require('../../../images/testimonials/pic1.jpg')} alt="" />
                                                     </div>
                                                     <div className="form-area">
                                                         <textarea className="form-control" placeholder="Type To Message"></textarea>
@@ -1604,7 +1600,6 @@ function ListingDetails(props) {
                     </TabContent>
                 </div>
             </div>
-            <Footer />
         </div>
     );
 }

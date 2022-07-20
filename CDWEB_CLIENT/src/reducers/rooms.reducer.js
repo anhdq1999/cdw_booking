@@ -7,7 +7,8 @@ const initialState = {
     itemsDeleted: [],
     itemsSearch: [],
     itemsByProvince:[],
-    itemsTopPlaces:[]
+    itemsTopPlaces:[],
+    pageLimit:8,
 }
 
 export function roomReducer(state = initialState, action) {
@@ -109,6 +110,11 @@ export function roomReducer(state = initialState, action) {
         case roomConstants.SEARCH_BY_NAME:
             state.itemsSearch = state.items.filter(u => u.name.toLowerCase().includes((action.key).toLowerCase()));
             return {
+                ...state
+            }
+        case roomConstants.SET_PAGE_LIMIT:
+            state.pageLimit=action.payload
+            return{
                 ...state
             }
         default:
