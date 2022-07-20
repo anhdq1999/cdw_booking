@@ -1,48 +1,48 @@
 import React from 'react'
-import { Link } from 'react-router-dom';
-import Header2 from './../Layout/Header2';
-import Footer from './../Layout/Footer';
+import {Link} from 'react-router-dom';
+
 
 const placeList = [
     {
-        image: require('./../../images/tour/pic1.jpg'),
+        image: require('../../../images/tour/pic1.jpg'),
         title: 'Mathura Kusum Sarovar',
         address: '441 Dickerson Pike Nashville, TN 37207',
     },
     {
-        image: require('./../../images/tour/pic2.jpg'),
+        image: require('../../../images/tour/pic2.jpg'),
         title: 'Buguon Beach',
         address: '441 Dickerson Pike Nashville, TN 37207',
     },
     {
-        image: require('./../../images/tour/pic3.jpg'),
+        image: require('../../../images/tour/pic3.jpg'),
         title: 'Buguon Beach',
         address: '441 Dickerson Pike Nashville, TN 37207',
     },
     {
-        image: require('./../../images/tour/pic4.jpg'),
+        image: require('../../../images/tour/pic4.jpg'),
         title: 'Buguon Beach',
         address: '441 Dickerson Pike Nashville, TN 37207',
     },
     {
-        image: require('./../../images/tour/pic5.jpg'),
+        image: require('../../../images/tour/pic5.jpg'),
         title: 'Taj Mahal',
         address: '441 Dickerson Pike Nashville, TN 37207',
     },
     {
-        image: require('./../../images/tour/pic6.jpg'),
+        image: require('../../../images/tour/pic6.jpg'),
         title: 'Buguon Beach',
         address: '441 Dickerson Pike Nashville, TN 37207',
     },
 ]
 
-const bg3 = require('./../../images/banner/bnr1.jpg');
+const bg3 = require('../../../images/banner/bnr1.jpg');
+
 function Place(props) {
-  
+
     return (
         <div>
-            <Header2 />
-            <div className="dlab-bnr-inr overlay-black-middle" style={{ backgroundImage: "url(" + bg3 + ")", backgroundSize: 'cover' }}>
+            <div className="dlab-bnr-inr overlay-black-middle"
+                 style={{backgroundImage: "url(" + bg3 + ")", backgroundSize: 'cover'}}>
                 <div className="container">
                     <div className="dlab-bnr-inr-entry">
                         <h1 className="text-white">Place</h1>
@@ -62,12 +62,18 @@ function Place(props) {
                             <div className="widget widget_gallery">
                                 <h5 className="widget-title font-weight-400">Our Gallery</h5>
                                 <ul className="clearfix">
-                                    <li className="img-effect2"> <Link><img src={require('./../../images/gallery/img1.jpg')} alt="" /></Link> </li>
-                                    <li className="img-effect2"> <Link><img src={require('./../../images/gallery/img2.jpg')} alt="" /></Link> </li>
-                                    <li className="img-effect2"> <Link><img src={require('./../../images/gallery/img3.jpg')} alt="" /></Link> </li>
-                                    <li className="img-effect2"> <Link><img src={require('./../../images/gallery/img4.jpg')} alt="" /></Link> </li>
-                                    <li className="img-effect2"> <Link><img src={require('./../../images/gallery/img5.jpg')} alt="" /></Link> </li>
-                                    <li className="img-effect2"> <Link><img src={require('./../../images/gallery/img6.jpg')} alt="" /></Link> </li>
+                                    <li className="img-effect2"><Link><img
+                                        src={require('../../../images/gallery/img1.jpg')} alt=""/></Link></li>
+                                    <li className="img-effect2"><Link><img
+                                        src={require('../../../images/gallery/img2.jpg')} alt=""/></Link></li>
+                                    <li className="img-effect2"><Link><img
+                                        src={require('../../../images/gallery/img3.jpg')} alt=""/></Link></li>
+                                    <li className="img-effect2"><Link><img
+                                        src={require('../../../images/gallery/img4.jpg')} alt=""/></Link></li>
+                                    <li className="img-effect2"><Link><img
+                                        src={require('../../../images/gallery/img5.jpg')} alt=""/></Link></li>
+                                    <li className="img-effect2"><Link><img
+                                        src={require('../../../images/gallery/img6.jpg')} alt=""/></Link></li>
                                 </ul>
                             </div>
                             <div className="widget">
@@ -104,7 +110,7 @@ function Place(props) {
                                 <form>
                                     <div className="form-group">
                                         <div className="input-group">
-                                            <input type="text" className="form-control" placeholder="Search for..." />
+                                            <input type="text" className="form-control" placeholder="Search for..."/>
                                             <span className="input-group-btn p-l15">
                                                 <button className="site-button" type="button">Search</button>
                                             </span>
@@ -121,12 +127,15 @@ function Place(props) {
                                 {placeList.map((item, index) => (
                                     <div className="col-md-12 col-lg-6 col-sm-12 m-b30" key={index}>
                                         <div className="dlab-box place-bx">
-                                            <div className="dlab-media"> <Link><img src={item.image} alt="" /></Link> </div>
+                                            <div className="dlab-media"><Link><img src={item.image} alt=""/></Link>
+                                            </div>
                                             <div className="dlab-info p-tb30 p-lr10 text-center bg-gray">
                                                 <h4 className="dlab-title m-t0"><Link>{item.title}</Link></h4>
                                                 <p className="m-b10">{item.address}</p>
-                                                <Link to={'./booking'} className="site-button outline radius-xl m-lr5">View Details</Link>
-                                                <Link to={'./booking'} className="site-button outline radius-xl m-lr5">View Map</Link>
+                                                <Link to={'./booking'} className="site-button outline radius-xl m-lr5">View
+                                                    Details</Link>
+                                                <Link to={'./booking'} className="site-button outline radius-xl m-lr5">View
+                                                    Map</Link>
                                             </div>
                                         </div>
                                     </div>
@@ -136,8 +145,8 @@ function Place(props) {
                     </div>
                 </div>
             </div>
-            <Footer />
         </div>
     )
 }
+
 export default Place;

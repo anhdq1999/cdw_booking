@@ -1,34 +1,34 @@
 import React from 'react'
 import Slider from "react-slick";
 import { Link } from 'react-router-dom';
-import Header2 from './../Layout/Header2';
-import Footer from './../Layout/Footer';
+import Header2 from '../../Layout/Header2';
+import Footer from '../../Layout/Footer';
 
 
 const aboutBlog = [
     {
-        image: require('./../../images/blog/grid/pic1.jpg'),
+        image: require('../../../images/blog/grid/pic1.jpg'),
         date: 'September 10, 2017',
         comment: '5k',
         title: 'WADA to investigate fresh Russian Olympic doping claims',
 
     },
     {
-        image: require('./../../images/blog/grid/pic2.jpg'),
+        image: require('../../../images/blog/grid/pic2.jpg'),
         date: 'September 10, 2017',
         comment: '5k',
         title: 'WADA to investigate fresh Russian Olympic doping claims',
 
     },
     {
-        image: require('./../../images/blog/grid/pic3.jpg'),
+        image: require('../../../images/blog/grid/pic3.jpg'),
         date: 'September 10, 2017',
         comment: '5k',
         title: 'WADA to investigate fresh Russian Olympic doping claims',
 
     },
     {
-        image: require('./../../images/blog/grid/pic4.jpg'),
+        image: require('../../../images/blog/grid/pic4.jpg'),
         date: 'September 10, 2017',
         comment: '5k',
         title: 'WADA to investigate fresh Russian Olympic doping claims',
@@ -36,8 +36,8 @@ const aboutBlog = [
     },
 ]
 
-const bg1 = require('./../../images/background/bg1.jpg');
-const bg3 = require('./../../images/banner/bnr1.jpg');
+const bg1 = require('../../../images/background/bg1.jpg');
+const bg3 = require('../../../images/banner/bnr1.jpg');
 
 function SampleNextArrow(props) {
     const { onClick } = props;
@@ -84,7 +84,6 @@ function About(props) {
     };
     return (
         <div>
-            <Header2 />
             <div className="dlab-bnr-inr overlay-black-middle" style={{ backgroundImage: "url(" + bg3 + ")", backgroundSize: 'cover' }}>
                 <div className="container">
                     <div className="dlab-bnr-inr-entry">
@@ -113,8 +112,8 @@ function About(props) {
                             </div>
                         </div>
                         <div className="row">
-                            <div className="col-lg-6 col-md-6 col-sm-6 m-b30 col-12"><img src={require('./../../images/blog/default/thum2.jpg')} alt="" /></div>
-                            <div className="col-lg-6 col-md-6 col-sm-6 m-b30 col-12"><img src={require('./../../images/blog/default/thum3.jpg')} alt="" /></div>
+                            <div className="col-lg-6 col-md-6 col-sm-6 m-b30 col-12"><img src={require('../../../images/blog/default/thum2.jpg')} alt="" /></div>
+                            <div className="col-lg-6 col-md-6 col-sm-6 m-b30 col-12"><img src={require('../../../images/blog/default/thum3.jpg')} alt="" /></div>
                         </div>
                         <div className="row">
                             <div className="col-lg-3 col-md-6 col-12 col-sm-6 m-b30">
@@ -205,7 +204,6 @@ function About(props) {
                     </div>
                 </div>
             </div>
-            <Footer />
         </div>
     )
 

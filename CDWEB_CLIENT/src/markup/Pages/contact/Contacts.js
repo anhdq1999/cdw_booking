@@ -1,14 +1,13 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import GoogleMaps from "simple-react-google-maps"
-import Header2 from './../Layout/Header2';
-import Footer from './../Layout/Footer';
+import Header2 from '../../Layout/Header2';
+import Footer from '../../Layout/Footer';
 
-const bg3 = require('./../../images/banner/bnr1.jpg');
+const bg3 = require('../../../images/banner/bnr1.jpg');
 function Contacts(props) {
     return (
         <div>
-            <Header2 />
             <div className="dlab-bnr-inr overlay-black-middle" style={{ backgroundImage: "url(" + bg3 + ")", backgroundSize: 'cover' }}>
                 <div className="container">
                     <div className="dlab-bnr-inr-entry">
@@ -119,7 +118,6 @@ function Contacts(props) {
                     </div>
                 </div>
             </div>
-            <Footer />
         </div>
     )
 }

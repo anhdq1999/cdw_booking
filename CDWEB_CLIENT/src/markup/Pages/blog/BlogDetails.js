@@ -1,15 +1,14 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
-import Header2 from './../Layout/Header2';
-import Footer from './../Layout/Footer';
+import Header2 from '../../Layout/Header2';
+import Footer from '../../Layout/Footer';
 
-const bg3 = require('./../../images/banner/bnr1.jpg');
+const bg3 = require('../../../images/banner/bnr1.jpg');
 
 function BlogDetails(props) {
 
     return (
         <div>
-            <Header2 />
             <div className="dlab-bnr-inr overlay-black-middle"
                 style={{ backgroundImage: "url(" + bg3 + ")", backgroundSize: 'cover' }}>
                 <div className="container">
@@ -41,7 +40,7 @@ function BlogDetails(props) {
                                         Islamist extremism</Link></h4>
                                 </div>
                                 <div className="dlab-post-media dlab-img-effect zoom-slow m-t20"><Link><img
-                                    src={require('./../../images/blog/default/thum1.jpg')} alt="" /></Link></div>
+                                    src={require('../../../images/blog/default/thum1.jpg')} alt="" /></Link></div>
                                 <div className="dlab-post-text">
                                     <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.
                                         Lorem Ipsum has been the industry standard dummy
@@ -76,7 +75,7 @@ function BlogDetails(props) {
                                         typesetting.</p>
                                     <h5>Completely Responsive</h5>
                                     <img className="alignleft wow fadeIn blog-side-img" data-wow-delay="0.2s"
-                                        src={require('./../../images/blog/grid/pic4.jpg')} alt="" />
+                                         src={require('../../../images/blog/grid/pic4.jpg')} alt="" />
                                     <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.
                                         Lorem Ipsum has been the industry's standard dummy text
                                         ever since the 1500s, when an unknown printer took a galley of type and
@@ -96,7 +95,7 @@ function BlogDetails(props) {
                                         It was popularised in the 1960s with the release</p>
                                     <div className="dlab-divider bg-gray-dark"></div>
                                     <img className="alignright wow fadeIn blog-side-img" data-wow-delay="0.2s"
-                                        src={require('./../../images/blog/grid/pic1.jpg')} alt="" />
+                                         src={require('../../../images/blog/grid/pic1.jpg')} alt="" />
                                     <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.
                                         Lorem Ipsum has been the industry's standard dummy text
                                         ever since the 1500s, when an unknown printer took a galley of type and
@@ -146,7 +145,7 @@ function BlogDetails(props) {
                                                 <div className="comment-body">
                                                     <div className="comment-author vcard"><img
                                                         className="avatar photo"
-                                                        src={require('./../../images/testimonials/pic1.jpg')}
+                                                        src={require('../../../images/testimonials/pic1.jpg')}
                                                         alt="" /> <cite className="fn">Stacy poe</cite> <span
                                                             className="says">says:</span></div>
                                                     <div className="comment-meta"><Link>October 6, 2015 at 7:15
@@ -163,7 +162,7 @@ function BlogDetails(props) {
                                                         <div className="comment-body">
                                                             <div className="comment-author vcard"><img
                                                                 className="avatar photo"
-                                                                src={require('./../../images/testimonials/pic2.jpg')}
+                                                                src={require('../../../images/testimonials/pic2.jpg')}
                                                                 alt="" /> <cite className="fn">Stacy poe</cite> <span
                                                                     className="says">says:</span></div>
                                                             <div className="comment-meta"><Link>October 6, 2015 at
@@ -182,7 +181,7 @@ function BlogDetails(props) {
                                                                 <div className="comment-body">
                                                                     <div className="comment-author vcard"><img
                                                                         className="avatar photo"
-                                                                        src={require('./../../images/testimonials/pic3.jpg')}
+                                                                        src={require('../../../images/testimonials/pic3.jpg')}
                                                                         alt="" /> <cite className="fn">Stacy
                                                                             poe</cite> <span
                                                                                 className="says">says:</span></div>
@@ -208,7 +207,7 @@ function BlogDetails(props) {
                                                 <div className="comment-body">
                                                     <div className="comment-author vcard"><img
                                                         className="avatar photo"
-                                                        src={require('./../../images/testimonials/pic1.jpg')}
+                                                        src={require('../../../images/testimonials/pic1.jpg')}
                                                         alt="" /> <cite className="fn">Stacy poe</cite> <span
                                                             className="says">says:</span></div>
                                                     <div className="comment-meta"><Link>October 6, 2015 at 7:15
@@ -226,7 +225,7 @@ function BlogDetails(props) {
                                                 <div className="comment-body">
                                                     <div className="comment-author vcard"><img
                                                         className="avatar photo"
-                                                        src={require('./../../images/testimonials/pic2.jpg')}
+                                                        src={require('../../../images/testimonials/pic2.jpg')}
                                                         alt="" /> <cite className="fn">Stacy poe</cite> <span
                                                             className="says">says:</span></div>
                                                     <div className="comment-meta"><Link>October 6, 2015 at 7:15
@@ -244,7 +243,7 @@ function BlogDetails(props) {
                                                 <div className="comment-body">
                                                     <div className="comment-author vcard"><img
                                                         className="avatar photo"
-                                                        src={require('./../../images/testimonials/pic3.jpg')}
+                                                        src={require('../../../images/testimonials/pic3.jpg')}
                                                         alt="" /> <cite className="fn">Stacy poe</cite> <span
                                                             className="says">says:</span></div>
                                                     <div className="comment-meta"><Link>October 6, 2015 at 7:15
@@ -315,7 +314,7 @@ function BlogDetails(props) {
                                     <div className="widget-post-bx">
                                         <div className="widget-post clearfix">
                                             <div className="dlab-post-media"><img
-                                                src={require('./../../images/blog/recent-blog/pic1.jpg')}
+                                                src={require('../../../images/blog/recent-blog/pic1.jpg')}
                                                 width="200" height="143" alt="" /></div>
                                             <div className="dlab-post-info">
                                                 <div className="dlab-post-header">
@@ -333,7 +332,7 @@ function BlogDetails(props) {
                                         </div>
                                         <div className="widget-post clearfix">
                                             <div className="dlab-post-media"><img
-                                                src={require('./../../images/blog/recent-blog/pic2.jpg')}
+                                                src={require('../../../images/blog/recent-blog/pic2.jpg')}
                                                 width="200" height="160" alt="" /></div>
                                             <div className="dlab-post-info">
                                                 <div className="dlab-post-header">
@@ -350,7 +349,7 @@ function BlogDetails(props) {
                                         </div>
                                         <div className="widget-post clearfix">
                                             <div className="dlab-post-media"><img
-                                                src={require('./../../images/blog/recent-blog/pic3.jpg')}
+                                                src={require('../../../images/blog/recent-blog/pic3.jpg')}
                                                 width="200" height="160" alt="" /></div>
                                             <div className="dlab-post-info">
                                                 <div className="dlab-post-header">
@@ -374,37 +373,37 @@ function BlogDetails(props) {
                                         <li>
                                             <div className="dlab-post-thum"><Link
                                                 className="dlab-img-overlay1 dlab-img-effect zoom-slow"><img
-                                                    src={require('./../../images/gallery/pic2.jpg')} alt="" /></Link>
+                                                src={require('../../../images/gallery/pic2.jpg')} alt="" /></Link>
                                             </div>
                                         </li>
                                         <li>
                                             <div className="dlab-post-thum"><Link
                                                 className="dlab-img-overlay1 dlab-img-effect zoom-slow"><img
-                                                    src={require('./../../images/gallery/pic1.jpg')} alt="" /></Link>
+                                                src={require('../../../images/gallery/pic1.jpg')} alt="" /></Link>
                                             </div>
                                         </li>
                                         <li>
                                             <div className="dlab-post-thum"><Link
                                                 className="dlab-img-overlay1 dlab-img-effect zoom-slow"><img
-                                                    src={require('./../../images/gallery/pic5.jpg')} alt="" /></Link>
+                                                src={require('../../../images/gallery/pic5.jpg')} alt="" /></Link>
                                             </div>
                                         </li>
                                         <li>
                                             <div className="dlab-post-thum"><Link
                                                 className="dlab-img-overlay1 dlab-img-effect zoom-slow"><img
-                                                    src={require('./../../images/gallery/pic7.jpg')} alt="" /></Link>
+                                                src={require('../../../images/gallery/pic7.jpg')} alt="" /></Link>
                                             </div>
                                         </li>
                                         <li>
                                             <div className="dlab-post-thum"><Link
                                                 className="dlab-img-overlay1 dlab-img-effect zoom-slow"><img
-                                                    src={require('./../../images/gallery/pic8.jpg')} alt="" /></Link>
+                                                src={require('../../../images/gallery/pic8.jpg')} alt="" /></Link>
                                             </div>
                                         </li>
                                         <li>
                                             <div className="dlab-post-thum"><Link
                                                 className="dlab-img-overlay1 dlab-img-effect zoom-slow"><img
-                                                    src={require('./../../images/gallery/pic9.jpg')} alt="" /></Link>
+                                                src={require('../../../images/gallery/pic9.jpg')} alt="" /></Link>
                                             </div>
                                         </li>
                                     </ul>
@@ -442,7 +441,6 @@ function BlogDetails(props) {
                     </div>
                 </div>
             </div>
-            <Footer />
         </div>
     )
 }
