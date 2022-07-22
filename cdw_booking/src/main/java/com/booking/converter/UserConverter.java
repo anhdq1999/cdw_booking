@@ -5,6 +5,7 @@ import com.booking.entity.UserEntity;
 import com.booking.payload.request.SignupRequest;
 import com.booking.payload.request.UserRequest;
 import com.booking.payload.response.UserResponse;
+import com.booking.payload.response.order.OrderUserResponse;
 import com.booking.payload.response.roomRespsonse.RoomUserResponse;
 
 public class UserConverter {
@@ -52,6 +53,12 @@ public class UserConverter {
         return RoomUserResponse.builder()
                 .id(entity.getId())
                 .fullName(entity.getFullName())
+                .build();
+    }
+    public static OrderUserResponse toOrderUserResponse(UserEntity entity){
+        return OrderUserResponse.builder()
+                .name(entity.getFullName())
+                .email(entity.getEmail())
                 .build();
     }
 
