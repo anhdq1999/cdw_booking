@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import Slick3 from './../Slick3';
+import Slick3 from 'markup/Pages/component-part/Slick3';
 
 
 

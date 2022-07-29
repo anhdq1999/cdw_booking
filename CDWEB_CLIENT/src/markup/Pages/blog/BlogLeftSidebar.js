@@ -1,7 +1,5 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
-import Header2 from '../../Layout/Header2';
-import Footer from '../../Layout/Footer';
 
 const leftImg = [
     {

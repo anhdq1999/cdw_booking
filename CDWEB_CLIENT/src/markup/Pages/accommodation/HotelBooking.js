@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import Slider from "react-slick";
 import { Link } from 'react-router-dom';
-import Header2 from '../../Layout/Header2';
-import Footer from '../../Layout/Footer';
 import BookNowModal from '../book-now-modal/BookNowModal';
 import { roomActions } from 'actions';
 import { useDispatch, useSelector } from 'react-redux';
@@ -129,9 +127,9 @@ function HotelBooking(props) {
                                             </div>
                                         </form>
 
-                                        <div className="m-t30">
-                                            <img src={require('../../../images/add/add-bnr.jpg')} className="d-md-none d-xl-block d-lg-block" alt="" />
-                                        </div>
+                                        {/*<div className="m-t30">*/}
+                                        {/*    <img src={require('../../../images/add/add-bnr.jpg')} className="d-md-none d-xl-block d-lg-block" alt="" />*/}
+                                        {/*</div>*/}
                                     </div>
                                 </div>
                             </div>

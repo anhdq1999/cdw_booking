@@ -210,6 +210,10 @@
     font-size: 18px;
     font-weight: 600;
 	margin-bottom: 0px;
+	display: -webkit-box;
+	-webkit-line-clamp: 1;
+	-webkit-box-orient: vertical;
+	overflow: hidden;
 }
 .packages .location {
     color: #888;

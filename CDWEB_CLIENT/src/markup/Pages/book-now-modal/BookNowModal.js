@@ -22,7 +22,7 @@ export default function BookNowModal(props) {
                 toggle={() => toggle()}
             >
                 <ModalHeader>
-                    <h5 className="modal-title" id="exampleModalLabel">Get the Best Holiday Planned by Experts!</h5>
+                 Get the Best Holiday Planned by Experts!
                 </ModalHeader>
                 <ModalBody>
                     <h5 className="text-center">Enter your contact details and we will plan the best holiday suiting all your requirements.</h5>

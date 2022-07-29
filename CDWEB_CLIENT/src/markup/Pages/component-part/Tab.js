@@ -52,14 +52,14 @@ function Popupss(props){
                         <div className="web design card-container col-lg-6 col-md-6 col-sm-6 col-6">
                             <div className="dlab-box dlab-gallery-box">
                                 <div className="dlab-media  dlab-img-effect">
-                                   <Link to={require('./../../images/gallery/pic1.jpg')}> <img src={require('./../../images/gallery/pic1.jpg')} alt="" /></Link>
+                                   <Link to={require('../../../images/gallery/pic1.jpg')}> <img src={require('../../../images/gallery/pic1.jpg')} alt="" /></Link>
                                 </div>
                             </div>
                         </div>
                         <div className="advertising branding photography card-container col-lg-6 col-md-6 col-sm-6 col-6">
                             <div className="dlab-box  dlab-gallery-box">
                                 <div className="dlab-media  dlab-img-effect dlab-img-effect ">
-                                    <Link to={require('./../../images/gallery/pic2.jpg')}>  <img src={require('./../../images/gallery/pic2.jpg')} alt="" /> </Link>
+                                    <Link to={require('../../../images/gallery/pic2.jpg')}>  <img src={require('../../../images/gallery/pic2.jpg')} alt="" /> </Link>
                                     
                                 </div>
                             </div>
@@ -67,7 +67,7 @@ function Popupss(props){
                         <div className="branding design photography card-container col-lg-6 col-md-6 col-sm-6 col-6">
                             <div className="dlab-box dlab-gallery-box">
                                 <div className="dlab-media  dlab-img-effect">
-                                    <Link to={require('./../../images/gallery/pic3.jpg')}> <img src={require('./../../images/gallery/pic3.jpg')} alt="" /> </Link>
+                                    <Link to={require('../../../images/gallery/pic3.jpg')}> <img src={require('../../../images/gallery/pic3.jpg')} alt="" /> </Link>
                                     
                                 </div>
                             </div>
@@ -75,7 +75,7 @@ function Popupss(props){
                         <div className="web design card-container col-lg-6 col-md-6 col-sm-6 col-6">
                             <div className="dlab-box dlab-gallery-box">
                                 <div className="dlab-media  dlab-img-effect">
-                                    <Link to={require('./../../images/gallery/pic4.jpg')}> <img src={require('./../../images/gallery/pic4.jpg')} alt="" /> </Link>
+                                    <Link to={require('../../../images/gallery/pic4.jpg')}> <img src={require('../../../images/gallery/pic4.jpg')} alt="" /> </Link>
                                     
                                 </div>
                             </div>
@@ -83,7 +83,7 @@ function Popupss(props){
                         <div className="web branding card-container col-lg-6 col-md-6 col-sm-6 col-6">
                             <div className="dlab-box dlab-gallery-box">
                                 <div className="dlab-media  dlab-img-effect">
-                                    <Link to={require('./../../images/gallery/pic5.jpg')}> <img src={require('./../../images/gallery/pic5.jpg')} alt="" /> </Link>
+                                    <Link to={require('../../../images/gallery/pic5.jpg')}> <img src={require('../../../images/gallery/pic5.jpg')} alt="" /> </Link>
                                     
                                 </div>
                             </div>
@@ -95,7 +95,7 @@ function Popupss(props){
                         <div className="web design card-container col-lg-6 col-md-6 col-sm-6 col-6">
                             <div className="dlab-box dlab-gallery-box">
                                 <div className="dlab-media  dlab-img-effect">
-                                    <Link> <img src={require('./../../images/gallery/pic2.jpg')} alt="" /> </Link>
+                                    <Link> <img src={require('../../../images/gallery/pic2.jpg')} alt="" /> </Link>
                                     
                                 </div>
                             </div>
@@ -103,7 +103,7 @@ function Popupss(props){
                         <div className="advertising branding photography card-container col-lg-6 col-md-6 col-sm-6 col-6">
                             <div className="dlab-box dlab-gallery-box">
                                 <div className="dlab-media  dlab-img-effect ">
-                                    <Link> <img src={require('./../../images/gallery/pic3.jpg')} alt="" /> </Link>
+                                    <Link> <img src={require('../../../images/gallery/pic3.jpg')} alt="" /> </Link>
                                     
                                 </div>
                             </div>
@@ -115,7 +115,7 @@ function Popupss(props){
                         <div className="web photography card-container col-lg-6 col-md-6 col-sm-6 col-6">
                             <div className="dlab-box dlab-gallery-box">
                                 <div className="dlab-media  dlab-img-effect">
-                                    <Link> <img src={require('./../../images/gallery/pic9.jpg')} alt="" /> </Link>
+                                    <Link> <img src={require('../../../images/gallery/pic9.jpg')} alt="" /> </Link>
                                     
                                 </div>
                             </div>
@@ -123,7 +123,7 @@ function Popupss(props){
                         <div className="advertising branding card-container col-lg-6 col-md-6 col-sm-6 col-6">
                             <div className="dlab-box dlab-gallery-box">
                                 <div className="dlab-media  dlab-img-effect">
-                                    <Link> <img src={require('./../../images/gallery/pic1.jpg')} alt="" /> </Link>
+                                    <Link> <img src={require('../../../images/gallery/pic1.jpg')} alt="" /> </Link>
                                     
                                 </div>
                             </div>
@@ -135,7 +135,7 @@ function Popupss(props){
                         <div className="advertising design photography card-container col-lg-6 col-md-6 col-sm-6 col-6">
                             <div className="dlab-box dlab-gallery-box">
                                 <div className="dlab-media  dlab-img-effect ">
-                                    <Link> <img src={require('./../../images/gallery/pic6.jpg')} alt="" /> </Link>
+                                    <Link> <img src={require('../../../images/gallery/pic6.jpg')} alt="" /> </Link>
                                     
                                 </div>
                             </div>
@@ -143,7 +143,7 @@ function Popupss(props){
                         <div className="web branding card-container col-lg-6 col-md-6 col-sm-6 col-6">
                             <div className="dlab-box dlab-gallery-box">
                                 <div className="dlab-media  dlab-img-effect">
-                                    <Link> <img src={require('./../../images/gallery/pic7.jpg')} alt="" /> </Link>
+                                    <Link> <img src={require('../../../images/gallery/pic7.jpg')} alt="" /> </Link>
                                     
                                 </div>
                             </div>
@@ -151,7 +151,7 @@ function Popupss(props){
                         <div className="advertising design photography card-container col-lg-6 col-md-6 col-sm-6 col-6">
                             <div className="dlab-box dlab-gallery-box">
                                 <div className="dlab-media  dlab-img-effect dlab-img-effect ">
-                                    <Link> <img src={require('./../../images/gallery/pic8.jpg')} alt="" /> </Link>
+                                    <Link> <img src={require('../../../images/gallery/pic8.jpg')} alt="" /> </Link>
                                     
                                 </div>
                             </div>
@@ -163,7 +163,7 @@ function Popupss(props){
                         <div className="branding design photography card-container col-lg-6 col-md-6 col-sm-6 col-6">
                             <div className="dlab-box dlab-gallery-box">
                                 <div className="dlab-media  dlab-img-effect">
-                                    <Link> <img src={require('./../../images/gallery/pic3.jpg')} alt="" /> </Link>
+                                    <Link> <img src={require('../../../images/gallery/pic3.jpg')} alt="" /> </Link>
                                     
                                 </div>
                             </div>
@@ -171,7 +171,7 @@ function Popupss(props){
                         <div className="web design card-container col-lg-6 col-md-6 col-sm-6 col-6">
                             <div className="dlab-box dlab-gallery-box">
                                 <div className="dlab-media  dlab-img-effect">
-                                    <Link> <img src={require('./../../images/gallery/pic4.jpg')} alt="" /> </Link>
+                                    <Link> <img src={require('../../../images/gallery/pic4.jpg')} alt="" /> </Link>
                                     
                                 </div>
                             </div>
@@ -179,7 +179,7 @@ function Popupss(props){
                         <div className="web branding card-container col-lg-6 col-md-6 col-sm-6 col-6">
                             <div className="dlab-box dlab-gallery-box">
                                 <div className="dlab-media  dlab-img-effect">
-                                    <Link> <img src={require('./../../images/gallery/pic5.jpg')} alt="" /> </Link>
+                                    <Link> <img src={require('../../../images/gallery/pic5.jpg')} alt="" /> </Link>
                                     
                                 </div>
                             </div>

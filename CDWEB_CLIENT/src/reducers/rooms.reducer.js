@@ -117,6 +117,7 @@ export function roomReducer(state = initialState, action) {
             return{
                 ...state
             }
+
         default:
             return state
     }

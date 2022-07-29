@@ -24,8 +24,16 @@ export const userActions = {
     delete: _delete,
     restore,
     searchByEmail,
-    remove
+    remove,
+    forgot,
+    resetPassword
 };
+function resetPassword(data){
+
+}
+function forgot(email){
+
+}
 function searchByEmail(type, key) {
     return dispatch => {
         switch (type) {

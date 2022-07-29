@@ -1,6 +1,6 @@
 
 import React from 'react';
-import Popupss from './Tab';
+import Popupss from './component-part/Tab';
 import { Link } from 'react-router-dom';
 import Header2 from './../Layout/Header2';
 import Footer from './../Layout/Footer';

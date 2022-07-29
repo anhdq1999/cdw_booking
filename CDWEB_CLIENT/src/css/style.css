@@ -3188,7 +3188,7 @@ blockquote:before {
 
 .site-header {
     position: relative;
-    z-index : 99999;
+    z-index : 1050;
 }
 
 .site-header ul,

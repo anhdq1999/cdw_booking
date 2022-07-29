@@ -3,7 +3,7 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import Slick3 from './../Slick3'
+import Slick3 from 'markup/Pages/component-part/Slick3'
 import * as yup from 'yup';
 import { yupResolver } from "@hookform/resolvers/yup";
 

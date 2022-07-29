@@ -9,7 +9,7 @@ import './plugins/fontawesome/css/font-awesome.min.css';
 import './plugins/slick/slick-theme.min.css';
 import './plugins/slick/slick.min.css';
 
-import {Markup} from "./markup/Markup";
+import Routes from "./route/routes/Routes";
 
 
 function App() {
@@ -18,7 +18,7 @@ function App() {
     return (
 
         <div className="App">
-            <Markup/>
+            <Routes />
         </div>
     )
 }

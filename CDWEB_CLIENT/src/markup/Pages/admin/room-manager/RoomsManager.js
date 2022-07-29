@@ -1,5 +1,4 @@
 import { alertActions, roomActions, userActions } from 'actions';
-import Header from 'markup/Layout/Header';
 import React, { useEffect, useState } from 'react';
 import DataTable from 'react-data-table-component';
 import { useDispatch, useSelector } from 'react-redux';
@@ -92,7 +91,6 @@ function RoomsManager(props) {
   }
   return (
     <div>
-      <Header />
       <div className="mt-5 mx-5">
 
         <Link to='/admin/rooms-manager/garbage'>Thùng rác của tôi</Link>

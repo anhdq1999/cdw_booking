@@ -91,7 +91,6 @@ export default function RoomModal(props) {
 
     function setRoom(data) {
         setValue("name", data.name)
-        setValue("user", data.user.fullName)
         setValue("categoryId", data.category.id)
         setValue("description", data.description)
         setValue("shortDescription", data.shortDescription)
