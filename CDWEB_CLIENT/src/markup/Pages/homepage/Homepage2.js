@@ -28,12 +28,7 @@ const content = [
     }
 ];
 
-
-
-
 const bg1 = require('../../../images/background/bg1.jpg');
-
-
 
 function Homepage2(props) {
 
@@ -76,67 +71,67 @@ function Homepage2(props) {
                     </div>
                 ))}
             </Slider>
-            <div className="section-full book-form overlay-black-dark bg-img-fix p-t30 p-b10 mid" style={{ backgroundImage: "url(" + bg1 + ")" }}>
-                <div className="container">
-                    <form className="row">
-                        <div className="col-md-4 col-sm-6 col-6 col-lg-2 form-group">
-                            <label>Country</label>
-                            <select className="form-control" readonly>
-                                <option>Việt Nam</option>
-                            </select>
-                        </div>
-                        <div className="col-md-4 col-sm-6 col-6 col-lg-2 form-group">
-                            <label>Province</label>
-                            <select className="form-control" onChange={handleProvinceChange}>
-                                {provinces.length > 0 &&
-                                    <option checked>Chọn tỉnh</option>
-                                }
-                                {(provinces.length > 0 &&
-                                        provinces.map((item, index) => (
-                                            <option key={item.id} value={item.id}>{item.nameWithType}</option>
-                                        ))) ||
-                                    <option >Đang load dữ liệu</option>
-                                }
-                            </select>
-                        </div>
-                        <div className="col-md-4 col-sm-6 col-6 col-lg-2 form-group">
-                            <label>District</label>
-                            <select className="form-control" onChange={handleDistrictChange}>
-                                {districts.length > 0 &&
-                                    <option checked> Chọn Quận/huyện</option>
-                                }
-                                {(districts.length > 0 &&
-                                        districts.map((item, index) => (
-                                            <option key={item.id} value={item.id}>{item.nameWithType}</option>
-                                        ))) ||
-                                    <option>Vui lòng chọn tỉnh</option>}
-                            </select>
-                        </div>
-                        <div className="col-md-4 col-sm-6 col-6 col-lg-2 form-group">
-                            <label>Ward</label>
-                            <select className="form-control">
-                                {wards.length > 0 &&
-                                    <option checked> Chọn Phường/Xã</option>
-                                }
-                                {(wards.length > 0 &&
-                                        wards.map((item, index) => (
-                                            <option value={item.id}>{item.nameWithType}</option>
-                                        ))) ||
-                                    <option>Vui lòng chọn huyện</option>
-                                }
-                            </select>
-                        </div>
-                        <div className="col-md-4 col-sm-6 col-6 col-lg-2 form-group">
-                            <label>Date</label>
-                            <input type='text' className="form-control" id='datetimepicker4' />
-                        </div>
-                        <div className="col-md-4 col-sm-6 col-6 col-lg-2 form-group">
-                            <label>Find</label>
-                            <Link to={'/accommodation'} className="site-button btn-block">SEARCH</Link>
-                        </div>
-                    </form>
-                </div>
-            </div>
+            {/*<div className="section-full book-form overlay-black-dark bg-img-fix p-t30 p-b10 mid" style={{ backgroundImage: "url(" + bg1 + ")" }}>*/}
+            {/*    <div className="container">*/}
+            {/*        <form className="row">*/}
+            {/*            <div className="col-md-4 col-sm-6 col-6 col-lg-2 form-group">*/}
+            {/*                <label>Country</label>*/}
+            {/*                <select className="form-control" readonly>*/}
+            {/*                    <option>Việt Nam</option>*/}
+            {/*                </select>*/}
+            {/*            </div>*/}
+            {/*            <div className="col-md-4 col-sm-6 col-6 col-lg-2 form-group">*/}
+            {/*                <label>Province</label>*/}
+            {/*                <select className="form-control" onChange={handleProvinceChange}>*/}
+            {/*                    {provinces.length > 0 &&*/}
+            {/*                        <option checked>Chọn tỉnh</option>*/}
+            {/*                    }*/}
+            {/*                    {(provinces.length > 0 &&*/}
+            {/*                            provinces.map((item, index) => (*/}
+            {/*                                <option key={item.id} value={item.id}>{item.nameWithType}</option>*/}
+            {/*                            ))) ||*/}
+            {/*                        <option >Đang load dữ liệu</option>*/}
+            {/*                    }*/}
+            {/*                </select>*/}
+            {/*            </div>*/}
+            {/*            <div className="col-md-4 col-sm-6 col-6 col-lg-2 form-group">*/}
+            {/*                <label>District</label>*/}
+            {/*                <select className="form-control" onChange={handleDistrictChange}>*/}
+            {/*                    {districts.length > 0 &&*/}
+            {/*                        <option checked> Chọn Quận/huyện</option>*/}
+            {/*                    }*/}
+            {/*                    {(districts.length > 0 &&*/}
+            {/*                            districts.map((item, index) => (*/}
+            {/*                                <option key={item.id} value={item.id}>{item.nameWithType}</option>*/}
+            {/*                            ))) ||*/}
+            {/*                        <option>Vui lòng chọn tỉnh</option>}*/}
+            {/*                </select>*/}
+            {/*            </div>*/}
+            {/*            <div className="col-md-4 col-sm-6 col-6 col-lg-2 form-group">*/}
+            {/*                <label>Ward</label>*/}
+            {/*                <select className="form-control">*/}
+            {/*                    {wards.length > 0 &&*/}
+            {/*                        <option checked> Chọn Phường/Xã</option>*/}
+            {/*                    }*/}
+            {/*                    {(wards.length > 0 &&*/}
+            {/*                            wards.map((item, index) => (*/}
+            {/*                                <option value={item.id}>{item.nameWithType}</option>*/}
+            {/*                            ))) ||*/}
+            {/*                        <option>Vui lòng chọn huyện</option>*/}
+            {/*                    }*/}
+            {/*                </select>*/}
+            {/*            </div>*/}
+            {/*            <div className="col-md-4 col-sm-6 col-6 col-lg-2 form-group">*/}
+            {/*                <label>Date</label>*/}
+            {/*                <input type='text' className="form-control" id='datetimepicker4' />*/}
+            {/*            </div>*/}
+            {/*            <div className="col-md-4 col-sm-6 col-6 col-lg-2 form-group">*/}
+            {/*                <label>Find</label>*/}
+            {/*                <Link to={'/accommodation'} className="site-button btn-block">SEARCH</Link>*/}
+            {/*            </div>*/}
+            {/*        </form>*/}
+            {/*    </div>*/}
+            {/*</div>*/}
 
             <div className="content-block" id="page_content">
                 {/*<Tab2 />*/}

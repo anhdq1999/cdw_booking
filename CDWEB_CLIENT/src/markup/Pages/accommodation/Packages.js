@@ -1,4 +1,4 @@
-import {roomActions} from 'actions';
+import {addressActions, roomActions} from 'actions';
 import {Image, Transformation} from 'cloudinary-react';
 import React, {useEffect, useMemo, useState} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
@@ -6,39 +6,81 @@ import {Link} from 'react-router-dom';
 import {roomsService} from 'services';
 import Paginator from "react-hooks-paginator";
 import {useForm} from "react-hook-form";
+import './toggle.css'
 
 const bg3 = require('../../../images/banner/bnr1.jpg');
+
 
 function Packages(props) {
     const dispatch = useDispatch();
     const pageLimit = useSelector(state => state.roomReducer.pageLimit);
     const rooms = useSelector(state => state.roomReducer.items)
     const [offset, setOffset] = useState(0);
-    const [limit,setLimit]=useState(pageLimit)
+    const [limit, setLimit] = useState(pageLimit)
+    const [data,setData] = useState([])
     const [currentPage, setCurrentPage] = useState(1);
     const [currentData, setCurrentData] = useState([]);
-
     const {register, handleSubmit} = useForm();
 
     const handleSubmitPageLimit = (data) => {
         const maxPageItem = parseInt(data.limit, 10);
-        //destroy pagination
-        setLimit(null);
-        dispatch(roomActions.setPageLimit(maxPageItem))
+        if (maxPageItem > 0) {
+            if (maxPageItem !== pageLimit) {
+                //destroy pagination
+                setLimit(null);
+                //set new page limit by redux
+                dispatch(roomActions.setPageLimit(maxPageItem))
+            }
+        } else {
+            alert("Page limit must to be bigger than 0")
+        }
     }
-    useEffect(()=>{
+
+
+    useEffect(() => {
         //re create pagination
         setLimit(pageLimit)
-    },[pageLimit])
+    }, [pageLimit])
     useEffect(() => {
+        dispatch(addressActions.getAllProvince())
         dispatch(roomActions.getAll())
     }, [dispatch])
+
+    useEffect(()=>{
+        setData(rooms)
+    },[rooms])
+
     useEffect(() => {
-        setCurrentData(rooms.slice(offset, offset + pageLimit));
-    }, [offset, rooms, pageLimit]);
+        setCurrentData(data.slice(offset, offset + pageLimit));
+    }, [offset, pageLimit,data]);
 
 
-    return (<div>
+    const provinces = useSelector(state => state.addressReducer.provinces)
+    const districts = useSelector(state => state.addressReducer.districts)
+    const wards = useSelector(state => state.addressReducer.wards)
+    const handleProvinceChange = (e) => {
+        const {value} = e.target;
+        dispatch(addressActions.getAllDistrict(value))
+    }
+    const handleDistrictChange = (e) => {
+        const {value} = e.target;
+        dispatch(addressActions.getAllWard(value))
+    }
+
+    const [nameSearch, setNameSearch] = useState("");
+
+    useEffect(() => {
+        let roomsSearch = rooms.filter(room => room.name.toLowerCase().includes(nameSearch.toLowerCase()))
+        setData(roomsSearch);
+    }, [nameSearch])
+
+    const handleChangeSearch = (e) => {
+        const value = e.target.value;
+        setNameSearch(value)
+    }
+
+    return (
+        <div>
             <div className="dlab-bnr-inr overlay-black-middle"
                  style={{backgroundImage: "url(" + bg3 + ")", backgroundSize: 'cover'}}>
                 <div className="container">
@@ -47,22 +89,103 @@ function Packages(props) {
                         <div className="breadcrumb-row">
                             <ul className="list-inline">
                                 <li><Link>Home</Link></li>
-                                <li>Packages</li>
+                                <li>Accommodation</li>
                             </ul>
                         </div>
                     </div>
                 </div>
             </div>
+            <div className="section-full book-form overlay-black-dark bg-img-fix p-t30 p-b10 mid"
+                 style={{backgroundImage: "url(" + bg3 + ")"}}>
+                <div className="container">
+                    <form className="row">
+                        <div className="col-md-4 col-sm-6 col-6 col-lg-2 form-group">
+                            <label>Country</label>
+                            <select className="form-control" readonly>
+                                <option>Việt Nam</option>
+                            </select>
+                        </div>
+                        <div className="col-md-4 col-sm-6 col-6 col-lg-2 form-group">
+                            <label>Province</label>
+                            <select className="form-control" onChange={handleProvinceChange}>
+                                {provinces.length > 0 &&
+                                    <option checked>Chọn tỉnh</option>
+                                }
+                                {(provinces.length > 0 &&
+                                        provinces.map((item, index) => (
+                                            <option key={item.id} value={item.id}>{item.nameWithType}</option>
+                                        ))) ||
+                                    <option>Đang load dữ liệu</option>
+                                }
+                            </select>
+                        </div>
+                        <div className="col-md-4 col-sm-6 col-6 col-lg-2 form-group">
+                            <label>District</label>
+                            <select className="form-control" onChange={handleDistrictChange}>
+                                {districts.length > 0 &&
+                                    <option checked> Chọn Quận/huyện</option>
+                                }
+                                {(districts.length > 0 &&
+                                        districts.map((item, index) => (
+                                            <option key={item.id} value={item.id}>{item.nameWithType}</option>
+                                        ))) ||
+                                    <option>Vui lòng chọn tỉnh</option>}
+                            </select>
+                        </div>
+                        <div className="col-md-4 col-sm-6 col-6 col-lg-2 form-group">
+                            <label>Ward</label>
+                            <select className="form-control">
+                                {wards.length > 0 &&
+                                    <option checked> Chọn Phường/Xã</option>
+                                }
+                                {(wards.length > 0 &&
+                                        wards.map((item, index) => (
+                                            <option value={item.id}>{item.nameWithType}</option>
+                                        ))) ||
+                                    <option>Vui lòng chọn huyện</option>
+                                }
+                            </select>
+                        </div>
+                        <div className="col-md-4 col-sm-6 col-6 col-lg-2 form-group">
+                            <label>Date</label>
+                            <input type='text' className="form-control" id='datetimepicker4'/>
+                        </div>
+                        <div className="col-md-4 col-sm-6 col-6 col-lg-2 form-group">
+                            <label>Find</label>
+                            <Link to={'/accommodation'} className="site-button btn-block">SEARCH</Link>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
             <div className="section-full bg-white content-inner dlab-about-1 promotions">
                 <div className="container">
-                    <div className="text-center mb-5">
-                        <form onSubmit={handleSubmit(handleSubmitPageLimit)}>
-                            <label className="mr-1">Max Item On Page: </label>
-                            <input type="number" {...register('limit')}/>
-                            <button type="submit"> Go</button>
-                        </form>
-                    </div>
+                    <div className="row">
+                        <div className="col-3 mb-1">
+                            <div className="form-group">
+                                <label>Search By Name:</label>
+                                <input className="form-control"
+                                       onChange={handleChangeSearch}
+                                />
+                            </div>
+                        </div>
+                        <div className="col-3 mb-1">
+                            <div className="form-group">
+                                <label>Min Price:</label>
+                                <input className="form-control"
 
+                                />
+                            </div>
+                        </div>
+                        <div className="col-3 mb-1">
+                            <div className="form-group">
+                                <label>Max Price:</label>
+                                <input className="form-control"
+                                       defaultValue="0"
+                                />
+                            </div>
+                        </div>
+                    </div>
                     <div className="row packages">
 
                         {currentData && currentData.map((item, index) => (
@@ -90,7 +213,8 @@ function Packages(props) {
                                             <div className="clearfix">
                                                     <span
                                                         className="package-price pull-left text-primary">{roomsService.formatPrice(item.price)}</span>
-                                                <Link to={`/hotelbooking/${item.id}`} className="site-button pull-right w-100">View
+                                                <Link to={`/hotelbooking/${item.id}`}
+                                                      className="site-button pull-right w-100">View
                                                     details</Link>
                                             </div>
                                         </div>
@@ -98,9 +222,9 @@ function Packages(props) {
                                 </div>
                             </div>))}
                     </div>
-                    {limit&&
+                    {limit &&
                         <Paginator
-                            totalRecords={rooms.length}
+                            totalRecords={data.length}
                             pageLimit={limit}
                             pageNeighbours={2}
                             setOffset={setOffset}
@@ -108,6 +232,17 @@ function Packages(props) {
                             setCurrentPage={setCurrentPage}
                         />
                     }
+                    <div className="text-center">
+                        <form onSubmit={handleSubmit(handleSubmitPageLimit)}>
+                            <label className="mr-1">Max Item On Page: </label>
+                            <input className="max-w50 mr-2"
+                                   type="number"
+                                   defaultValue={pageLimit}
+                                   {...register("limit")}
+                            />
+                            <button className="btn-dark"> Ok</button>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>

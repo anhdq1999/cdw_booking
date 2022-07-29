@@ -100,7 +100,7 @@ function Header2(props) {
                         <div className="extra-nav">
                             <div className="extra-cell">
                                 {/* <button id="quik-search-btn" type="button" className="site-button outline black"><i className="fa fa-search"></i></button> */}
-                                <Link to={"/hotelbooking"} className="site-button outline m-l5">Book Now</Link>
+                                <Link to={"/accommodation"} className="site-button outline m-l5">Book Now</Link>
                             </div>
                         </div>
 
