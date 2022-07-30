@@ -12,4 +12,7 @@ public interface IOrderService {
 
     OrderResponse getOrderById(Long id);
 
+    OrderResponse updateById(Long id, OrderRequest request);
+
+
 }

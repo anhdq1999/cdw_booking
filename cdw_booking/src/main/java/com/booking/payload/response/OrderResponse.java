@@ -1,18 +1,16 @@
 package com.booking.payload.response;
 
-import com.booking.entity.RoomEntity;
-import com.booking.entity.UserEntity;
 import com.booking.payload.response.order.OrderRoomResponse;
 import com.booking.payload.response.order.OrderUserResponse;
 import lombok.Builder;
 import lombok.Data;
 
-import javax.persistence.*;
 import java.util.Date;
-import java.util.List;
+
 @Data
 @Builder
 public class OrderResponse {
+    private Long id;
 
     private OrderRoomResponse room;
 

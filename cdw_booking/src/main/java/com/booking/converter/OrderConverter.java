@@ -34,6 +34,7 @@ public class OrderConverter {
 
     public static OrderResponse toResponse(OrderEntity entity) {
         return OrderResponse.builder()
+                .id(entity.getId())
                 .room(RoomConverter.toOrderRoomResponse(entity.getRoomEntity()))
                 .user(UserConverter.toOrderUserResponse(entity.getUserEntity()))
                 .status(entity.getStatus())
