@@ -2,10 +2,14 @@ package com.booking.services.impl;
 
 import com.booking.converter.OrderConverter;
 import com.booking.entity.OrderEntity;
+import com.booking.entity.UserEntity;
 import com.booking.payload.request.OrderRequest;
 import com.booking.payload.response.OrderResponse;
 import com.booking.repository.OrderRepository;
+import com.booking.repository.UserRepository;
 import com.booking.services.IOrderService;
+import com.booking.services.email.FormMail;
+import com.booking.services.email.MailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,10 +21,28 @@ public class OrderService implements IOrderService {
     @Autowired
     private OrderRepository orderRepository;
 
+    @Autowired
+    private MailService mail;
+
+    @Autowired
+    private UserRepository userRepository;
+
+    @Autowired
+    private FormMail formMail;
+
     @Override
     public OrderResponse create(OrderRequest request) {
+        UserEntity user = userRepository.findById(request.getUserId()).orElseThrow(
+                () -> new IllegalArgumentException("Not found User by id : " + request.getUserId())
+        );
+
         OrderEntity orderSaved = orderRepository.save(OrderConverter.toEntity(request));
-        return OrderConverter.toResponse(orderSaved);
+        OrderResponse response = OrderConverter.toResponse(orderSaved);
+        String toMail = user.getEmail();
+        String subject = "Invoice Order room " + response.getUser().getName();
+        String text = formMail.createOrder(toMail, response);
+        mail.sendMail("18130006@st.hcmuaf.edu.vn", toMail, subject, text);
+        return response;
     }
 
     @Override

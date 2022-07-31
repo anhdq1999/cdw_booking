@@ -81,4 +81,5 @@ public class AuthController {
         return ResponseEntity.ok(Response.success("User registered successfully!", response));
 
     }
+
 }
