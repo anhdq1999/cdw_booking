@@ -13,6 +13,7 @@ import com.booking.services.email.MailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,19 +30,27 @@ public class OrderService implements IOrderService {
 
     @Autowired
     private FormMail formMail;
+    @Autowired
+    RoomService roomService;
+    @Autowired
+    UserService userService;
 
     @Override
+    @Transactional
     public OrderResponse create(OrderRequest request) {
         UserEntity user = userRepository.findById(request.getUserId()).orElseThrow(
                 () -> new IllegalArgumentException("Not found User by id : " + request.getUserId())
         );
 
         OrderEntity orderSaved = orderRepository.save(OrderConverter.toEntity(request));
+        orderSaved.setRoomEntity(roomService.getById(request.getRoomId()));
+        orderSaved.setUserEntity(userService.getById(request.getUserId()));
         OrderResponse response = OrderConverter.toResponse(orderSaved);
         String toMail = user.getEmail();
         String subject = "Invoice Order room " + response.getUser().getName();
         String text = formMail.createOrder(toMail, response);
-        mail.sendMail( toMail, subject, text);
+        mail.sendMail(toMail, subject, text);
+
         return response;
     }
 

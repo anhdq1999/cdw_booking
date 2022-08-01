@@ -117,6 +117,18 @@ export function roomReducer(state = initialState, action) {
             return{
                 ...state
             }
+        case roomConstants.SORT_INCREASE_BY_PRICE:
+            state.items = state.items.sort((a, b) => a.price - b.price);
+            state.items = state.items.filter(room => room.id !== action.id)
+            return {
+                ...state
+            }
+        case roomConstants.SORT_DECREASE_BY_PRICE:
+            state.items = state.items.sort((a, b) => b.price - a.price);
+            state.items = state.items.filter(room => room.id !== action.id)
+            return {
+                ...state
+            }
 
         default:
             return state

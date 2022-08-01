@@ -2,6 +2,7 @@ package com.booking.controller;
 
 import com.booking.common.Response;
 import com.booking.exception.ExceptionControllerHandle;
+import com.booking.payload.request.CheckPasswordResetTokenRequest;
 import com.booking.payload.request.ForgotRequest;
 import com.booking.payload.request.ResetPasswordRequest;
 import com.booking.services.impl.UserService;
@@ -24,7 +25,20 @@ public class ForgotController extends ExceptionControllerHandle {
 
     @PostMapping("/reset-password")
     public ResponseEntity<?> forgot(@RequestBody ResetPasswordRequest request) {
-        String message = userService.resetPassword(request);
-        return ResponseEntity.ok(Response.success(message, null));
+        boolean isSuccess = userService.resetPassword(request);
+        if (isSuccess)
+            return ResponseEntity.ok(Response.success("Reset password successfully, please login", null));
+        else
+            return ResponseEntity.ok(Response.fail("Please try again"));
+    }
+
+
+    @PostMapping("/check-pass-word-reset-token")
+    public ResponseEntity<?> checkPasswordResetToken(@RequestBody CheckPasswordResetTokenRequest request){
+        if(userService.checkPasswordResetToken(request)) {
+            return ResponseEntity.ok(Response.success("Please fill your new password", null));
+        }else{
+            return ResponseEntity.ok(Response.fail("Token is expiry"));
+        }
     }
 }

@@ -9,10 +9,12 @@ import RoomModal from './RoomModal';
 function RoomsManager(props) {
   const [selectedRooms, setSelectedRooms] = useState([]);
   const [editableRoom, setEditableRoom] = useState([]);
+
   const [isOpenModal, setIsOpenModal] = useState(false);
   const [isAddModal, setIsAddModal] = useState([]);
   const [isSearch, setIsSearch] = useState(false)
   const [searchBy, setSearchBy] = useState("name");
+
   const alert = useSelector(state => state.alert);
   const rooms = useSelector(state => state.roomReducer.items)
   const roomsSearch = useSelector(state => state.roomReducer.itemsSearch)

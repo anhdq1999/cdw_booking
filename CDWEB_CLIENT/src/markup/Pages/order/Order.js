@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, Redirect } from "react-router-dom";
 import { userService } from "services";
+import {orderActions} from "../../../actions";
 
 const bg3 = require('images/banner/bnr1.jpg');
 
@@ -11,8 +12,30 @@ function Order(props) {
     const dispatch = useDispatch();
 
     const user = userService.getCurrentUser()
+    const bookNowItem = useSelector(state => state.orderReducer.bookNowItem)
+
+    useEffect(() => {
+        if (bookNowItem) {
+            setValue("child", bookNowItem.child)
+            setValue("adults", bookNowItem.adults)
+            setValue("infants", bookNowItem.infants)
+            setValue("checkIn", bookNowItem.checkIn)
+            setValue("checkOut", bookNowItem.checkOut)
+        }
+    }, [bookNowItem, setValue])
+
+    if (!bookNowItem) return <Redirect to='/accommodation' />
 
     const onSubmit = (data) => {
+        data.room = bookNowItem.room
+        data.taxPrice = 1000
+        data.user = user;
+        data.child = parseInt(data.child, 10)
+        data.adults = parseInt(data.adults, 10)
+        data.infants = parseInt(data.infants, 10)
+        data.totalPrice = parseInt(data.totalPrice, 10) + data.taxPrice
+        // console.log(data)
+        dispatch(orderActions.initOrder(data))
     }
 
     return (
@@ -51,11 +74,11 @@ function Order(props) {
                                             </div>
                                             <div className="form-group">
                                                 <label>Check in</label>
-                                                <input className="form-control" placeholder="Enter checkInDate" {...register("dates.checkInDate")} type="date" />
+                                                <input className="form-control" placeholder="Enter checkInDate" {...register("checkIn")} type="date" />
                                             </div>
                                             <div className="form-group">
                                                 <label>Check out</label>
-                                                <input className="form-control" placeholder="Enter checkOutDate" {...register("dates.checkOutDate")} type="date" />
+                                                <input className="form-control" placeholder="Enter checkOutDate" {...register("checkOut")} type="date" />
                                             </div>
                                         </div>
                                     </div>
@@ -86,19 +109,19 @@ function Order(props) {
                                             <div className="form-group row">
                                                 <label className="col-sm-3 col-form-label">Notes:</label>
                                                 <div className="col-sm-6">
-                                                    <input className="form-control" {...register("notes")} placeholder="Enter your note" type="text" />
+                                                    <input className="form-control" {...register("note")} placeholder="Enter your note" type="text" />
                                                 </div>
                                             </div>
                                             <div className="form-group row">
                                                 <label className="col-sm-3 col-form-label">Room Name</label>
                                                 <div className="col-sm-6">
-                                                    <input className="form-control" readOnly  type="text" />
+                                                    <input className="form-control" readOnly defaultValue={bookNowItem.room.name}  type="text" />
                                                 </div>
                                             </div>
                                             <div className="form-group row">
                                                 <label className="col-sm-3 col-form-label">Total Price</label>
                                                 <div className="col-sm-6">
-                                                    <input className="form-control" readOnly {...register("totalPrice")} type="text" />
+                                                    <input className="form-control" readOnly {...register("totalPrice")}  defaultValue={bookNowItem.room.price} type="text" />
                                                 </div>
                                             </div>
 

@@ -8,23 +8,22 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+@CrossOrigin
 @RestController
-@RequestMapping("/api/v1/order")
+@RequestMapping("/api/v1/orders")
 public class OrderController {
     @Autowired
     private OrderService orderService;
-
-
 
     @GetMapping
     public ResponseEntity<?> getAll() {
         return ResponseEntity.ok().body(Response.success("GET All Success", orderService.getAll()));
     }
 
-    @PostMapping
+    @PostMapping("/")
     public ResponseEntity<?> create(@RequestBody OrderRequest request) {
         OrderResponse response = orderService.create(request);
-
+        System.out.println(request);
         return ResponseEntity.ok().body(Response.success("Create order successfully ", response));
     }
 

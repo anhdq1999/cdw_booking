@@ -191,6 +191,7 @@ function HotelBooking(props) {
                         </div>
 
                         <BookNowModal
+                            room={room}
                             isOpen={isOpenModal}
                             toggle={handleOpenModal}
                         />

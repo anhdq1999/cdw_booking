@@ -41,7 +41,6 @@ function create(data) {
             })
             .catch(err => {
                 console.log(err.message);
-
             })
     }
 }

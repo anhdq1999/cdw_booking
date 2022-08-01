@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, Redirect } from "react-router-dom";
 import { roomsService } from "services";
+import {orderActions} from "../../../actions";
 
 const bg3 = require('images/banner/bnr1.jpg');
 
@@ -17,10 +18,10 @@ function Payment(props) {
         let data = item
         data.paymentMethod = "Offline"
         data.status = "UNPAID"
-        data.user = data.user.id
+        data.userId = item.user.id
         data.price = item.room.price
-        data.room = item.room._id
-        console.log(data);
+        data.roomId = item.room.id
+        dispatch(orderActions.create(data))
     }
 
 
@@ -71,11 +72,11 @@ function Payment(props) {
                                                 </tr>
                                                 <tr>
                                                     <td>Check in:</td>
-                                                    <td style={{ textAlign: 'right', paddingBottom: '15px' }}>{item.dates.checkInDate}</td>
+                                                    <td style={{ textAlign: 'right', paddingBottom: '15px' }}>{item.checkIn}</td>
                                                 </tr>
                                                 <tr>
                                                     <td>Check out:</td>
-                                                    <td style={{ textAlign: 'right', paddingBottom: '15px' }}>{item.dates.checkOutDate}</td>
+                                                    <td style={{ textAlign: 'right', paddingBottom: '15px' }}>{item.checkOut}</td>
                                                 </tr>
                                                 <tr>
                                                     <td>Customer name:</td>
