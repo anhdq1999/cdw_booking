@@ -56,17 +56,20 @@ public class WebConfigSecurity extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
+        http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
         http.cors().and().csrf().disable()
                 .exceptionHandling().authenticationEntryPoint(unauthorizedHandler).and()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
                 .authorizeRequests()
                 .antMatchers("/api/v1/auth/**").permitAll()
+                .antMatchers("/api/v1/users-forgot/**").permitAll()
                 .antMatchers("/api/v1/provinces/**").permitAll()
                 .antMatchers("/api/v1/districts/**/**").permitAll()
                 .antMatchers("/api/v1/wards/**/**").permitAll()
+                .antMatchers("/api/v1/order/**").permitAll()
                 .antMatchers(HttpMethod.GET,"/api/v1/rooms/**").permitAll()
 //                .antMatchers(HttpMethod.POST,"/api/v1/rooms").permitAll()
-//                .antMatchers(HttpMethod.GET,"/api/v1/rooms/{id}").permitAll()
+                .antMatchers(HttpMethod.GET,"/api/v1/rooms/{id}").permitAll()
 //                .antMatchers("/api/v1/wards**").permitAll()
 //                .antMatchers("/api/v1/districts**").permitAll()
 //                .antMatchers("/api/v1/provinces**").permitAll()

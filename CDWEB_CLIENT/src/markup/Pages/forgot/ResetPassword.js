@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Slick3 from 'markup/Pages/component-part/Slick3';
-import { useDispatch } from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import * as yup from 'yup';
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from 'react-hook-form';
@@ -24,6 +24,7 @@ function ResetPassword(props) {
 
     const dispatch = useDispatch()
 
+    const alert =useSelector(state=>state.alert);
 
     useEffect(() => {
 
@@ -35,7 +36,6 @@ function ResetPassword(props) {
     setValue("token", token)
 
     const onSubmit = (data) => {
-        console.log(data);
         dispatch(userActions.resetPassword(data))
     }
 
@@ -56,6 +56,9 @@ function ResetPassword(props) {
                                             <p class="title-text">Welcome back, please login<br /> to your account</p>
                                         </div>
                                         <div class="form-group-bx">
+                                            {alert.message &&
+                                                <div className={`alert ${alert.type}`}>{alert.message}</div>
+                                            }
                                             <div class="form-group input-form">
                                                 <label>New Password</label>
                                                 <input

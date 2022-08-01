@@ -52,6 +52,7 @@ public class RoomController extends ExceptionControllerHandle {
     }
 
     @DeleteMapping("/{id}")
+    @PreAuthorize("hasRole('USER')")
     public ResponseEntity<?> delete(@PathVariable Long id) {
         roomService.delete(id);
         return ResponseEntity.ok(Response.success("Delete by id:" + id + " successfully", null));

@@ -2,6 +2,7 @@ package com.booking.entity;
 
 import com.booking.config.AuditorAwareService;
 import lombok.Data;
+import lombok.ToString;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.annotation.CreatedBy;
@@ -19,6 +20,7 @@ import java.util.Date;
 @EntityListeners({AuditingEntityListener.class})
 @MappedSuperclass
 @Data
+
 public abstract class AbstractEntity<U> {
     @CreatedBy
     @Column(name = "created_by")

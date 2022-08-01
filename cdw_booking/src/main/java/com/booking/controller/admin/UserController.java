@@ -31,19 +31,25 @@ public class UserController extends ExceptionControllerHandle {
     public ResponseEntity<?> getUserById(@PathVariable Long id) {
         UserEntity entity = userService.getById(id);
         UserResponse response = UserConverter.toResponse(entity);
-        return ResponseEntity.ok(Response.success("Get user by id successfully",response));
-    }
-    @PostMapping("/")
-    @PreAuthorize("hasRole('ADMIN')")
-    public ResponseEntity<?> create(@RequestBody UserRequest userRequest){
-        UserEntity entity= userService.save(userRequest);
-        UserResponse response =UserConverter.toResponse(entity);
-        return ResponseEntity.ok(Response.success("Create user successfully",response));
+        return ResponseEntity.ok(Response.success("Get user by id successfully", response));
     }
 
-    public ResponseEntity<?> update(@PathVariable Long id,@RequestBody UserRequest request){
-        UserEntity entity = userService.update(id,request);
-        UserResponse response=UserConverter.toResponse(entity);
-        return ResponseEntity.ok(Response.success("Update user with id: "+id+"successfully",response));
+    @PostMapping("/")
+    @PreAuthorize("hasRole('ADMIN')")
+    public ResponseEntity<?> create(@RequestBody UserRequest userRequest) {
+        UserEntity entity = userService.save(userRequest);
+        UserResponse response = UserConverter.toResponse(entity);
+        return ResponseEntity.ok(Response.success("Create user successfully", response));
     }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<?> update(@PathVariable Long id, @RequestBody UserRequest request) {
+        UserEntity entity = userService.update(id, request);
+        UserResponse response = UserConverter.toResponse(entity);
+        return ResponseEntity.ok(Response.success("Update user with id: " + id + "successfully", response));
+    }
+
+
+
+
 }

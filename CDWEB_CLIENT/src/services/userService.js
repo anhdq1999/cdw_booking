@@ -13,7 +13,17 @@ export const userService = {
     removeUser,
     restoreUser,
     getCurrentUser,
+    forgot,
+    resetPassword
 };
+function resetPassword(data){
+    const url ='/api/v1/users-forgot/reset-password';
+    return axiosClient.post(url,data);
+}
+function forgot(email){
+    const url ='/api/v1/users-forgot/forgot';
+    return axiosClient.post(url,email);
+}
 
 function login(username, password) {
     const url = "/api/v1/auth/signin";

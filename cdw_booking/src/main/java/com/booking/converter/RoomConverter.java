@@ -2,15 +2,14 @@ package com.booking.converter;
 
 import com.booking.entity.CategoryEntity;
 import com.booking.entity.RoomEntity;
-import com.booking.entity.UserEntity;
 import com.booking.payload.request.RoomRequest;
-import com.booking.payload.response.GalleryResponse;
 import com.booking.payload.response.RoomResponse;
+import com.booking.payload.response.order.OrderRoomResponse;
 import com.booking.payload.response.roomRespsonse.RoomGalleryResponse;
 import com.booking.payload.response.roomRespsonse.RoomReviewResponse;
 
-import java.util.stream.Collectors;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class RoomConverter {
     public static RoomResponse toResponse(RoomEntity roomEntity) {
@@ -42,7 +41,7 @@ public class RoomConverter {
     }
 
     public static RoomEntity toEntity(RoomRequest roomRequest) {
-        CategoryEntity categoryEntity =CategoryEntity
+        CategoryEntity categoryEntity = CategoryEntity
                 .builder()
                 .id(roomRequest.getCategoryId())
                 .build();
@@ -57,6 +56,13 @@ public class RoomConverter {
                 .rating(roomRequest.getRating())
                 .status(roomRequest.isStatus())
                 .price(roomRequest.getPrice())
+                .build();
+    }
+
+    public static OrderRoomResponse toOrderRoomResponse(RoomEntity entity) {
+        return  OrderRoomResponse.builder()
+                .name(entity.getName())
+                .price(entity.getPrice())
                 .build();
     }
 }
