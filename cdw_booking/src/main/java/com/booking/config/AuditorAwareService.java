@@ -6,11 +6,15 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 
 import java.util.Optional;
+
 @Component
 public class AuditorAwareService implements AuditorAware<String> {
     @Override
     public Optional<String> getCurrentAuditor() {
-        UserDetails userDetails =(UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        return Optional.of(userDetails.getUsername());
+        UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        if (userDetails!=null)
+            return Optional.of(userDetails.getUsername());
+        else
+            return Optional.of("null");
     }
 }

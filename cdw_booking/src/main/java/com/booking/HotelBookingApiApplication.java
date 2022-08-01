@@ -31,6 +31,8 @@ public class HotelBookingApiApplication {
     }
     @Bean
     public AuditorAware<String> auditorAware(){return new AuditorAwareService();}
+
+
 //    @Bean
 //    CommandLineRunner commandLineRunner() {
 //        return args -> {
