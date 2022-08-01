@@ -16,7 +16,6 @@ function Order(props) {
     }
 
     return (
-        <>
                 <>
                     <div className="dlab-bnr-inr overlay-black-middle" style={{ backgroundImage: "url(" + bg3 + ")", backgroundSize: 'cover' }}>
                         <div className="container">
@@ -118,7 +117,7 @@ function Order(props) {
 
                 </>
 
-        </>
+
     )
 
 }
