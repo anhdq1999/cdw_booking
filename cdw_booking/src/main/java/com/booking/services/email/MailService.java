@@ -13,12 +13,12 @@ import javax.mail.internet.MimeMessage;
 public class MailService {
     private final JavaMailSender mailSender;
 
-    public void sendMail(String from, String toMail, String subject, String text) {
+    public void sendMail(String toMail, String subject, String text) {
         MimeMessage message = mailSender.createMimeMessage();
         MimeMessageHelper helper = new MimeMessageHelper(message);
         try {
+            helper.setFrom("18130006@st.hcmuaf.edu.vn");
             helper.setSubject(subject);
-            helper.setFrom(from);
             helper.setTo(toMail);
             boolean html = true;
             helper.setText(text, html);

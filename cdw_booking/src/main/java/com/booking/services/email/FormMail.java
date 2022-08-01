@@ -5,7 +5,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class FormMail {
-    public String createOrder(String email, OrderResponse orderResponse) {
+    public static String createOrder(String email, OrderResponse orderResponse) {
         return "<div style=\"color: black\">\n" +
                 "        <div class=\"email\" style=\"  max-width: 480px;\n" +
                 "        margin: 1rem auto;\n" +
@@ -119,7 +119,7 @@ public class FormMail {
                 "      </div>";
     }
 
-    public String verifyAccount(String email, String token) {
+    public static String verifyAccount(String email, String token) {
         return " `<form action=\"http://localhost:3000/register-verify/$" + email + "&" + token + " \" method=\"get\">\n" +
                 "      <div style=\"font-family: Helvetica,Arial,sans-serif;min-width:1000px;overflow:auto;line-height:2\">\n" +
                 "        <div style=\"margin:50px auto;width:70%;padding:20px 0\">\n" +
@@ -141,8 +141,8 @@ public class FormMail {
                 "    </form>`";
     }
 
-    public String forgotPassword(Long id, String token) {
-        return "   `<form action=\"http://localhost:3000/reset-password/" + id + "&" + token + "\" method=\"get\">\n" +
+    public static String forgotPassword(Long id,String token) {
+        return "   `<form action=\"http://localhost:3000/reset-password/"+id+"&"+token + "\" method=\"get\">\n" +
                 "      <table cellspacing=\"0\" border=\"0\" cellpadding=\"0\" width=\"100%\" bgcolor=\"#f2f3f8\"\n" +
                 "        style=\"@import url(https://fonts.googleapis.com/css?family=Rubik:300,400,500,700|Open+Sans:300,400,600,700); font-family: 'Open Sans', sans-serif;\">\n" +
                 "        <tr>\n" +

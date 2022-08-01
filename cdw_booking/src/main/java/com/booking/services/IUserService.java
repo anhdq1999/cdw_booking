@@ -23,5 +23,4 @@ public interface IUserService {
 
     void deleteById(Long id);
 
-    UserEntity findByEmail(String email);
 }

@@ -41,7 +41,7 @@ public class OrderService implements IOrderService {
         String toMail = user.getEmail();
         String subject = "Invoice Order room " + response.getUser().getName();
         String text = formMail.createOrder(toMail, response);
-        mail.sendMail("18130006@st.hcmuaf.edu.vn", toMail, subject, text);
+        mail.sendMail( toMail, subject, text);
         return response;
     }
 

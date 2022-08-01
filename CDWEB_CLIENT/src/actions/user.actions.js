@@ -29,7 +29,29 @@ export const userActions = {
 };
 
 function resetPassword(data) {
+    return dispatch => {
+        userService.resetPassword(data)
+            .then(res => {
+                if (res.success) {
+                    history.push("/login");
+                    dispatch(success())
+                    dispatch(alertActions.success(res.message))
+                } else {
+                    console.log(res)
+                    dispatch(alertActions.error(res.message))
 
+                }
+            })
+            .catch(err => {
+                console.log(err)
+                dispatch(alertActions.error(err.message))
+
+            })
+    }
+
+    function success() {
+        return {type: userConstants.FORGOT_PASSWORD_SUCCESS}
+    }
 }
 
 function forgot(email) {
@@ -41,7 +63,7 @@ function forgot(email) {
                         dispatch(success())
                         dispatch(alertActions.success("Please check your email to reset password"))
                     } else {
-                        dispatch(alertActions.error())
+                        dispatch(alertActions.error(res.message))
                     }
                 }
             )
