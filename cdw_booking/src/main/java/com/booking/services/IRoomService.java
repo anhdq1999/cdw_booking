@@ -23,4 +23,5 @@ public interface IRoomService {
     void deleteAll();
 
     List<RoomEntity> getByProvinceId(Long id);
+
 }

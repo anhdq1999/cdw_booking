@@ -4,6 +4,7 @@ import UsersManager from 'markup/Pages/admin/user-manager/UsersManager';
 import Garbage from 'markup/Pages/admin/user-manager/Garbage';
 import RoomsManager from "../../markup/Pages/admin/room-manager/RoomsManager";
 import GarbageRoom from "../../markup/Pages/admin/room-manager/GarbageRoom";
+import OrderManager from "../../markup/Pages/admin/OrderManager";
 
 export default [
 	{
@@ -38,7 +39,15 @@ export default [
 		permission: [
 			Roles.ADMIN
 		],
-	}
+	},
+	{
+		component: OrderManager,
+		path: '/orders-manager',
+		title: 'Order Manager',
+		permission: [
+			Roles.ADMIN
+		],
+	},
 
 
 ]

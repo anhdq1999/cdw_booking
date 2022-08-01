@@ -9,6 +9,7 @@ import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -32,6 +33,8 @@ public class UserEntity extends AbstractEntity<String> {
     private String email;
     @Column(name = "fullName")
     private String fullName;
+    private Date dateOfBirth;
+    private String sex;
     @Column(name = "phoneNumber")
     private String phoneNumber;
     private String address;

@@ -1,18 +1,20 @@
-import { alertActions, roomActions, userActions } from 'actions';
-import React, { useEffect, useState } from 'react';
+import {alertActions, roomActions} from 'actions';
+import React, {useEffect, useState} from 'react';
 import DataTable from 'react-data-table-component';
-import { useDispatch, useSelector } from 'react-redux';
-import { Link } from 'react-router-dom/cjs/react-router-dom.min';
-import { Button, Label } from 'reactstrap';
+import {useDispatch, useSelector} from 'react-redux';
+import {Link} from 'react-router-dom/cjs/react-router-dom.min';
+import {Button, Label} from 'reactstrap';
 import RoomModal from './RoomModal';
 
 function RoomsManager(props) {
   const [selectedRooms, setSelectedRooms] = useState([]);
   const [editableRoom, setEditableRoom] = useState([]);
+
   const [isOpenModal, setIsOpenModal] = useState(false);
   const [isAddModal, setIsAddModal] = useState([]);
   const [isSearch, setIsSearch] = useState(false)
   const [searchBy, setSearchBy] = useState("name");
+
   const alert = useSelector(state => state.alert);
   const rooms = useSelector(state => state.roomReducer.items)
   const roomsSearch = useSelector(state => state.roomReducer.itemsSearch)
@@ -91,7 +93,7 @@ function RoomsManager(props) {
   }
   return (
     <div>
-      <div className="mt-5 mx-5">
+      <div className="mt-5 mx-5 mb-5">
 
         <Link to='/admin/rooms-manager/garbage'>Thùng rác của tôi</Link>
 

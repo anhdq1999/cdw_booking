@@ -4,6 +4,7 @@ import com.booking.entity.RoleEntity;
 import lombok.Builder;
 import lombok.Data;
 
+import java.util.Date;
 import java.util.Set;
 
 @Data
@@ -16,5 +17,7 @@ public class UserResponse {
     private String fullName;
     private String phoneNumber;
     private String address;
+    private Date dateOfBirth;
+    private String sex;
     private RoleResponse role;
 }

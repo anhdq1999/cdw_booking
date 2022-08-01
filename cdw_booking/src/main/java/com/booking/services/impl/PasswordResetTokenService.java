@@ -7,6 +7,7 @@ import com.booking.repository.PasswordResetTokenRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.Calendar;
 
 @Service
@@ -19,12 +20,10 @@ public class PasswordResetTokenService {
         passwordTokenRepository.save(myToken);
     }
 
-    public String validatePasswordResetToken(String token) {
+    public boolean validatePasswordResetToken(String token) {
         PasswordResetToken passToken = passwordTokenRepository.findByToken(token);
-        if(isTokenFound(passToken)){
-            if(isTokenExpired(passToken)) return "expiry";
-            else return "valid";
-        } else return "invalid";
+        if(isTokenFound(passToken)&&!isTokenExpired(passToken)) return true;
+        return false;
     }
     private boolean isTokenFound(PasswordResetToken passToken) {
         return passToken != null;
@@ -34,4 +33,13 @@ public class PasswordResetTokenService {
         final Calendar cal = Calendar.getInstance();
         return passToken.getExpiryDate().before(cal.getTime());
     }
+    public PasswordResetToken findByTokenAndUserId(String token,Long id){
+        return passwordTokenRepository.findByTokenAndUserId(token,id).orElseThrow(
+                ()-> new IllegalArgumentException("Not found")
+        );
+    }
+    public void deleteByToken(String token){
+        passwordTokenRepository.deleteByToken(token);
+    }
+
 }

@@ -1,12 +1,22 @@
-import React, {useState} from 'react'
+import React, {useEffect, useState} from 'react'
 import {Link} from 'react-router-dom';
 import {TabContent, TabPane} from 'reactstrap';
 import classnames from 'classnames';
+import {useDispatch, useSelector} from "react-redux";
+import {userService} from "../../../services";
+import {userActions} from "../../../actions";
+import OrderManagerUser from "./OrderManagerUser";
 
 
 const bg3 = require('../../../images/banner/bnr1.jpg');
 
-function ListingDetails(props) {
+function Profile(props) {
+    const user = useSelector(state => state.userReducer.item)
+    const id = userService.getCurrentUser().id;
+    const dispatch = useDispatch();
+    useEffect(() => {
+        dispatch(userActions.getById(id))
+    }, [id, dispatch])
     const [activeTab, setActiveTab] = useState('1');
 
     const toggle = tab => {
@@ -37,8 +47,8 @@ function ListingDetails(props) {
                         </div>
                         <div className="listing-info">
                             <div className="listing-info-left">
-                                <h3 className="title">User name</h3>
-                                <p>Useremail@gmail.com</p>
+                                <h3 className="title">{user.fullName}</h3>
+
                             </div>
 
                         </div>
@@ -86,34 +96,30 @@ function ListingDetails(props) {
                                     <div className="panel-body">
                                         <div className="row">
                                             <div className="col-md-3 col-lg-3 " align="center">
-                                                <img
-                                                    alt="User Pic"
-                                                    src="https://gravatar.com/avatar/e60ddbdd1921331df1b59abcecb6a8d1?s=80&amp;d=https://codepen.io/assets/avatars/user-avatar-80x80-fd2a2ade7f141e06f8fd94c000d6ac7a.png"
-                                                    className="img-circle img-responsive"/>
                                             </div>
                                             <div className=" col-md-9 col-lg-9 ">
                                                 <table className="table table-user-information">
                                                     <tbody>
                                                     <tr>
                                                         <td>Full Name:</td>
-                                                        <td>Anh Quang</td>
+                                                        <td>{user.fullName}</td>
                                                     </tr>
                                                     <tr>
                                                         <td>Date of Birth:</td>
-                                                        <td>06/01/2011</td>
+                                                        <td>{user.dateOfBirth}</td>
                                                     </tr>
                                                     <tr>
                                                         <td>Phone Number:</td>
-                                                        <td>0981 888 888</td>
+                                                        <td>{user.phoneNumber}</td>
                                                     </tr>
 
                                                     <tr>
                                                         <td>Gender:</td>
-                                                        <td>Male</td>
+                                                        <td>{user.sex}</td>
                                                     </tr>
                                                     <tr>
                                                         <td>Home Address:</td>
-                                                        <td>Street in, State</td>
+                                                        <td>{user.address}</td>
                                                     </tr>
 
                                                     </tbody>
@@ -127,8 +133,8 @@ function ListingDetails(props) {
                         </TabPane>
                         <TabPane tabId="2">
                             <div className="row">
-                                <div className="col-xl-12">
-<p>Order manager</p>
+                                <div >
+                                    <OrderManagerUser/>
                                 </div>
                             </div>
                         </TabPane>
@@ -792,4 +798,4 @@ function ListingDetails(props) {
         ;
 }
 
-export default ListingDetails;
+export default Profile;

@@ -27,11 +27,11 @@ const schema = yup.object().shape({
         country: yup
             .string().required("Country is required"),
         province: yup
-            .string().required("Province is required"),
+            .number().required("Province is required"),
         ward: yup
-            .string().required("Ward is required"),
+            .number().required("Ward is required"),
         district: yup
-            .string().required("District is required"),
+            .number().required("District is required"),
         street: yup
             .string().required("Street is required"),
     }),

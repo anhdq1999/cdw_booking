@@ -1,8 +1,10 @@
 package com.booking.services.impl;
 
 import com.booking.converter.UserConverter;
+import com.booking.entity.PasswordResetToken;
 import com.booking.entity.RoleEntity;
 import com.booking.entity.UserEntity;
+import com.booking.payload.request.CheckPasswordResetTokenRequest;
 import com.booking.payload.request.ResetPasswordRequest;
 import com.booking.payload.request.UserRequest;
 import com.booking.repository.RoleRepository;
@@ -98,20 +100,25 @@ public class UserService implements IUserService {
         mailService.sendMail(email, "Reset password", FormMail.forgotPassword(userEntity.getId(), token));
     }
 
-    @Transactional
-    public String resetPassword(ResetPasswordRequest request) {
-        String validation = passwordResetTokenService.validatePasswordResetToken(request.getToken());
-        switch (validation) {
-            case "valid":
-                String hash_password = encoder.encode(request.getNewPassword());
-                userRepository.updatePasswordById(request.getId(), hash_password);
-                return "Reset password successfully, Please login";
-            case "invalidToken":
-                return "Invalid token";
-            default:
-                return "Expiry Token";
-        }
 
+    @Transactional
+    public boolean resetPassword(ResetPasswordRequest request) {
+        boolean validation = passwordResetTokenService.validatePasswordResetToken(request.getToken());
+        if (validation) {
+            String hash_password = encoder.encode(request.getNewPassword());
+            userRepository.updatePasswordById(request.getId(), hash_password);
+            passwordResetTokenService.deleteByToken(request.getToken());
+            return true;
+        }else{
+            return false;
+        }
     }
+    public boolean checkPasswordResetToken(CheckPasswordResetTokenRequest request){
+        PasswordResetToken passwordResetToken=passwordResetTokenService.findByTokenAndUserId(request.getToken(),request.getId());
+        System.out.println(request);
+        if(passwordResetToken!=null) return true;
+        return false;
+    }
+
 
 }

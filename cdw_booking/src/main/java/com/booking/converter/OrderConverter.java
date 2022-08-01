@@ -5,6 +5,9 @@ import com.booking.entity.RoomEntity;
 import com.booking.entity.UserEntity;
 import com.booking.payload.request.OrderRequest;
 import com.booking.payload.response.OrderResponse;
+import com.booking.payload.response.RoomResponse;
+import com.booking.payload.response.order.OrderRoomResponse;
+import com.booking.payload.response.order.OrderUserResponse;
 
 public class OrderConverter {
 
@@ -33,10 +36,13 @@ public class OrderConverter {
     }
 
     public static OrderResponse toResponse(OrderEntity entity) {
+
+        OrderRoomResponse orderRoomResponse = entity.getRoomEntity() != null ? RoomConverter.toOrderRoomResponse(entity.getRoomEntity()) : null;
+        OrderUserResponse orderUserResponse = entity.getUserEntity() != null ? UserConverter.toOrderUserResponse(entity.getUserEntity()) : null;
         return OrderResponse.builder()
                 .id(entity.getId())
-                .room(RoomConverter.toOrderRoomResponse(entity.getRoomEntity()))
-                .user(UserConverter.toOrderUserResponse(entity.getUserEntity()))
+                .room(orderRoomResponse)
+                .user(orderUserResponse)
                 .status(entity.getStatus())
                 .checkIn(entity.getCheckIn())
                 .checkOut(entity.getCheckOut())

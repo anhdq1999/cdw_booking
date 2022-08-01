@@ -1,11 +1,9 @@
-import React,{useEffect} from 'react'
+import React from 'react'
 import Slider from 'react-animated-slider';
 import 'react-animated-slider/build/horizontal.css';
 import Slick2 from '../component-part/Slick2';
 import HomeBlog from '../../Element/HomeBlog';
 import { Link } from 'react-router-dom';
-import {useDispatch, useSelector} from "react-redux";
-import {addressActions} from "../../../actions";
 
 const content = [
     {

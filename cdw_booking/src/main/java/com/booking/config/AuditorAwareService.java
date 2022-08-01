@@ -1,6 +1,7 @@
 package com.booking.config;
 
 import org.springframework.data.domain.AuditorAware;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
@@ -11,10 +12,10 @@ import java.util.Optional;
 public class AuditorAwareService implements AuditorAware<String> {
     @Override
     public Optional<String> getCurrentAuditor() {
-        UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        if (userDetails!=null)
-            return Optional.of(userDetails.getUsername());
-        else
-            return Optional.of("null");
+        Authentication loggedInUser = SecurityContextHolder.getContext().getAuthentication();
+        String username = loggedInUser.getName();
+
+            return Optional.of(username);
+
     }
 }

@@ -6,6 +6,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -20,5 +21,7 @@ public class UserRequest {
     private String fullName;
     private String phoneNumber;
     private String address;
+    private String sex;
+    private Date dateOfBirth;
     private Long roleId;
 }

@@ -41,7 +41,7 @@ function ForgotPass(props) {
                                     <Link to={'./'}><img src={require('images/logo-2.png')} alt=""/></Link>
                                 </div>
                                 <div id="forgot-password" class="tab-pane">
-                                    {!isSubmit && <form className="dlab-form" onSubmit={handleSubmit(onSubmit)}>
+                                   <form className="dlab-form" onSubmit={handleSubmit(onSubmit)}>
                                         <div className="form-head">
                                             <h3 className="form-title m-t0">Find Your<span
                                                 className="text-primary"> Account</span></h3>
@@ -69,18 +69,8 @@ function ForgotPass(props) {
                                             <Link to={'/login'} class="site-button outline">Back</Link>
                                         </div>
                                     </form>
-                                    }
-                                    {isSubmit &&
-                                        <>
-                                            {alert.message &&
-                                                <div className={`alert ${alert.type}`}>{alert.message}</div>
-                                            }
-                                        <p>Please wait, server is progressing</p>
-                                        <button onClick={handleBackSubmit} class="site-button outline">Back</button>
 
-                                        <Link to='/login' className="site-button outline">Login</Link>
-                                        </>
-                                    }
+
                                 </div>
                             </div>
                         </div>

@@ -14,8 +14,13 @@ export const userService = {
     restoreUser,
     getCurrentUser,
     forgot,
-    resetPassword
+    resetPassword,
+    checkPasswordResetToken
 };
+function checkPasswordResetToken(token,id){
+    const url ='/api/v1/users-forgot/check-pass-word-reset-token';
+    return axiosClient.post(url,{token,id});
+}
 function resetPassword(data){
     const url ='/api/v1/users-forgot/reset-password';
     return axiosClient.post(url,data);
@@ -36,7 +41,7 @@ function logout() {
 }
 
 function getAll() {
-    const url = "/api/v1/users";
+    const url = "/api/v1/users/";
     return axiosClient.get(url);
 }
 
@@ -55,11 +60,11 @@ function register(user) {
 }
 
 function create(user) {
-    const url = "/api/v1/users";
+    const url = "/api/v1/users/";
     return axiosClient.post(url, user)
 }
 function update(user, newUser) {
-    const url = `/api/v1/users/${user._id}`;
+    const url = `/api/v1/users/${user.id}`;
     return axiosClient.put(url, newUser);
 }
 function deleteUser(id) {

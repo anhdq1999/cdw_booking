@@ -8715,7 +8715,8 @@ a,
 
 .outline:focus,
 .outline:hover {
-    color: #fff !important;
+    color: #171717 !important;
+    border-color: #171717 !important;
 }
 
 

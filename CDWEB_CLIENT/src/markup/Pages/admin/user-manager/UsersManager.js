@@ -36,7 +36,7 @@ function UsersManager(props) {
       },
       {
         name: 'Full Name',
-        selector: row => row.fullname
+        selector: row => row.fullName
       },
       {
         name: 'Address',
@@ -44,7 +44,7 @@ function UsersManager(props) {
       },
       {
         name: 'Role',
-        selector: row => row.roles
+        selector: row => row.role.name
       },
       {
         buttons: true,
@@ -108,8 +108,7 @@ function UsersManager(props) {
 
   return (
     <div>
-      <Header />
-      <div className="mt-5 mx-5">
+      <div className="mt-5 mx-5 mb-5">
         <Link to='/admin/users-manager/garbage'>Thùng rác của tôi</Link>
         <div className="text-right mb-5">
           <Button onClick={() => handleAdd()}>Add</Button>

@@ -6,7 +6,8 @@ const initialState = {
   item: {},
   editUser: null,
   createUser: {},
-  keySearch: null
+  keySearch: null,
+  passwordResetToken:{}
 }
 export function userReducer(state = initialState, action) {
   switch (action.type) {
@@ -90,24 +91,25 @@ export function userReducer(state = initialState, action) {
         ...state,
       };
     case userConstants.UPDATE_CANCEL:
-      state.editUser = action.user
+      state.editUser = {}
       return {
         ...state,
       };
     case userConstants.UPDATE_SUCCESS:
       state.editUser = action.user;
-      const editUserIndex = state.items.findIndex(user => user._id === action.user._id)
+      const editUserIndex = state.items.findIndex(user => user.id === action.user.id)
       state.items[editUserIndex] = action.user
-      state.items = state.items.filter(user => user._id !== "")
+      state.items = state.items.filter(user => user.id !== "")
+        state.editUser={}
       return {
         ...state,
       };
     case userConstants.RESTORE_SUCCESS:
-      state.items = state.items.filter(user => user._id !== action.id)
+      state.items = state.items.filter(user => user.id !== action.id)
       return { ...state };
     case userConstants.REMOVE_SUCCESS:
 
-      state.items = state.items.filter(user => user._id !== action.id)
+      state.items = state.items.filter(user => user.id !== action.id)
       return { ...state };
 
     case userConstants.DELETE_REQUEST:
@@ -117,10 +119,15 @@ export function userReducer(state = initialState, action) {
       };
     case userConstants.DELETE_SUCCESS:
       // remove deleted user from state
-      state.items = state.items.filter(user => user._id !== action.id)
+      state.items = state.items.filter(user => user.id !== action.id)
       return { ...state };
     case userConstants.DELETE_FAILURE:
       // remove 'deleting:true' property and add 'deleteError:[error]' property to user 
+      return {
+        ...state,
+      };
+    case userConstants.RESET_PASSWORD_SUCCESS:
+      state.passwordResetToken=action.payload;
       return {
         ...state,
       };

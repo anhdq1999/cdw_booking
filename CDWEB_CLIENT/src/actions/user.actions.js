@@ -25,8 +25,35 @@ export const userActions = {
     searchByEmail,
     remove,
     forgot,
+    checkPasswordResetToken,
     resetPassword
 };
+
+function checkPasswordResetToken(token, id) {
+    return dispatch => {
+        userService.checkPasswordResetToken(token, id)
+            .then(
+                res => {
+                    if (res.success) {
+                        dispatch(success())
+                        history.push('/reset')
+                        dispatch(alertActions.success(res.message))
+                    } else {
+                        history.push('/forgot');
+                        dispatch(alertActions.error(res.message))
+                    }
+                }
+            )
+            .catch(err => {
+                history.push('/forgot');
+                dispatch(alertActions.error(err.message))
+            })
+    }
+
+    function success() {
+        return {type: userConstants.RESET_PASSWORD_SUCCESS, payload: {token, id}}
+    }
+}
 
 function resetPassword(data) {
     return dispatch => {
@@ -39,7 +66,6 @@ function resetPassword(data) {
                 } else {
                     console.log(res)
                     dispatch(alertActions.error(res.message))
-
                 }
             })
             .catch(err => {
@@ -61,7 +87,9 @@ function forgot(email) {
                 res => {
                     if (res.success) {
                         dispatch(success())
+                        history.push('/forgot-success')
                         dispatch(alertActions.success("Please check your email to reset password"))
+
                     } else {
                         dispatch(alertActions.error(res.message))
                     }
@@ -111,11 +139,13 @@ function searchByEmail(type, key) {
 function getById(id) {
     return dispatch => {
         dispatch(request(id))
-        userService.getById(id).then(res => {
-                if (res.success) dispatch(success(res.data))
-                else dispatch(failure(res.message))
-            }
-        )
+        userService.getById(id)
+            .then(res => {
+                    console.log(res)
+                    if (res.success) dispatch(success(res.data))
+                    else dispatch(failure(res.message))
+                }
+            )
     }
 
     function request(id) {
@@ -146,7 +176,7 @@ function login(username, password) {
                 }
             }).catch(error => {
             dispatch(failure(error));
-            dispatch(alertActions.error(error.message));
+            dispatch(alertActions.error("Wrong username or password"));
         });
 
 
@@ -241,9 +271,6 @@ function create(user) {
     }
 }
 
-function updateRequest(user) {
-    return {type: userConstants.UPDATE_REQUEST, user}
-}
 
 function update(user, data) {
     return dispatch => {
@@ -254,10 +281,12 @@ function update(user, data) {
                     dispatch(success(res.data))
                     dispatch(alertActions.success(res.message))
                 }
-            }).catch(error => {
-            dispatch(failure(error));
-            dispatch(alertActions.error(error.message));
-        })
+            })
+            .catch(error => {
+                    dispatch(failure(error));
+                    dispatch(alertActions.error(error.message));
+                }
+            )
     }
 
     function request(user) {

@@ -79,8 +79,16 @@ function Header(props) {
                             {loggedIn &&
                                 <ul>
                                     {user.role === 'ADMIN' &&
+                                       <>
                                         <li><Link to={'/admin/rooms-manager'} className="site-button-link">Admin
                                             Room</Link></li>
+
+                                        <li><Link to={'/admin/users-manager'} className="site-button-link">Admin
+                                        User</Link></li>
+
+                                           <li><Link to={'/admin/orders-manager'} className="site-button-link">Admin
+                                               Order</Link></li>
+                                       </>
                                     }
                                     <li><Link to={'/profile'} className="site-button-link">{user.fullName}</Link></li>
                                     <li><Link to={'/'} onClick={() => handleLogout()}
