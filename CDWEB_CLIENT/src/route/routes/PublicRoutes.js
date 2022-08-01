@@ -19,6 +19,8 @@ import React from 'react';
 import {Route, Switch} from 'react-router-dom';
 import Homepage2 from "../../markup/Pages/homepage/Homepage2";
 import ListingDetails from "../../markup/Pages/profile/ListingDetails";
+import ResetPasswordCheck from "../../markup/Pages/forgot/ResetPasswordCheck";
+import ForgotSuccess from "../../markup/Pages/forgot/ForgotSuccess";
 
 function PublicRoutes() {
     return (
@@ -34,10 +36,12 @@ function PublicRoutes() {
             <Route path='/error' exact component={Error404}/>
             <Route path='/profile' exact component={ListingDetails}/>
             <Route path='/forgot' exact component={ForgotPass}/>
+            <Route path='/forgot-success' exact component={ForgotSuccess}/>
             <Route path='/hotelbooking/:id' exact component={HotelBooking}/>
             <Route path='/blogleftsidebar' exact component={BlogLeftSidebar}/>
             <Route path='/blogdetails' exact component={BlogDetails}/>
-            <Route path='/reset-password/:id&:token' exact component={ResetPassword}/>
+            <Route path='/reset-password/:id&:token' exact component={ResetPasswordCheck}/>
+            <Route path='/reset' exact component={ResetPassword}/>
             <Route path='/order' exact component={Order}/>
             <Route path='/payment' exact component={Payment}/>
             <Route path='/order/success' exact component={OrderCreateSuccess}/>

@@ -25,8 +25,34 @@ export const userActions = {
     searchByEmail,
     remove,
     forgot,
+    checkPasswordResetToken,
     resetPassword
 };
+
+function checkPasswordResetToken(token, id) {
+    return dispatch => {
+        userService.checkPasswordResetToken(token, id)
+            .then(
+                res => {
+                    if (res.success) {
+                        dispatch(success())
+                        history.push('/reset')
+                        dispatch(alertActions.success(res.message))
+                    } else {
+                        history.push('/forgot');
+                        dispatch(alertActions.error(res.message))
+                    }
+                }
+            )
+            .catch(err => {
+                history.push('/forgot');
+                dispatch(alertActions.error(err.message))
+            })
+    }
+    function success() {
+        return {type: userConstants.RESET_PASSWORD_SUCCESS,payload:{token,id}}
+    }
+}
 
 function resetPassword(data) {
     return dispatch => {
@@ -39,7 +65,6 @@ function resetPassword(data) {
                 } else {
                     console.log(res)
                     dispatch(alertActions.error(res.message))
-
                 }
             })
             .catch(err => {
@@ -61,7 +86,9 @@ function forgot(email) {
                 res => {
                     if (res.success) {
                         dispatch(success())
+                        history.push('/forgot-success')
                         dispatch(alertActions.success("Please check your email to reset password"))
+
                     } else {
                         dispatch(alertActions.error(res.message))
                     }
@@ -241,9 +268,6 @@ function create(user) {
     }
 }
 
-function updateRequest(user) {
-    return {type: userConstants.UPDATE_REQUEST, user}
-}
 
 function update(user, data) {
     return dispatch => {

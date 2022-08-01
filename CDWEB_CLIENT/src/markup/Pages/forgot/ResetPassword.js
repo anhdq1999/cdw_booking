@@ -1,11 +1,11 @@
-import React, { useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import React, {useEffect} from 'react';
+import {Link} from 'react-router-dom';
 import Slick3 from 'markup/Pages/component-part/Slick3';
 import {useDispatch, useSelector} from 'react-redux';
 import * as yup from 'yup';
-import { yupResolver } from "@hookform/resolvers/yup";
-import { useForm } from 'react-hook-form';
-import { userActions } from 'actions';
+import {yupResolver} from "@hookform/resolvers/yup";
+import {useForm} from 'react-hook-form';
+import {userActions} from 'actions';
 
 const schemaValidation = yup.object().shape({
     newPassword: yup
@@ -19,21 +19,18 @@ const schemaValidation = yup.object().shape({
 
 function ResetPassword(props) {
 
-    const id = props.match.params.id
-    const token = props.match.params.token
 
     const dispatch = useDispatch()
 
-    const alert =useSelector(state=>state.alert);
+    const alert = useSelector(state => state.alert);
 
-    useEffect(() => {
+    const passwordResetToken = useSelector(state=>state.userReducer.passwordResetToken);
 
-    }, [dispatch, id, token])
+    const {register, handleSubmit, setValue, formState: {errors}} = useForm({resolver: yupResolver(schemaValidation)});
 
-    const { register, handleSubmit, setValue, formState: { errors } } = useForm({ resolver: yupResolver(schemaValidation) });
 
-    setValue("id", id)
-    setValue("token", token)
+    setValue("id",passwordResetToken.id)
+    setValue("token",passwordResetToken.token)
 
     const onSubmit = (data) => {
         dispatch(userActions.resetPassword(data))
@@ -47,13 +44,14 @@ function ResetPassword(props) {
                         <div class="col-lg-4 p-lr0">
                             <div class="login-form">
                                 <div class="logo logo-header">
-                                    <Link to={'./'}><img src={require('images/logo-2.png')} alt="" /></Link>
+                                    <Link to={'./'}><img src={require('images/logo-2.png')} alt=""/></Link>
                                 </div>
                                 <div id="forgot-password" class="tab-pane">
                                     <form class="dlab-form" onSubmit={handleSubmit(onSubmit)}>
                                         <div class="form-head">
-                                            <h3 class="form-title m-t0">Find Your<span class="text-primary"> Account</span></h3>
-                                            <p class="title-text">Welcome back, please login<br /> to your account</p>
+                                            <h3 class="form-title m-t0">Find Your<span
+                                                class="text-primary"> Account</span></h3>
+                                            <p class="title-text">Welcome back, please login<br/> to your account</p>
                                         </div>
                                         <div class="form-group-bx">
                                             {alert.message &&
@@ -66,7 +64,7 @@ function ResetPassword(props) {
                                                     class="form-control"
                                                     placeholder="*******"
                                                     {...register("newPassword")}
-                                                    type="password" />
+                                                    type="password"/>
                                             </div>
                                             {errors.newPassword &&
                                                 <div className="alert-warning">{errors.newPassword.message}</div>
@@ -78,7 +76,7 @@ function ResetPassword(props) {
                                                     class="form-control"
                                                     placeholder="*******"
                                                     {...register("rePassword")}
-                                                    type="password" />
+                                                    type="password"/>
 
                                             </div>
 
@@ -89,11 +87,11 @@ function ResetPassword(props) {
                                             <input
 
                                                 {...register("id")}
-                                                type="hidden" />
+                                                type="hidden"/>
 
                                             <input
                                                 {...register("token")}
-                                                type="hidden" />
+                                                type="hidden"/>
 
                                         </div>
                                         <div class="form-group">
@@ -106,7 +104,7 @@ function ResetPassword(props) {
                             </div>
                         </div>
                         <div class="col-lg-8 p-lr0">
-                            <Slick3 />
+                            <Slick3/>
                         </div>
                     </div>
                 </div>
@@ -115,4 +113,5 @@ function ResetPassword(props) {
     )
 
 }
+
 export default ResetPassword;

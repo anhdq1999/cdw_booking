@@ -1,9 +1,9 @@
-import { alertActions, roomActions, userActions } from 'actions';
-import React, { useEffect, useState } from 'react';
+import {alertActions, roomActions} from 'actions';
+import React, {useEffect, useState} from 'react';
 import DataTable from 'react-data-table-component';
-import { useDispatch, useSelector } from 'react-redux';
-import { Link } from 'react-router-dom/cjs/react-router-dom.min';
-import { Button, Label } from 'reactstrap';
+import {useDispatch, useSelector} from 'react-redux';
+import {Link} from 'react-router-dom/cjs/react-router-dom.min';
+import {Button, Label} from 'reactstrap';
 import RoomModal from './RoomModal';
 
 function RoomsManager(props) {

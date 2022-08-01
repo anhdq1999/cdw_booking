@@ -6,7 +6,8 @@ const initialState = {
   item: {},
   editUser: null,
   createUser: {},
-  keySearch: null
+  keySearch: null,
+  passwordResetToken:{}
 }
 export function userReducer(state = initialState, action) {
   switch (action.type) {
@@ -121,6 +122,11 @@ export function userReducer(state = initialState, action) {
       return { ...state };
     case userConstants.DELETE_FAILURE:
       // remove 'deleting:true' property and add 'deleteError:[error]' property to user 
+      return {
+        ...state,
+      };
+    case userConstants.RESET_PASSWORD_SUCCESS:
+      state.passwordResetToken=action.payload;
       return {
         ...state,
       };

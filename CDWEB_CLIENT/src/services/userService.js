@@ -14,8 +14,13 @@ export const userService = {
     restoreUser,
     getCurrentUser,
     forgot,
-    resetPassword
+    resetPassword,
+    checkPasswordResetToken
 };
+function checkPasswordResetToken(token,id){
+    const url ='/api/v1/users-forgot/check-pass-word-reset-token';
+    return axiosClient.post(url,{token,id});
+}
 function resetPassword(data){
     const url ='/api/v1/users-forgot/reset-password';
     return axiosClient.post(url,data);
