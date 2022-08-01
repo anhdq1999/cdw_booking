@@ -19,6 +19,8 @@ public class UserConverter {
                 .fullName(entity.getFullName())
                 .phoneNumber(entity.getPhoneNumber())
                 .address(entity.getAddress())
+                .dateOfBirth(entity.getDateOfBirth())
+                .sex(entity.getSex())
                 .role(RoleConverter.toResponse(entity.getRoleEntity()))
                 .build();
     }
@@ -33,6 +35,8 @@ public class UserConverter {
                 .password(userRequest.getPassword())
                 .fullName(userRequest.getFullName())
                 .phoneNumber(userRequest.getPhoneNumber())
+                .dateOfBirth(userRequest.getDateOfBirth())
+                .sex(userRequest.getSex())
                 .address(userRequest.getAddress())
                 .roleEntity(role)
                 .build();

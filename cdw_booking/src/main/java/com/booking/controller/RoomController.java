@@ -15,6 +15,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.security.PermitAll;
+import javax.annotation.security.RolesAllowed;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -46,6 +47,7 @@ public class RoomController extends ExceptionControllerHandle {
     }
 
     @PutMapping("/{id}")
+    @RolesAllowed("ADMIN")
     public ResponseEntity<?> update(@PathVariable Long id, @RequestBody RoomRequest request) {
         RoomResponse response = RoomConverter.toResponse(roomService.update(id, request));
         return ResponseEntity.ok(Response.success("Update room with id:" + id + " successfully", response));

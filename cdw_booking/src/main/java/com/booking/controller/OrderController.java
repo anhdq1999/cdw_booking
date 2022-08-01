@@ -17,7 +17,7 @@ public class OrderController {
 
     @GetMapping
     public ResponseEntity<?> getAll() {
-        return ResponseEntity.ok().body(Response.success("GET All Success", orderService.getAll()));
+        return ResponseEntity.ok().body(Response.success("Get all orders success", orderService.getAll()));
     }
 
     @PostMapping("/")

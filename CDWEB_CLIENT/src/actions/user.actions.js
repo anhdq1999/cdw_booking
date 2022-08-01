@@ -49,8 +49,9 @@ function checkPasswordResetToken(token, id) {
                 dispatch(alertActions.error(err.message))
             })
     }
+
     function success() {
-        return {type: userConstants.RESET_PASSWORD_SUCCESS,payload:{token,id}}
+        return {type: userConstants.RESET_PASSWORD_SUCCESS, payload: {token, id}}
     }
 }
 
@@ -138,11 +139,13 @@ function searchByEmail(type, key) {
 function getById(id) {
     return dispatch => {
         dispatch(request(id))
-        userService.getById(id).then(res => {
-                if (res.success) dispatch(success(res.data))
-                else dispatch(failure(res.message))
-            }
-        )
+        userService.getById(id)
+            .then(res => {
+                    console.log(res)
+                    if (res.success) dispatch(success(res.data))
+                    else dispatch(failure(res.message))
+                }
+            )
     }
 
     function request(id) {
@@ -173,7 +176,7 @@ function login(username, password) {
                 }
             }).catch(error => {
             dispatch(failure(error));
-            dispatch(alertActions.error(error.message));
+            dispatch(alertActions.error("Wrong username or password"));
         });
 
 
@@ -278,10 +281,12 @@ function update(user, data) {
                     dispatch(success(res.data))
                     dispatch(alertActions.success(res.message))
                 }
-            }).catch(error => {
-            dispatch(failure(error));
-            dispatch(alertActions.error(error.message));
-        })
+            })
+            .catch(error => {
+                    dispatch(failure(error));
+                    dispatch(alertActions.error(error.message));
+                }
+            )
     }
 
     function request(user) {

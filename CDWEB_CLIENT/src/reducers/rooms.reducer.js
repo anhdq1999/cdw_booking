@@ -58,7 +58,7 @@ export function roomReducer(state = initialState, action) {
             };
         case roomConstants.CREATE_SUCCESS:
             state.items.push(action.room);
-            state.items = state.items.filter(room => room._id !== '')
+            state.items = state.items.filter(room => room.id !== '')
             state.createRoom = {};
             return {
                 ...state,
@@ -80,18 +80,18 @@ export function roomReducer(state = initialState, action) {
                 editRoom: action.room,
             };
         case roomConstants.UPDATE_SUCCESS:
-            const editRoomIndex = state.items.findIndex(room => room._id === action.room._id)
+            const editRoomIndex = state.items.findIndex(room => room.id === action.room.id)
             state.items[editRoomIndex] = action.room
-            state.items = state.items.filter(room => room._id !== "")
+            state.items = state.items.filter(room => room.id !== "")
             state.editRoom = action.room
             return {
                 ...state,
             };
         case roomConstants.RESTORE_SUCCESS:
-            state.itemsDeleted = state.itemsDeleted.filter(room => room._id !== action.id)
+            state.itemsDeleted = state.itemsDeleted.filter(room => room.id !== action.id)
             return { ...state };
         case roomConstants.REMOVE_SUCCESS:
-            state.itemsDeleted = state.itemsDeleted.filter(room => room._id !== action.id)
+            state.itemsDeleted = state.itemsDeleted.filter(room => room.id !== action.id)
             return { ...state };
         case roomConstants.DELETE_REQUEST:
             // add 'deleting:true' property to room being deleted
@@ -100,7 +100,7 @@ export function roomReducer(state = initialState, action) {
             };
         case roomConstants.DELETE_SUCCESS:
             // remove deleted room from state
-            state.items = state.items.filter(room => room._id !== action.id)
+            state.items = state.items.filter(room => room.id !== action.id)
             return { ...state };
         case roomConstants.DELETE_FAILURE:
             // remove 'deleting:true' property and add 'deleteError:[error]' property to room 

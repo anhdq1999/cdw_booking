@@ -18,7 +18,7 @@ import Register2 from 'markup/Pages/register/Register2';
 import React from 'react';
 import {Route, Switch} from 'react-router-dom';
 import Homepage2 from "../../markup/Pages/homepage/Homepage2";
-import ListingDetails from "../../markup/Pages/profile/ListingDetails";
+import Profile from "../../markup/Pages/profile/Profile";
 import ResetPasswordCheck from "../../markup/Pages/forgot/ResetPasswordCheck";
 import ForgotSuccess from "../../markup/Pages/forgot/ForgotSuccess";
 
@@ -34,7 +34,7 @@ function PublicRoutes() {
             <Route path='/booking/:id' exact component={BookingDetails}/>
             <Route path='/accommodation' exact component={Accommodation}/>
             <Route path='/error' exact component={Error404}/>
-            <Route path='/profile' exact component={ListingDetails}/>
+            <Route path='/profile' exact component={Profile}/>
             <Route path='/forgot' exact component={ForgotPass}/>
             <Route path='/forgot-success' exact component={ForgotSuccess}/>
             <Route path='/hotelbooking/:id' exact component={HotelBooking}/>

@@ -1,10 +1,11 @@
-import { yupResolver } from "@hookform/resolvers/yup";
-import { userActions } from 'actions';
-import React from 'react';
-import { useForm } from 'react-hook-form';
-import { useDispatch, useSelector } from 'react-redux';
-import { Button, Col, Label, Modal, ModalBody, ModalFooter, ModalHeader, Row } from 'reactstrap';
+import {yupResolver} from "@hookform/resolvers/yup";
+import {userActions} from 'actions';
+import React, {useEffect} from 'react';
+import {useForm} from 'react-hook-form';
+import {useDispatch, useSelector} from 'react-redux';
+import {Button, Col, Label, Modal, ModalBody, ModalFooter, ModalHeader, Row} from 'reactstrap';
 import * as yup from 'yup';
+import {userConstants} from "../../../../_constants";
 
 const schema = yup.object().shape({
     username: yup
@@ -17,7 +18,7 @@ const schema = yup.object().shape({
     email: yup
         .string()
         .required("Email is required"),
-    fullname: yup
+    fullName: yup
         .string()
         .required("Full name is required"),
     sex: yup
@@ -35,13 +36,16 @@ const schema = yup.object().shape({
     address: yup
         .string()
         .required("Address is required"),
-    roles: yup
+    roleId: yup
         .string()
         .required("Roles is required")
 })
 export default function UserModal(props) {
-    let user = props.user;
+
+    let user = props.user
+
     const alert = useSelector(state => state.alert)
+
     const updateUser = useSelector(state => state.userReducer.editUser)
 
     const dispatch = useDispatch();
@@ -51,12 +55,17 @@ export default function UserModal(props) {
         setValue,
         handleSubmit,
         reset,
-        formState: { errors }
+        formState: {errors}
     } = useForm({
         mode: 'onBlur',
         resolver: yupResolver(schema),
 
     })
+
+
+    function toggle() {
+        return props.toggle()
+    }
     if (!props.isAdd) {
         if (updateUser) {
             setUserValue(updateUser)
@@ -66,13 +75,10 @@ export default function UserModal(props) {
     }
 
 
-    function toggle() {
-        return props.toggle()
-    }
     function setUserValue(data) {
         const date = new Date(data.dateOfBirth)
         const dateOfBirth = date.toLocaleDateString('en-CA') || "2000-12-16";
-        setValue("fullname", data.fullname)
+        setValue("fullName", data.fullName)
         setValue("username", data.username)
         setValue("email", data.email)
         setValue("password", data.email)
@@ -80,17 +86,26 @@ export default function UserModal(props) {
         setValue("address", data.address)
         setValue("sex", data.sex)
         setValue("phoneNumber", data.phoneNumber)
-        setValue("roles", data.roles)
+        setValue("roleId", data.role.id)
     }
+
     function handleAdd(data) {
         dispatch(userActions.create(data))
     }
+
     function handleEdit(data) {
         dispatch(userActions.update(user, data))
     }
+
     const onSubmit = data => {
-        if (!props.isAdd) handleEdit(data)
-        else handleAdd(data)
+        console.log(data)
+        if (!props.isAdd) {
+            handleEdit(data)
+            toggle()
+        } else {
+            handleAdd(data)
+            toggle()
+        }
     }
     return (
         <div>
@@ -111,18 +126,17 @@ export default function UserModal(props) {
                         }
                         <Row>
                             <Col md={6}>
-                                <Label for="fullname">
+                                <Label for="fullName">
                                     Full Name
                                 </Label>
                                 <input
                                     className="form-control"
-                                    id="fullname"
-                                    name="fullname"
+
                                     type="text"
-                                    {...register("fullname")}
+                                    {...register("fullName")}
                                 />
-                                {errors?.fullname &&
-                                    <div className="alert-warning text-center">{errors.fullname?.message}</div>
+                                {errors?.fullName &&
+                                    <div className="alert-warning text-center">{errors.fullName?.message}</div>
                                 }
                             </Col>
                             <Col md={6}>
@@ -254,25 +268,23 @@ export default function UserModal(props) {
                         <Row>
                             <Col md={6}>
 
-                                <Label for="roles">
+                                <Label for="roleId">
                                     Roles
                                 </Label>
                                 <select
                                     className="form-control"
-                                    id="roles"
-                                    name="roles"
+
 
                                     type="select"
-                                    {...register("roles")}
+                                    {...register("roleId")}
                                 >
                                     <option name="roles" value=''>...Chọn</option>
-                                    <option name="roles" value='host'>Host</option>
-                                    <option name="roles" value='user'>User</option>
-                                    <option name="roles" value='admin'>Admin</option>
+                                    <option name="roles" value='1'>User</option>
+                                    <option name="roles" value='2'>Admin</option>
 
                                 </select>
-                                {errors?.roles &&
-                                    <div className="alert-warning text-center">{errors.roles?.message}</div>
+                                {errors?.roleId &&
+                                    <div className="alert-warning text-center">{errors.roleId?.message}</div>
                                 }
 
                             </Col>

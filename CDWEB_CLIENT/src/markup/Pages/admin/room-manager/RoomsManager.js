@@ -93,7 +93,7 @@ function RoomsManager(props) {
   }
   return (
     <div>
-      <div className="mt-5 mx-5">
+      <div className="mt-5 mx-5 mb-5">
 
         <Link to='/admin/rooms-manager/garbage'>Thùng rác của tôi</Link>
 

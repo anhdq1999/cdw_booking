@@ -41,7 +41,7 @@ function logout() {
 }
 
 function getAll() {
-    const url = "/api/v1/users";
+    const url = "/api/v1/users/";
     return axiosClient.get(url);
 }
 
@@ -60,11 +60,11 @@ function register(user) {
 }
 
 function create(user) {
-    const url = "/api/v1/users";
+    const url = "/api/v1/users/";
     return axiosClient.post(url, user)
 }
 function update(user, newUser) {
-    const url = `/api/v1/users/${user._id}`;
+    const url = `/api/v1/users/${user.id}`;
     return axiosClient.put(url, newUser);
 }
 function deleteUser(id) {
