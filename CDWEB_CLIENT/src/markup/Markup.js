@@ -1,8 +1,8 @@
 import {alertActions} from 'actions';
 import {history} from 'helpers';
-import React, {Component, useEffect, useLayoutEffect} from 'react';
+import React, {useEffect, useLayoutEffect} from 'react';
 import {connect, useDispatch} from 'react-redux';
-import {Route, Router, Switch, useLocation} from 'react-router-dom';
+import {Route, Router, Switch} from 'react-router-dom';
 import About from 'markup/Pages/about/About';
 import GarbageRoom from 'markup/Pages/admin/room-manager/GarbageRoom';
 import RoomsManager from 'markup/Pages/admin/room-manager/RoomsManager';
@@ -24,7 +24,6 @@ import Footer from "./Layout/Footer";
 import Register2 from "./Pages/register/Register2";
 import Login2 from "./Pages/login/Login2";
 import Register from "./Pages/register/Register-react-hook-form";
-import Hotel from "./Pages/accommodation/Hotel";
 
 
 function Markup(props) {
@@ -53,6 +52,7 @@ function Markup(props) {
                     <Route path='/login' exact component={Login2}/>
                     <Route path='/register' exact component={Register}/>
                     <Route path='/register2' exact component={Register2}/>
+                    <Route path='/profile' exact component={ListingDetails}/>
                     <Route path='/forgot' exact component={ForgotPass}/>
                     <Route path='/admin/users-manager' exact component={UsersManager}/>
                     <Route path='/admin/users-manager/garbage' exact component={Garbage}/>
