@@ -13,6 +13,7 @@ import com.booking.security.services.UserDetailsImpl;
 import com.booking.services.IUserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -84,5 +85,11 @@ public class UserService implements IUserService {
     public void deleteById(Long id){
         UserEntity entity = getById(id);
         userRepository.delete(entity);
+    }
+
+    @Override
+    public UserEntity findByEmail(String email) {
+        return userRepository.findByEmail(email).orElseThrow(
+                ()-> new IllegalArgumentException("Not found user by "+email));
     }
 }

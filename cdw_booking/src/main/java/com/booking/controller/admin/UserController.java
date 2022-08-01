@@ -40,10 +40,18 @@ public class UserController extends ExceptionControllerHandle {
         UserResponse response =UserConverter.toResponse(entity);
         return ResponseEntity.ok(Response.success("Create user successfully",response));
     }
-
+    @PutMapping("/{id}")
     public ResponseEntity<?> update(@PathVariable Long id,@RequestBody UserRequest request){
         UserEntity entity = userService.update(id,request);
         UserResponse response=UserConverter.toResponse(entity);
         return ResponseEntity.ok(Response.success("Update user with id: "+id+"successfully",response));
     }
+
+    @PostMapping("/forgot")
+    public ResponseEntity<?> forgot(@RequestBody String email){
+        UserEntity entity = userService.findByEmail(email);
+        return null;
+    }
+
+
 }

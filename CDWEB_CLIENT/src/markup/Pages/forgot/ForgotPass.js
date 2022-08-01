@@ -1,14 +1,13 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import Slick3 from 'markup/Pages/component-part/Slick3';
-import { useDispatch } from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import * as yup from 'yup';
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from 'react-hook-form';
 import { userActions } from 'actions';
 
 const schemaValidation = yup.object().shape({
-
     email: yup
     .string()
     .required('Email is required')
@@ -19,6 +18,8 @@ const schemaValidation = yup.object().shape({
 function ForgotPass(props) {
     const { register, handleSubmit, formState: { errors } } = useForm({ resolver: yupResolver(schemaValidation) });
     const dispatch = useDispatch();
+
+    const alert = useSelector(state=>state.alert);
 
     const onSubmit = (email) => {
         dispatch(userActions.forgot(email))
@@ -37,9 +38,12 @@ function ForgotPass(props) {
                                     <form class="dlab-form" onSubmit={handleSubmit(onSubmit)}>
                                         <div class="form-head">
                                             <h3 class="form-title m-t0">Find Your<span class="text-primary"> Account</span></h3>
-                                            <p class="title-text">Welcome back, please login<br /> to your account</p>
+                                            <p class="title-text">Welcome back, please enter<br /> to your email</p>
                                         </div>
                                         <div class="form-group-bx">
+                                            {alert.message &&
+                                                <div className={`alert ${alert.type}`}>{alert.message}</div>
+                                            }
                                             <div class="form-group input-form">
                                                 <label>Email</label>
                                                 <input
@@ -48,9 +52,7 @@ function ForgotPass(props) {
                                                     placeholder="info123@example.com"
                                                     {...register("email")}
                                                     type="text" />
-
                                             </div>
-
                                             {errors.email &&
                                                 <div className="alert-warning">{errors.email.message}</div>
                                             }

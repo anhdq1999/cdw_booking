@@ -22,4 +22,6 @@ public interface IUserService {
     UserEntity update(Long id,UserRequest request);
 
     void deleteById(Long id);
+
+    UserEntity findByEmail(String email);
 }
