@@ -3,7 +3,6 @@ package com.booking.controller;
 import com.booking.common.Response;
 import com.booking.payload.request.OrderRequest;
 import com.booking.payload.response.OrderResponse;
-import com.booking.services.email.MailService;
 import com.booking.services.impl.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
