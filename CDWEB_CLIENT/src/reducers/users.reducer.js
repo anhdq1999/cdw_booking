@@ -80,6 +80,7 @@ export function userReducer(state = initialState, action) {
       };
     case userConstants.CREATE_SUCCESS:
       state.items.push(action.user);
+      state.items=state.items.filter(u=>u.id!=='');
       state.createUser = {}
       return {
         ...state,

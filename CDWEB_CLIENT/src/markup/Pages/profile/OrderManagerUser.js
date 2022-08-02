@@ -3,9 +3,13 @@ import React, {useEffect, useState} from 'react';
 import DataTable from 'react-data-table-component';
 import {useDispatch, useSelector} from 'react-redux';
 import {Button, Label} from 'reactstrap';
+import {userService} from "../../../services";
+import order from "../order/Order";
+import OrderDetailModal from "./OrderDetailModal";
 
 
 function OrderManagerUser(props) {
+    const id = userService.getCurrentUser().id
     const alert = useSelector(state => state.alert)
     const orders = useSelector(state => state.orderReducer.items)
     const pending = useSelector(state => state.orderReducer.loading)
@@ -49,7 +53,7 @@ function OrderManagerUser(props) {
                 buttons: true,
                 cell: (column) =>
                     (<>
-                            <Button>Edit</Button>
+                            <Button onClick={(column)=>handeSeeOrderDetails}>Details</Button>
 
                         </>
                     ),
@@ -57,9 +61,14 @@ function OrderManagerUser(props) {
                 allowOverflow: true,
             },
         ]
+
     useEffect(() => {
-        dispatch(orderActions.getAll())
-    }, [dispatch])
+        dispatch(orderActions.getByUserId(id))
+    }, [dispatch,id])
+
+    const handeSeeOrderDetails =(order)=>{
+        dispatch(orderActions.getByUserId(order.id))
+    }
 
 
     return (

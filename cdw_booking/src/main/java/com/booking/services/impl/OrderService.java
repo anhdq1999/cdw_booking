@@ -16,6 +16,7 @@ import org.springframework.stereotype.Service;
 import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class OrderService implements IOrderService {
@@ -93,6 +94,14 @@ public class OrderService implements IOrderService {
         order.setCustomerName(request.getCustomerName());
         order.setCustomerPhone(request.getCustomerPhone());
         return OrderConverter.toResponse(orderRepository.save(order));
+    }
+
+    @Override
+    public List<OrderResponse> findByUserEntityId(Long id) {
+        List<OrderResponse> responses= orderRepository.findByUserEntityId(id)
+                .stream().map(o-> OrderConverter.toResponse(o))
+                .collect(Collectors.toList());
+        return responses;
     }
 
 

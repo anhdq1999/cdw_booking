@@ -77,7 +77,6 @@ export function roomReducer(state = initialState, action) {
         case roomConstants.UPDATE_REQUEST:
             return {
                 ...state,
-                editRoom: action.room,
             };
         case roomConstants.UPDATE_SUCCESS:
             const editRoomIndex = state.items.findIndex(room => room.id === action.room.id)

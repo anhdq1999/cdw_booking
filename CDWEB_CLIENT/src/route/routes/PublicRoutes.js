@@ -21,6 +21,8 @@ import Homepage2 from "../../markup/Pages/homepage/Homepage2";
 import Profile from "../../markup/Pages/profile/Profile";
 import ResetPasswordCheck from "../../markup/Pages/forgot/ResetPasswordCheck";
 import ForgotSuccess from "../../markup/Pages/forgot/ForgotSuccess";
+import Contact from "../../markup/Pages/contact/Contact";
+import About from "../../markup/Pages/about/About";
 
 function PublicRoutes() {
     return (
@@ -35,7 +37,10 @@ function PublicRoutes() {
             <Route path='/accommodation' exact component={Accommodation}/>
             <Route path='/error' exact component={Error404}/>
             <Route path='/profile' exact component={Profile}/>
-            <Route path='/forgot' exact component={ForgotPass}/>
+                <Route path='/contact' exact component={Contact}/>
+                <Route path='/about' exact component={About}/>
+
+                <Route path='/forgot' exact component={ForgotPass}/>
             <Route path='/forgot-success' exact component={ForgotSuccess}/>
             <Route path='/hotelbooking/:id' exact component={HotelBooking}/>
             <Route path='/blogleftsidebar' exact component={BlogLeftSidebar}/>

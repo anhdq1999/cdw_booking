@@ -221,7 +221,7 @@ function create(room) {
 function update(room, data) {
     return dispatch => {
         dispatch(request(room));
-        roomsService.update(room._id, data)
+        roomsService.update(room.id, data)
             .then(res => {
                 if (res.success) {
                     dispatch(success(res.data));

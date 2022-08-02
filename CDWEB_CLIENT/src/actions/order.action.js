@@ -9,8 +9,34 @@ export const orderActions = {
     initBookNowItem,
     initOrder,
     create,
+    getById,
     delele: _delete
 };
+
+function getById(id){
+    return dispatch=>{
+        orderService.getById(id)
+            .then(
+                res=>{
+                    if(res.succes){
+                        dispatch(success(res.data))
+                        dispatch(alertActions.success(res.message))
+                    }else{
+                        dispatch(alertActions.error(res.message))
+                    }
+
+                }
+            )
+            .catch(
+                err=>{
+                    dispatch(alertActions.error(err.message))
+                }
+            )
+    }
+    function success(payload){
+        return {type:orderConstants.GET_BY_ID_SUCCESS,payload}
+    }
+}
 
 function initBookNowItem(data) {
     return dispatch => {
@@ -74,9 +100,9 @@ function getAll(data) {
     }
 }
 
-function getByUserId(user) {
+function getByUserId(id) {
     return dispatch => {
-        orderService.getAllByUserId(user.id)
+        orderService.getByUserId(id)
             .then(
                 res => {
                     if (res.success) {

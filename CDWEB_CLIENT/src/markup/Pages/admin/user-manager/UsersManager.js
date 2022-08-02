@@ -65,7 +65,7 @@ function UsersManager(props) {
   }, [dispatch])
 
   function handleDelete(user) {
-    const id = user._id;
+    const id = user.id;
     dispatch(userActions.delete(id))
   }
   const handleEdit = (user) => {
