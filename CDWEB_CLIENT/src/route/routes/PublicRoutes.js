@@ -37,10 +37,10 @@ function PublicRoutes() {
             <Route path='/accommodation' exact component={Accommodation}/>
             <Route path='/error' exact component={Error404}/>
             <Route path='/profile' exact component={Profile}/>
-                <Route path='/contact' exact component={Contact}/>
-                <Route path='/about' exact component={About}/>
+            <Route path='/contact' exact component={Contact}/>
+            <Route path='/about' exact component={About}/>
 
-                <Route path='/forgot' exact component={ForgotPass}/>
+            <Route path='/forgot' exact component={ForgotPass}/>
             <Route path='/forgot-success' exact component={ForgotSuccess}/>
             <Route path='/hotelbooking/:id' exact component={HotelBooking}/>
             <Route path='/blogleftsidebar' exact component={BlogLeftSidebar}/>
