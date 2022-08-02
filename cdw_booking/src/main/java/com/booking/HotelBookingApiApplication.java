@@ -1,32 +1,28 @@
 package com.booking;
 
 import com.booking.config.AuditorAwareService;
-import com.booking.payload.request.RoomRequest;
-import com.fasterxml.jackson.core.JsonParser;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.google.gson.Gson;
-import com.google.gson.stream.JsonReader;
-import org.apache.tomcat.util.json.JSONParser;
-import org.springframework.boot.CommandLineRunner;
+import com.cloudinary.*;
+import com.cloudinary.utils.ObjectUtils;
+
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.json.GsonJsonParser;
 import org.springframework.context.annotation.Bean;
 import org.springframework.data.domain.AuditorAware;
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
-
-import java.io.FileReader;
-import java.io.StringReader;
-import java.util.ArrayList;
-import java.util.stream.Collectors;
-
-import java.util.List;
 @SpringBootApplication
 //@EnableJpaAuditing
 @EnableJpaAuditing(auditorAwareRef = "auditorAware")
 public class HotelBookingApiApplication {
 
     public static void main(String[] args) {
+        Cloudinary cloudinary = new Cloudinary(ObjectUtils.asMap(
+                "cloud_name", "dmtwoqysj", // insert here you cloud name
+                "api_key", "216382429154853", // insert here your api code
+                "api_secret", "qvTi4QrZt4tehSyasEc_Pr7PTDo")); // insert here your api secret
+        SingletonManager manager = new SingletonManager();
+        manager.setCloudinary(cloudinary);
+        manager.init();
+
         SpringApplication.run(HotelBookingApiApplication.class, args);
     }
     @Bean

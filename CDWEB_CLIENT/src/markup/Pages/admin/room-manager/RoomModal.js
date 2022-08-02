@@ -111,6 +111,7 @@ export default function RoomModal(props) {
         uploadService.uploadMultiImage(uploadData)
             .then(
                 res => {
+                    console.log(res)
                     data.images = res.data
                     data.image = data.images[0]
                     dispatch(roomActions.create(data))
@@ -120,6 +121,7 @@ export default function RoomModal(props) {
                 dispatch(alertActions.error(err.message))
             }
         )
+        console.log(data)
     }
 
     function handleEdit(data) {
@@ -143,6 +145,7 @@ export default function RoomModal(props) {
         } else {
             dispatch(roomActions.update(room, data))
         }
+
     }
 
     const onSubmit = data => {
