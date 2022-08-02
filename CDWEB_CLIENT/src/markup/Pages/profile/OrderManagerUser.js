@@ -1,11 +1,9 @@
-import {alertActions, orderActions, userActions} from 'actions';
-import React, {useEffect, useState} from 'react';
+import {orderActions} from 'actions';
+import React, {useEffect} from 'react';
 import DataTable from 'react-data-table-component';
 import {useDispatch, useSelector} from 'react-redux';
-import {Button, Label} from 'reactstrap';
+import {Button} from 'reactstrap';
 import {userService} from "../../../services";
-import order from "../order/Order";
-import OrderDetailModal from "./OrderDetailModal";
 
 
 function OrderManagerUser(props) {
@@ -25,12 +23,8 @@ function OrderManagerUser(props) {
                 selector: row => row.adults
             },
             {
-                name: 'Child',
-                selector: row => row.child
-            },
-            {
-                name: 'Infants',
-                selector: row => row.infants
+                name: 'status',
+                selector: row => row.status
             },
             {
                 name: 'Total Price',

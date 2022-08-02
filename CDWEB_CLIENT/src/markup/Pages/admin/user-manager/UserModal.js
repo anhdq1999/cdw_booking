@@ -1,11 +1,10 @@
 import {yupResolver} from "@hookform/resolvers/yup";
 import {userActions} from 'actions';
-import React, {useEffect} from 'react';
+import React from 'react';
 import {useForm} from 'react-hook-form';
 import {useDispatch, useSelector} from 'react-redux';
 import {Button, Col, Label, Modal, ModalBody, ModalFooter, ModalHeader, Row} from 'reactstrap';
 import * as yup from 'yup';
-import {userConstants} from "../../../../_constants";
 
 const schema = yup.object().shape({
     username: yup

@@ -3,7 +3,7 @@ import Slider from 'react-animated-slider';
 import 'react-animated-slider/build/horizontal.css';
 import Slick2 from '../component-part/Slick2';
 import HomeBlog from '../../Element/HomeBlog';
-import { Link } from 'react-router-dom';
+import {Link} from 'react-router-dom';
 
 const content = [
     {
@@ -26,16 +26,16 @@ const content = [
     }
 ];
 
-const bg1 = require('../../../images/background/bg1.jpg');
+// const bg1 = require('../../../images/background/bg1.jpg');
 
 function Homepage2(props) {
 
-    const settings = {
-        dots: false,
-        infinite: true,
-        slidesToShow: 3,
-        slidesToScroll: 1,
-    };
+    // const settings = {
+    //     dots: false,
+    //     infinite: true,
+    //     slidesToShow: 3,
+    //     slidesToScroll: 1,
+    // };
 
     return (
         <div>

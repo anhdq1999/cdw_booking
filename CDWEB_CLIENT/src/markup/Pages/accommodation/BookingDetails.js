@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react'
 import Slider from "react-slick";
 import {Link} from 'react-router-dom';
-import {useDispatch, useSelector} from 'react-redux';
+import {useDispatch} from 'react-redux';
 import {roomActions} from 'actions';
 
 
@@ -55,7 +55,6 @@ const bg3 = require('../../../images/banner/bnr1.jpg');
 function BookingDetails(props) {
     const id = props.match.params.id;
     console.log(id)
-    const room = useSelector(state => state.roomReducer.item)
     const dispatch = useDispatch();
     useEffect(() => {
         dispatch(roomActions.getById(id))

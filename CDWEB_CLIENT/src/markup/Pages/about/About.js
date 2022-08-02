@@ -1,8 +1,6 @@
 import React from 'react'
 import Slider from "react-slick";
-import { Link } from 'react-router-dom';
-import Header2 from '../../Layout/Header2';
-import Footer from '../../Layout/Footer';
+import {Link} from 'react-router-dom';
 
 
 const aboutBlog = [
