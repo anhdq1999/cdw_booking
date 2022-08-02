@@ -35,6 +35,7 @@ public class UserEntity extends AbstractEntity<String> {
     private String fullName;
     private Date dateOfBirth;
     private String sex;
+    private boolean isVerified=false;
     @Column(name = "phoneNumber")
     private String phoneNumber;
     private String address;

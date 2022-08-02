@@ -26,9 +26,29 @@ export const userActions = {
     remove,
     forgot,
     checkPasswordResetToken,
-    resetPassword
+    resetPassword,
+    registerVerified
 };
-
+function registerVerified(id, token) {
+    return dispatch => {
+        userService.registerVerified(id, token).then(
+            res => {
+                console.log(res)
+                if (res.success) {
+                    history.push('/login')
+                    dispatch(alertActions.success(res.message))
+                }else{
+                    history.push('/login')
+                    dispatch(alertActions.error(res.message))
+                }
+            }
+        ).catch(
+            err => {
+                history.push('/login')
+                dispatch(alertActions.error(err.message))
+            })
+    }
+}
 function checkPasswordResetToken(token, id) {
     return dispatch => {
         userService.checkPasswordResetToken(token, id)
@@ -209,7 +229,7 @@ function register(user) {
                     if (res.success) {
                         dispatch(success());
                         history.push('/login');
-                        dispatch(alertActions.success('Registration successful'));
+                        dispatch(alertActions.success('Registration successful, please check mail to verify'));
                     } else {
                         dispatch(failure(res.message));
                         dispatch(alertActions.error(res.message))
