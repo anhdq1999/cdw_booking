@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import {Link} from 'react-router-dom';
 import Slick3 from 'markup/Pages/component-part/Slick3';
 import {useDispatch, useSelector} from 'react-redux';

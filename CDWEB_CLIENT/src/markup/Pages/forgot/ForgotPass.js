@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {Link} from 'react-router-dom';
 import Slick3 from 'markup/Pages/component-part/Slick3';
 import {useDispatch, useSelector} from 'react-redux';
@@ -19,17 +19,13 @@ function ForgotPass(props) {
     const {register, handleSubmit, formState: {errors}} = useForm({resolver: yupResolver(schemaValidation)});
     const dispatch = useDispatch();
 
-    const [isSubmit, setIsSubmit] = useState(false);
 
     const alert = useSelector(state => state.alert);
 
     const onSubmit = (email) => {
         dispatch(userActions.forgot(email))
-        setIsSubmit(true);
     }
-    const handleBackSubmit = () => {
-        setIsSubmit(false)
-    }
+
     return (
         <div>
             <div class="page-content dlab-login font-roboto">

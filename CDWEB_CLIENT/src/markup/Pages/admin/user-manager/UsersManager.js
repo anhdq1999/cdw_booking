@@ -1,10 +1,9 @@
-import { alertActions, userActions } from 'actions';
-import Header from 'markup/Layout/Header';
-import React, { useEffect, useState } from 'react';
+import {alertActions, userActions} from 'actions';
+import React, {useEffect, useState} from 'react';
 import DataTable from 'react-data-table-component';
-import { useDispatch, useSelector } from 'react-redux';
-import { Link } from 'react-router-dom/cjs/react-router-dom.min';
-import { Button, Label } from 'reactstrap';
+import {useDispatch, useSelector} from 'react-redux';
+import {Link} from 'react-router-dom/cjs/react-router-dom.min';
+import {Button, Label} from 'reactstrap';
 import UserModal from './UserModal';
 
 

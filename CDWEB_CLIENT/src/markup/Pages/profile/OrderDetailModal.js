@@ -1,6 +1,6 @@
 import React from "react";
 import {useSelector} from "react-redux";
-import {Button, Col, Label, Modal, ModalBody, ModalFooter, ModalHeader, Row} from "reactstrap";
+import {Button, Modal, ModalBody, ModalFooter, ModalHeader} from "reactstrap";
 
 function OrderDetailModal(props) {
 

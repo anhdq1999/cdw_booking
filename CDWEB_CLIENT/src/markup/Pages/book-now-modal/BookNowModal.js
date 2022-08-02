@@ -1,12 +1,10 @@
 import React from 'react'
-import {Modal, ModalBody, ModalFooter, ModalHeader, Button} from "reactstrap";
+import {Button, Modal, ModalBody, ModalFooter, ModalHeader} from "reactstrap";
 import {useForm} from "react-hook-form";
 import {yupResolver} from "@hookform/resolvers/yup";
 import * as yup from 'yup';
-import {userService} from "../../../services";
 import {orderActions} from "../../../actions";
 import {useDispatch} from "react-redux";
-import order from "../order/Order";
 
 const schema = yup.object().shape({
     child: yup.string().required('child is required'),

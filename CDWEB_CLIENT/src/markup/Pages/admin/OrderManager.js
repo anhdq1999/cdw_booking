@@ -1,8 +1,8 @@
-import {alertActions, orderActions, userActions} from 'actions';
-import React, {useEffect, useState} from 'react';
+import {orderActions} from 'actions';
+import React, {useEffect} from 'react';
 import DataTable from 'react-data-table-component';
 import {useDispatch, useSelector} from 'react-redux';
-import {Button, Label} from 'reactstrap';
+import {Button} from 'reactstrap';
 
 
 function OrderManager(props) {

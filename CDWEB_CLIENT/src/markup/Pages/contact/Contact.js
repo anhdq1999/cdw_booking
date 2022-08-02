@@ -1,8 +1,6 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import {Link} from 'react-router-dom';
 import GoogleMaps from "simple-react-google-maps"
-import Header2 from '../../Layout/Header2';
-import Footer from '../../Layout/Footer';
 
 const bg3 = require('../../../images/banner/bnr1.jpg');
 function Contact(props) {
