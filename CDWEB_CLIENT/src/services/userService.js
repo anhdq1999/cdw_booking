@@ -15,8 +15,13 @@ export const userService = {
     getCurrentUser,
     forgot,
     resetPassword,
-    checkPasswordResetToken
+    checkPasswordResetToken,
+    registerVerified
 };
+function registerVerified(id,token){
+    const url = "/api/v1/auth/register-verify";
+    return axiosClient.post(url, {id, token});
+}
 function checkPasswordResetToken(token,id){
     const url ='/api/v1/users-forgot/check-pass-word-reset-token';
     return axiosClient.post(url,{token,id});

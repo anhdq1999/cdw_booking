@@ -120,8 +120,8 @@ public class FormMail {
                 "      </div>";
     }
 
-    public static String verifyAccount(String email, String token) {
-        return " `<form action=\"http://localhost:3000/register-verify/$" + email + "&" + token + " \" method=\"get\">\n" +
+    public static String verifyAccount(Long id, String token) {
+        return " `<form action=\"http://localhost:3000/register-verify/" + id + "&" + token + " \" method=\"get\">\n" +
                 "      <div style=\"font-family: Helvetica,Arial,sans-serif;min-width:1000px;overflow:auto;line-height:2\">\n" +
                 "        <div style=\"margin:50px auto;width:70%;padding:20px 0\">\n" +
                 "          <div style=\"border-bottom:1px solid #eee\">\n" +

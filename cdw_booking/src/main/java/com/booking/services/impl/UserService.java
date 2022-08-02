@@ -4,9 +4,9 @@ import com.booking.converter.UserConverter;
 import com.booking.entity.PasswordResetToken;
 import com.booking.entity.RoleEntity;
 import com.booking.entity.UserEntity;
-import com.booking.payload.request.CheckPasswordResetTokenRequest;
-import com.booking.payload.request.ResetPasswordRequest;
-import com.booking.payload.request.UserRequest;
+import com.booking.entity.VerifyUserEntity;
+import com.booking.payload.request.*;
+import com.booking.payload.response.UserResponse;
 import com.booking.repository.RoleRepository;
 import com.booking.repository.UserRepository;
 import com.booking.services.IUserService;
@@ -14,12 +14,15 @@ import com.booking.services.email.FormMail;
 import com.booking.services.email.MailService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 @Service
 @Slf4j
@@ -36,6 +39,8 @@ public class UserService implements IUserService {
 
     @Autowired
     PasswordResetTokenService passwordResetTokenService;
+    @Autowired
+    VerifyUserService verifyUserService;
 
     @Override
     public Boolean existsByUsername(String username) {
@@ -66,13 +71,31 @@ public class UserService implements IUserService {
     }
 
     @Override
-    public UserEntity save(UserRequest request) {
+    public UserResponse save(UserRequest request) {
         RoleEntity role = roleRepository.findByName("USER");
         if (request.getRoleId() == null) request.setRoleId(role.getId());
         String hash_password = encoder.encode(request.getPassword());
         request.setPassword(hash_password);
-        UserEntity entity = UserConverter.toEntity(request);
-        return userRepository.save(entity);
+        UserEntity rawEntity = UserConverter.toEntity(request);
+        UserEntity entity = userRepository.save(rawEntity);
+        String token = UUID.randomUUID().toString();
+        verifyUserService.save(token, entity);
+        mailService.sendMail(entity.getEmail(), "Verify account", FormMail.verifyAccount(entity.getId(), token));
+        return UserConverter.toResponse(entity);
+    }
+
+    @Override
+    public UserResponse verifyUser(VerifyRequest request) {
+        UserEntity rawEntity = userRepository.findById(request.getId())
+                .orElseThrow(() -> new IllegalArgumentException("User is not exist"));
+        if (verifyUserService.checkVerifyUser(request)) {
+            rawEntity.setVerified(true);
+            UserEntity entity = userRepository.save(rawEntity);
+           VerifyUserEntity verifyUserEntity= verifyUserService.findByToken(request.getToken());
+           verifyUserService.delete(verifyUserEntity);
+            return UserConverter.toResponse(entity);
+        }
+        return null;
 
     }
 
@@ -90,6 +113,24 @@ public class UserService implements IUserService {
         UserEntity entity = getById(id);
         userRepository.delete(entity);
     }
+
+    @Override
+    public Boolean checkVerify(LoginRequest loginRequest) {
+        UserEntity entity = userRepository.findByUsername(loginRequest.getUsername())
+                .orElseThrow(() -> new IllegalArgumentException("Wrong Username and password"));
+        if (!entity.isVerified()) return false;
+        return true;
+    }
+
+//    @Override
+//    @Transactional
+//    public List<UserResponse> findAllWithNoVerify() {
+//        List<UserEntity> entities=userRepository.getUserEntitiesByIsNotVerify(false);
+//        List<UserResponse> responses = entities.stream().map(
+//                u->UserConverter.toResponse(u)
+//        ).collect(Collectors.toList());
+//        return responses;
+//    }
 
 
     public void forgotPassword(String email) {
@@ -109,14 +150,15 @@ public class UserService implements IUserService {
             userRepository.updatePasswordById(request.getId(), hash_password);
             passwordResetTokenService.deleteByToken(request.getToken());
             return true;
-        }else{
+        } else {
             return false;
         }
     }
-    public boolean checkPasswordResetToken(CheckPasswordResetTokenRequest request){
-        PasswordResetToken passwordResetToken=passwordResetTokenService.findByTokenAndUserId(request.getToken(),request.getId());
+
+    public boolean checkPasswordResetToken(CheckPasswordResetTokenRequest request) {
+        PasswordResetToken passwordResetToken = passwordResetTokenService.findByTokenAndUserId(request.getToken(), request.getId());
         System.out.println(request);
-        if(passwordResetToken!=null) return true;
+        if (passwordResetToken != null) return true;
         return false;
     }
 

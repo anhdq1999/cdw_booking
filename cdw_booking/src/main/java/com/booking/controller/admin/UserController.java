@@ -34,6 +34,13 @@ public class UserController extends ExceptionControllerHandle {
         return ResponseEntity.ok(Response.success("Get all users successfully",responses ));
     }
 
+//    @GetMapping("/not-verify")
+//    @RolesAllowed("ADMIN")
+//    public ResponseEntity<?> getAllUsersWithNoVerify() {
+//        List<UserResponse> responses = userService.findAllWithNoVerify();
+//        return ResponseEntity.ok(Response.success("Get all users with no verify successfully",responses ));
+//    }
+
     @GetMapping("/{id}")
     @RolesAllowed("ADMIN")
     public ResponseEntity<?> getUserById(@PathVariable Long id) {
@@ -45,8 +52,7 @@ public class UserController extends ExceptionControllerHandle {
     @PostMapping("/")
     @RolesAllowed("ADMIN")
     public ResponseEntity<?> create(@RequestBody UserRequest userRequest) {
-        UserEntity entity = userService.save(userRequest);
-        UserResponse response = UserConverter.toResponse(entity);
+        UserResponse response = userService.save(userRequest);
         return ResponseEntity.ok(Response.success("Create user successfully", response));
     }
 

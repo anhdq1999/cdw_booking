@@ -23,6 +23,8 @@ import ResetPasswordCheck from "../../markup/Pages/forgot/ResetPasswordCheck";
 import ForgotSuccess from "../../markup/Pages/forgot/ForgotSuccess";
 import Contact from "../../markup/Pages/contact/Contact";
 import About from "../../markup/Pages/about/About";
+import RegisterVertified from "../../markup/Pages/register/Register-verify";
+import RegisterVerified from "../../markup/Pages/register/Register-verify";
 
 function PublicRoutes() {
     return (
@@ -38,8 +40,8 @@ function PublicRoutes() {
             <Route path='/error' exact component={Error404}/>
             <Route path='/profile' exact component={Profile}/>
             <Route path='/contact' exact component={Contact}/>
+            <Route path='/register-verify/:e&:v' exact component={RegisterVerified}/>
             <Route path='/about' exact component={About}/>
-
             <Route path='/forgot' exact component={ForgotPass}/>
             <Route path='/forgot-success' exact component={ForgotSuccess}/>
             <Route path='/hotelbooking/:id' exact component={HotelBooking}/>
