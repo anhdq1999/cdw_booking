@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link, Redirect } from "react-router-dom";
 import { roomsService } from "services";
 import {orderActions} from "../../../actions";
+import PayPal from "./PayPal";
 
 const bg3 = require('images/banner/bnr1.jpg');
 
@@ -118,8 +119,8 @@ function Payment(props) {
 
 
                         <div className="text-center">
-
                             <button className="btn bg-red" onClick={handleSubmitPayAfter}>Pay after</button>
+                            <PayPal/>
                         </div>
 
 

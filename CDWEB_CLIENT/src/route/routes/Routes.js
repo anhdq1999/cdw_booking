@@ -9,7 +9,7 @@ import { useDispatch } from 'react-redux';
 import { alertActions } from 'actions';
 import ScrollToTop from "../../markup/Element/ScrollToTop";
 
-function Routes(props) {
+function Routes() {
 
     const dispatch = useDispatch();
     useEffect(() => {
