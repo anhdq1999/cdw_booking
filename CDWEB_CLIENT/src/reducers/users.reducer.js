@@ -100,7 +100,6 @@ export function userReducer(state = initialState, action) {
       const editUserIndex = state.items.findIndex(user => user.id === action.user.id)
       state.items[editUserIndex] = action.user
       state.items = state.items.filter(user => user.id !== "")
-        state.editUser={}
       return {
         ...state,
       };
