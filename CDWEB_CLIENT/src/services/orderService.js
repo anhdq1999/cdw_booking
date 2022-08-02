@@ -2,7 +2,17 @@ import axiosClient from "api/axiosClient";
 
 export const orderService = {
     create,
-    getAll
+    getAll,
+    getByUserId,
+    getById
+}
+function getById(id){
+    const url = `/api/v1/orders/${id}`;
+    return axiosClient.get(url);
+}
+function getByUserId(id){
+    const url = `/api/v1/orders/user/${id}`;
+    return axiosClient.get(url);
 }
 function getAll(){
     const url = '/api/v1/orders/';

@@ -50,11 +50,11 @@ public class RoomController extends ExceptionControllerHandle {
     @RolesAllowed("ADMIN")
     public ResponseEntity<?> update(@PathVariable Long id, @RequestBody RoomRequest request) {
         RoomResponse response = RoomConverter.toResponse(roomService.update(id, request));
-        return ResponseEntity.ok(Response.success("Update room with id:" + id + " successfully", response));
+        return ResponseEntity.ok(Response.success("Update room with id: " + id + " successfully", response));
     }
 
     @DeleteMapping("/{id}")
-    @PreAuthorize("hasRole('USER')")
+    @RolesAllowed("ADMIN")
     public ResponseEntity<?> delete(@PathVariable Long id) {
         roomService.delete(id);
         return ResponseEntity.ok(Response.success("Delete by id:" + id + " successfully", null));

@@ -32,6 +32,11 @@ public class OrderController {
         return ResponseEntity.ok().body(Response.success("Get order by id successfully", orderService.getOrderById(id)));
     }
 
+    @GetMapping("/user/{id}")
+    public ResponseEntity<?> getByUserId(@PathVariable Long id) {
+        return ResponseEntity.ok().body(Response.success("Get order by id successfully", orderService.findByUserEntityId(id)));
+    }
+
     @PutMapping("/{id}")
     public ResponseEntity<?> update(@PathVariable Long id, @RequestBody OrderRequest request) {
         OrderResponse response = orderService.updateById(id, request);

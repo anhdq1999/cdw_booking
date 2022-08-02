@@ -17,9 +17,8 @@ public class CloudiaryService {
     private final Cloudinary cloudinary = Singleton.getCloudinary();
 
     public String upload(MultipartFile file) {
-
             try {
-                Map uploadResult = cloudinary.uploader().upload(file.getBytes(), ObjectUtils.emptyMap());
+                Map uploadResult = cloudinary.uploader().upload(file.getBytes(), ObjectUtils.asMap( "folder", "images/homestay/"));
                 String publicId = uploadResult.get("public_id").toString();
                 logger.info(" successfully uploaded the file: " + publicId);
                 return publicId;

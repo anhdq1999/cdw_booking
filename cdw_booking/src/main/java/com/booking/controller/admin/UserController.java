@@ -58,6 +58,13 @@ public class UserController extends ExceptionControllerHandle {
         return ResponseEntity.ok(Response.success("Update user successfully", response));
     }
 
+    @DeleteMapping("/{id}")
+    @RolesAllowed("ADMIN")
+    public ResponseEntity<?> deleteById(@PathVariable Long id) {
+        userService.deleteById(id);
+        return ResponseEntity.ok(Response.success("Delete user successfully", null));
+    }
+
 
 
 

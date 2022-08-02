@@ -27,6 +27,11 @@ export function orderReducer(state = initialState, action) {
             return {
                 ...state,
             }
+        case orderConstants.GETALL_BY_USERID_SUCCESS:
+            state.items = action.payload
+            return {
+                ...state,
+            }
         default: return state
     }
 }

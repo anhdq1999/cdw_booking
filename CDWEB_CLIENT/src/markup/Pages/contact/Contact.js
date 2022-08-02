@@ -5,17 +5,17 @@ import Header2 from '../../Layout/Header2';
 import Footer from '../../Layout/Footer';
 
 const bg3 = require('../../../images/banner/bnr1.jpg');
-function Contacts(props) {
+function Contact(props) {
     return (
         <div>
             <div className="dlab-bnr-inr overlay-black-middle" style={{ backgroundImage: "url(" + bg3 + ")", backgroundSize: 'cover' }}>
                 <div className="container">
                     <div className="dlab-bnr-inr-entry">
-                        <h1 className="text-white">Blog Classic</h1>
+                        <h1 className="text-white">Contact</h1>
                         <div className="breadcrumb-row">
                             <ul className="list-inline">
                                 <li><Link>Home</Link></li>
-                                <li>Blog Classic</li>
+                                <li>Contact</li>
                             </ul>
                         </div>
                     </div>
@@ -40,7 +40,7 @@ function Contacts(props) {
                                         <div className="icon-bx-xs border-1"> <Link className="icon-cell"><i className="ti-email"></i></Link> </div>
                                         <div className="icon-content">
                                             <h6 className="text-uppercase m-tb0 dlab-tilte">Email:</h6>
-                                            <p>dacn_hotelbooking@gmail.com</p>
+                                            <p>Cdweb_hotelbooking@gmail.com</p>
                                         </div>
                                     </li>
                                     <li className="icon-bx-wraper left">
@@ -121,4 +121,4 @@ function Contacts(props) {
         </div>
     )
 }
-export default Contacts;
+export default Contact;

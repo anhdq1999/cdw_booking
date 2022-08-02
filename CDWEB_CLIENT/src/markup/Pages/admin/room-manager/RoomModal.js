@@ -112,8 +112,9 @@ export default function RoomModal(props) {
             .then(
                 res => {
                     console.log(res)
-                    data.images = res.data
-                    data.image = data.images[0]
+                    data.images = [res.data]
+                    data.address.googleAddress = "googleAddress"
+                    data.reviews = []
                     dispatch(roomActions.create(data))
                 }
             ).catch(
@@ -126,6 +127,9 @@ export default function RoomModal(props) {
 
     function handleEdit(data) {
         // data.images = selectedImages
+        data.images = room.images
+        data.reviews = []
+        data.address.googleAddress = "googleAddress"
         const uploadData = new FormData();
         if (data.image) {
             data.images.forEach(item => {
@@ -149,6 +153,7 @@ export default function RoomModal(props) {
     }
 
     const onSubmit = data => {
+        console.log(data)
         if (!props.isAdd)
             handleEdit(data)
         else
@@ -255,22 +260,31 @@ export default function RoomModal(props) {
                             </Col>
                             <Col>
                                 <Label for='province' name="province"> Province:
-                                    <select className="form-control mb-3"
-                                            {...register("address.province")}
-                                            onChange={handleProvinceChange}
-                                            disabled={districts.length === 1 ? true : false}
-                                    >
-                                        {provinces.length > 0 &&
-                                            <option checked>Chọn tỉnh</option>
-                                        }
-                                        {(provinces.length > 0 &&
-                                                provinces.map((item, index) => (
-                                                    <option key={item.id} value={item.id}>{item.name_with_type}</option>
-                                                ))) ||
-                                            <option>Đang load dữ liệu</option>
-                                        }
-                                    </select>
-
+                                    {props.isAdd &&
+                                        <select className="form-control mb-3"
+                                                {...register("address.province")}
+                                                onChange={handleProvinceChange}
+                                                disabled={districts.length === 1 ? true : false}
+                                        >
+                                            {provinces.length > 0 &&
+                                                <option checked>Chọn tỉnh</option>
+                                            }
+                                            {(provinces.length > 0 &&
+                                                    provinces.map((item, index) => (
+                                                        <option key={item.id} value={item.id}>{item.nameWithType}</option>
+                                                    ))) ||
+                                                <option>Đang load dữ liệu</option>
+                                            }
+                                        </select>
+                                    }
+                                    {!props.isAdd &&
+                                        <select className="form-control mb-3"
+                                                {...register("address.province")}
+                                                disabled={districts.length === 1 ? true : false}
+                                        >
+                                            <option key={room.address.province.id}
+                                                    value={room.address.province.id}>{room.address.province.nameWithType}</option>
+                                        </select>}
                                     {errors?.address?.province &&
                                         <div
                                             className="alert-warning text-center">{errors.address?.province?.message}</div>
@@ -279,20 +293,29 @@ export default function RoomModal(props) {
                             </Col>
                             <Col>
                                 <Label for='district' name="district"> District:
-                                    <select className="form-control mb-3"
-                                            {...register("address.district")}
-                                            onChange={handleDistrictChange}
-                                            disabled={districts.length === 1 ? true : false}
+                                    {props.isAdd && <select className="form-control mb-3"
+                                                            {...register("address.district")}
+                                                            onChange={handleDistrictChange}
+                                                            disabled={districts.length === 1 ? true : false}
                                     >
                                         {districts.length > 0 &&
                                             <option checked> Chọn Quận/huyện</option>
                                         }
                                         {(districts.length > 0 &&
                                                 districts.map((item, index) => (
-                                                    <option key={item.id} value={item.id}>{item.name_with_type}</option>
+                                                    <option key={item.id} value={item.id}>{item.nameWithType}</option>
                                                 ))) ||
                                             <option>Vui lòng chọn tỉnh</option>}
                                     </select>
+                                    }
+                                    {!props.isAdd &&
+                                        <select className="form-control mb-3"
+                                                {...register("address.district")}
+                                                disabled={districts.length === 1 ? true : false}
+                                        >
+                                            <option key={room.address.district.id}
+                                                    value={room.address.district.id}>{room.address.district.nameWithType}</option>
+                                        </select>}
                                     {errors?.address?.district &&
                                         <div
                                             className="alert-warning text-center">{errors.address?.district?.message}</div>
@@ -301,19 +324,28 @@ export default function RoomModal(props) {
                             </Col>
                             <Col>
                                 <Label for='ward' name="ward">Ward:
-                                    <select className="form-control mb-3"
-                                            {...register("address.ward")}
-                                            disabled={districts.length === 1 ? true : false}
+                                    {props.isAdd && <select className="form-control mb-3"
+                                                            {...register("address.ward")}
+                                                            disabled={districts.length === 1 ? true : false}
                                     >
                                         {wards.length > 0 &&
                                             <option checked> Chọn phường/xã</option>
                                         }
                                         {(wards.length > 0 &&
                                                 wards.map((item, index) => (
-                                                    <option key={item.id} value={item.id}>{item.name_with_type}</option>
+                                                    <option key={item.id} value={item.id}>{item.nameWithType}</option>
                                                 ))) ||
                                             <option>Vui lòng chọn huyện</option>}
                                     </select>
+                                    }
+                                    {!props.isAdd &&
+                                        <select className="form-control mb-3"
+                                                {...register("address.ward")}
+                                                disabled={districts.length === 1 ? true : false}
+                                        >
+                                            <option key={room.address.ward.id}
+                                                    value={room.address.ward.id}>{room.address.ward.nameWithType}</option>
+                                        </select>}
                                     {errors?.address?.ward &&
                                         <div className="alert-warning text-center">{errors.address?.ward?.message}</div>
                                     }
