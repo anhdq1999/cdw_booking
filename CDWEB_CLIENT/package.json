@@ -1,6 +1,5 @@
 {
   "name": "triper",
-  "homepage": "https://triper.dexignlab.com/react/",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -30,7 +29,7 @@
     "react-redux": "^7.2.8",
     "react-rev-slider": "^1.0.1",
     "react-router-dom": "^5.1.2",
-    "react-scripts": "^3.3.0",
+    "react-scripts": "^5.0.1",
     "react-slick": "^0.25.2",
     "reactstrap": "^8.10.1",
     "redux": "^4.1.2",

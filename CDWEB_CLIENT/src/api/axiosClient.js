@@ -5,7 +5,7 @@ import authHeader from 'helpers/auth'
 const axiosClient = axios.create({
     baseURL: process.env.REACT_APP_API_URL,
     headers: {
-        'Access-Control-Allow-Origin':true,
+        'Access-Control-Allow-Origin':'*',
         'content-type': 'application/json',
     },
     paramsSerializer: params => queryString.stringify(params),

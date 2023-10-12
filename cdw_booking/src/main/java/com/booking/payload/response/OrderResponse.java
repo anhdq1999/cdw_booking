@@ -22,9 +22,9 @@ public class OrderResponse {
 
     private int infants;
 
-    private Date checkIn;
+    private String checkIn;
 
-    private Date checkOut;
+    private String checkOut;
 
     private String note;
 
@@ -43,4 +43,5 @@ public class OrderResponse {
     private String customerName;
 
     private String customerPhone;
+
 }

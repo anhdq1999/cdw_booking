@@ -1,0 +1,28 @@
+version: '3'
+
+services:
+    docker-mysql:
+      image: mysql:8.0
+      restart: always
+      environment:
+        - MYSQL_ROOT_PASSWORD=root
+        - MYSQL_DATABASE=booking_demo
+        - MYSQL_PASSWORD=root
+      ports:
+        - "3308:3306"
+      volumes:
+        - mysql-data:/var/lib/mysql
+        - ./booking_demo.sql:/docker-entrypoint-initdb.d/init.sql
+    web:
+      image: booking-demo:1.0
+      ports:
+        - "8080:8080"
+      environment:
+        SPRING_APPLICATION_JSON: '{
+          "spring.datasource.url":"jdbc:mysql://docker-mysql:3306/booking_demo?jdbcCompliantTruncation=false"
+        }'
+      depends_on:
+        - docker-mysql
+
+volumes:
+    mysql-data:

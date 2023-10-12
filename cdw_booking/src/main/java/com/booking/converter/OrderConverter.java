@@ -5,9 +5,9 @@ import com.booking.entity.RoomEntity;
 import com.booking.entity.UserEntity;
 import com.booking.payload.request.OrderRequest;
 import com.booking.payload.response.OrderResponse;
-import com.booking.payload.response.RoomResponse;
 import com.booking.payload.response.order.OrderRoomResponse;
 import com.booking.payload.response.order.OrderUserResponse;
+import com.booking.utils.DateUtils;
 
 public class OrderConverter {
 
@@ -44,8 +44,8 @@ public class OrderConverter {
                 .room(orderRoomResponse)
                 .user(orderUserResponse)
                 .status(entity.getStatus())
-                .checkIn(entity.getCheckIn())
-                .checkOut(entity.getCheckOut())
+                .checkIn(DateUtils.format(entity.getCheckIn(),DateUtils.DDMMYYYY))
+                .checkOut(DateUtils.format(entity.getCheckOut(),DateUtils.DDMMYYYY))
                 .adults(entity.getAdults())
                 .child(entity.getChild())
                 .infants(entity.getInfants())

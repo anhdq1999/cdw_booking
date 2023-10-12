@@ -29,7 +29,7 @@ public class UserController extends ExceptionControllerHandle {
 
     @GetMapping("/")
     public ResponseEntity<?> getAllUsers() {
-        List<UserResponse> responses = userService.getAll().stream().map(user->UserConverter.toResponse(user))
+        List<UserResponse> responses = userService.getAll().stream().map(UserConverter::toResponse)
                 .collect(Collectors.toList());
         return ResponseEntity.ok(Response.success("Get all users successfully",responses ));
     }

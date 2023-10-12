@@ -1,7 +1,7 @@
 package com.booking.services.email;
 
 import com.booking.payload.response.OrderResponse;
-import com.booking.utils.FormatDateUtils;
+import com.booking.utils.DateUtils;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -54,11 +54,11 @@ public class FormMail {
                 "\n" +
                 "                <tr>\n" +
                 "                  <td>Check in:</td>\n" +
-                "                  <td style=\" text-align: right; padding-bottom: 15px; \">" + FormatDateUtils.dateToString(orderResponse.getCheckIn()) + " </td>\n" +
+                "                  <td style=\" text-align: right; padding-bottom: 15px; \">" +orderResponse.getCheckIn() + " </td>\n" +
                 "                </tr>\n" +
                 "                <tr>\n" +
                 "                  <td>Check out:</td>\n" +
-                "                  <td style=\" text-align: right; padding-bottom: 15px; \">" + FormatDateUtils.dateToString(orderResponse.getCheckOut()) + "</td>\n" +
+                "                  <td style=\" text-align: right; padding-bottom: 15px; \">" + orderResponse.getCheckOut() + "</td>\n" +
                 "                </tr>\n" +
                 "                <tr>\n" +
                 "                  <td>Customer name:</td>\n" +
